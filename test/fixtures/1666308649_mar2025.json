@@ -1,0 +1,64 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1911308,
+        "beatmap": "Koda Kumi - Guess Who Is Back (TV Size) (Sotarks) [Fiery's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 97.7997799779978,
+        "combo": 547,
+        "statistics": {
+            "great": 293,
+            "ok": 10,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 655.8495519140207,
+        "speed": 125.8617890012451,
+        "accuracy": 67.9402038709016,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.311515656969515,
+        "pp": 920.6796706046699
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.046876110001762,
+        "max_combo": 549,
+        "aim_difficulty": 5.092383846771949,
+        "aim_difficult_slider_count": 35.99265321835365,
+        "speed_difficulty": 2.904723268308086,
+        "speed_note_count": 168.4018874867706,
+        "slider_factor": 0.981196958291368,
+        "aim_difficult_strain_count": 60.42899648187695,
+        "speed_difficult_strain_count": 77.6123146041408,
+        "circle_size": 5.460000000000001,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 163,
+        "code": "pp_mar2025",
+        "version": 2,
+        "last_updated": "2025-11-11 10:10"
+    },
+    "live_pp": 908.812,
+    "user_id": 10077431,
+    "score_id": 1666308649
+}

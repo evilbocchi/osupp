@@ -1,0 +1,43 @@
+{
+    "name": "osupp",
+    "version": "0.0.0",
+    "description": "A pure-JavaScript osu pp calculator",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/evilbocchi/osupp.git"
+    },
+    "keywords": [
+        "osu",
+        "osugame",
+        "pp",
+        "performance",
+        "points"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "type": "module",
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "format": "prettier --write .",
+        "build": "bun build ./src/index.ts --outdir ./dist --production && tsc -p tsconfig.build.json",
+        "test": "bun test",
+        "test:watch": "bun test --watch"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "lefthook": "^2.1.9",
+        "osu-api-extended": "^3.2.1",
+        "prettier-plugin-organize-imports": "^4.3.0",
+        "prettier": "^3.9.4"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    }
+}

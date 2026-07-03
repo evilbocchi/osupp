@@ -1,0 +1,615 @@
+import { clamp, erf, erf_inv, lerp, reverse_lerp } from "../utils";
+import type { DifficultyAttributes } from "./DifficultyCalculator";
+import { flashlight_difficulty_to_performance } from "./FlashlightSkill";
+
+export interface PerformanceAttributes {
+    aim: number;
+    speed: number;
+    accuracy: number;
+    flashlight: number;
+    effective_miss_count: number;
+    speed_deviation?: number;
+    combo_based_estimated_miss_count: number;
+    score_based_estimated_miss_count?: number;
+    aim_estimated_slider_breaks: number;
+    speed_estimated_slider_breaks: number;
+    pp: number;
+}
+
+export interface ScoreParams {
+    mods: string[];
+    accuracy: number;
+    combo: number;
+    statistics: {
+        great: number;
+        ok: number;
+        meh: number;
+        miss: number;
+        large_tick_miss?: number;
+        slider_tail_hit?: number;
+    };
+    classic?: boolean;
+}
+
+const DIFFICULTY_MULTIPLIER = 0.0675;
+const PERFORMANCE_BASE_MULTIPLIER = 1.15;
+
+function difficulty_to_performance(difficulty: number): number {
+    return (
+        (5 * Math.max(1, difficulty / DIFFICULTY_MULTIPLIER) - 4) ** 3 / 100000
+    );
+}
+
+export function calculate_performance(
+    difficulty: DifficultyAttributes,
+    score: ScoreParams,
+): PerformanceAttributes {
+    const mods = score.mods;
+    const accuracy = score.accuracy;
+    const score_max_combo = score.combo;
+    const count_great = score.statistics.great;
+    const count_ok = score.statistics.ok;
+    const count_meh = score.statistics.meh;
+    const count_miss = score.statistics.miss;
+    const count_slider_tick_miss = score.statistics.large_tick_miss ?? 0;
+    const count_slider_ends_dropped = Math.max(
+        0,
+        difficulty.slider_count - (score.statistics.slider_tail_hit ?? 0),
+    );
+    const total_hits = count_great + count_ok + count_meh + count_miss;
+    const total_successful_hits = count_great + count_ok + count_meh;
+    const total_imperfect_hits = count_ok + count_meh + count_miss;
+    const using_classic_slider_accuracy = Boolean(
+        score.classic || mods.includes("CL"),
+    );
+
+    const overall_difficulty = difficulty.effective_od;
+    const approach_rate = difficulty.effective_ar;
+    const great_hit_window = 80 - 6 * overall_difficulty;
+    const ok_hit_window = 140 - 8 * overall_difficulty;
+    const meh_hit_window = 200 - 10 * overall_difficulty;
+
+    const combo_based_estimated_miss_count =
+        calculate_combo_based_estimated_miss_count(
+            difficulty,
+            using_classic_slider_accuracy,
+            score_max_combo,
+            count_miss,
+            total_imperfect_hits,
+            count_slider_tick_miss,
+            count_slider_ends_dropped,
+        );
+    const score_based_estimated_miss_count = null;
+    let effective_miss_count = combo_based_estimated_miss_count;
+
+    effective_miss_count = Math.max(count_miss, effective_miss_count);
+    effective_miss_count = Math.min(total_hits, effective_miss_count);
+
+    let multiplier = PERFORMANCE_BASE_MULTIPLIER;
+    if (mods.includes("NF")) {
+        multiplier *= Math.max(0.9, 1 - 0.02 * effective_miss_count);
+    }
+    if (mods.includes("SO") && total_hits > 0) {
+        multiplier *= 1 - (difficulty.spinner_count / total_hits) ** 0.85;
+    }
+
+    if (mods.includes("RX")) {
+        const ok_multiplier = Math.max(
+            0,
+            overall_difficulty > 0
+                ? 1 - (overall_difficulty / 13.33) ** 1.8
+                : 1,
+        );
+        const meh_multiplier = Math.max(
+            0,
+            overall_difficulty > 0 ? 1 - (overall_difficulty / 13.33) ** 5 : 1,
+        );
+        effective_miss_count = Math.min(
+            effective_miss_count +
+                count_ok * ok_multiplier +
+                count_meh * meh_multiplier,
+            total_hits,
+        );
+    }
+
+    const speed_deviation = calculate_speed_deviation(
+        difficulty,
+        total_hits,
+        total_successful_hits,
+        count_great,
+        count_ok,
+        count_meh,
+        count_miss,
+        great_hit_window,
+        ok_hit_window,
+        meh_hit_window,
+    );
+
+    const aim_value = compute_aim_value(
+        difficulty,
+        score,
+        effective_miss_count,
+        total_hits,
+        total_imperfect_hits,
+        count_slider_tick_miss,
+        count_slider_ends_dropped,
+        using_classic_slider_accuracy,
+        accuracy,
+        overall_difficulty,
+    );
+    const speed_value = compute_speed_value(
+        difficulty,
+        score,
+        effective_miss_count,
+        total_hits,
+        count_great,
+        count_ok,
+        count_meh,
+        accuracy,
+        overall_difficulty,
+        speed_deviation,
+    );
+    const accuracy_value = compute_accuracy_value(
+        difficulty,
+        mods,
+        using_classic_slider_accuracy,
+        total_hits,
+        count_great,
+        count_ok,
+        count_meh,
+        overall_difficulty,
+    );
+    const flashlight_value = compute_flashlight_value(
+        difficulty,
+        mods,
+        effective_miss_count,
+        total_hits,
+        score_max_combo,
+        accuracy,
+    );
+
+    const pp =
+        (aim_value.value ** 1.1 +
+            speed_value.value ** 1.1 +
+            accuracy_value ** 1.1 +
+            flashlight_value ** 1.1) **
+            (1 / 1.1) *
+        multiplier;
+
+    return {
+        aim: aim_value.value,
+        speed: speed_value.value,
+        accuracy: accuracy_value,
+        flashlight: flashlight_value,
+        effective_miss_count: effective_miss_count,
+        speed_deviation: speed_deviation ?? undefined,
+        combo_based_estimated_miss_count: combo_based_estimated_miss_count,
+        score_based_estimated_miss_count:
+            score_based_estimated_miss_count ?? undefined,
+        aim_estimated_slider_breaks: aim_value.estimated_slider_breaks,
+        speed_estimated_slider_breaks: speed_value.estimated_slider_breaks,
+        pp,
+    };
+}
+
+function calculate_combo_based_estimated_miss_count(
+    difficulty: DifficultyAttributes,
+    using_classic_slider_accuracy: boolean,
+    score_max_combo: number,
+    count_miss: number,
+    total_imperfect_hits: number,
+    count_slider_tick_miss: number,
+    count_slider_ends_dropped: number,
+): number {
+    if (difficulty.slider_count <= 0) return count_miss;
+
+    let miss_count = count_miss;
+
+    if (using_classic_slider_accuracy) {
+        const full_combo_threshold =
+            difficulty.max_combo - 0.1 * difficulty.slider_count;
+        if (score_max_combo < full_combo_threshold) {
+            miss_count = full_combo_threshold / Math.max(1, score_max_combo);
+        }
+        miss_count = Math.min(miss_count, total_imperfect_hits);
+    } else {
+        const full_combo_threshold =
+            difficulty.max_combo - count_slider_ends_dropped;
+        if (score_max_combo < full_combo_threshold) {
+            miss_count = full_combo_threshold / Math.max(1, score_max_combo);
+        }
+        miss_count = Math.min(miss_count, count_slider_tick_miss + count_miss);
+    }
+
+    return miss_count;
+}
+
+function compute_aim_value(
+    difficulty: DifficultyAttributes,
+    score: ScoreParams,
+    effective_miss_count: number,
+    total_hits: number,
+    total_imperfect_hits: number,
+    count_slider_tick_miss: number,
+    count_slider_ends_dropped: number,
+    using_classic_slider_accuracy: boolean,
+    accuracy: number,
+    overall_difficulty: number,
+): { value: number; estimated_slider_breaks: number } {
+    const mods = score.mods;
+    if (mods.includes("AP")) return { value: 0, estimated_slider_breaks: 0 };
+
+    let aim_difficulty = difficulty.aim_difficulty;
+
+    if (
+        difficulty.slider_count > 0 &&
+        difficulty.aim_difficult_slider_count > 0
+    ) {
+        const estimate_improperly_followed_difficult_sliders =
+            using_classic_slider_accuracy
+                ? clamp(
+                      Math.min(
+                          total_imperfect_hits,
+                          difficulty.max_combo - score.combo,
+                      ),
+                      0,
+                      difficulty.aim_difficult_slider_count,
+                  )
+                : clamp(
+                      count_slider_ends_dropped + count_slider_tick_miss,
+                      0,
+                      difficulty.aim_difficult_slider_count,
+                  );
+
+        const slider_nerf_factor =
+            (1 - difficulty.slider_factor) *
+                (1 -
+                    estimate_improperly_followed_difficult_sliders /
+                        difficulty.aim_difficult_slider_count) **
+                    3 +
+            difficulty.slider_factor;
+        aim_difficulty *= slider_nerf_factor;
+    }
+
+    let aim_value = difficulty_to_performance(aim_difficulty);
+    const length_bonus =
+        0.95 +
+        0.4 * Math.min(1, total_hits / 2000) +
+        (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
+    aim_value *= length_bonus;
+
+    if (effective_miss_count > 0) {
+        aim_value *= calculate_miss_penalty(
+            effective_miss_count,
+            difficulty.aim_difficult_strain_count,
+        );
+    }
+
+    let approach_rate_factor = 0;
+    if (difficulty.effective_ar > 10.33)
+        approach_rate_factor = 0.3 * (difficulty.effective_ar - 10.33);
+    else if (difficulty.effective_ar < 8)
+        approach_rate_factor = 0.05 * (8 - difficulty.effective_ar);
+    if (mods.includes("RX")) approach_rate_factor = 0;
+
+    aim_value *= 1 + approach_rate_factor * length_bonus;
+
+    if (mods.includes("BL")) {
+        aim_value *=
+            1.3 +
+            total_hits *
+                (0.0016 / (1 + 2 * effective_miss_count)) *
+                accuracy ** 16 *
+                (1 - 0.003 * difficulty.drain_rate ** 2);
+    } else if (mods.includes("HD") || mods.includes("TC")) {
+        aim_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
+    }
+
+    aim_value *= accuracy;
+    aim_value *= 0.98 + Math.max(0, overall_difficulty) ** 2 / 2500;
+
+    return { value: aim_value, estimated_slider_breaks: 0 };
+}
+
+function compute_speed_value(
+    difficulty: DifficultyAttributes,
+    score: ScoreParams,
+    effective_miss_count: number,
+    total_hits: number,
+    count_great: number,
+    count_ok: number,
+    count_meh: number,
+    accuracy: number,
+    overall_difficulty: number,
+    speed_deviation: number | null,
+): { value: number; estimated_slider_breaks: number } {
+    const mods = score.mods;
+    if (mods.includes("RX") || speed_deviation == null)
+        return { value: 0, estimated_slider_breaks: 0 };
+
+    let speed_value = difficulty_to_performance(difficulty.speed_difficulty);
+    const length_bonus =
+        0.95 +
+        0.4 * Math.min(1, total_hits / 2000) +
+        (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
+    speed_value *= length_bonus;
+
+    if (effective_miss_count > 0) {
+        speed_value *= calculate_miss_penalty(
+            effective_miss_count,
+            difficulty.speed_difficult_strain_count,
+        );
+    }
+
+    let approach_rate_factor = 0;
+    if (difficulty.effective_ar > 10.33)
+        approach_rate_factor = 0.3 * (difficulty.effective_ar - 10.33);
+    if (mods.includes("AP")) approach_rate_factor = 0;
+
+    speed_value *= 1 + approach_rate_factor * length_bonus;
+
+    if (mods.includes("BL")) speed_value *= 1.12;
+    else if (mods.includes("HD") || mods.includes("TC")) {
+        speed_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
+    }
+
+    speed_value *= calculate_speed_high_deviation_nerf(
+        difficulty,
+        speed_deviation,
+    );
+    speed_value = apply_speed_accuracy_scaling(
+        speed_value,
+        difficulty,
+        total_hits,
+        count_great,
+        count_ok,
+        count_meh,
+        accuracy,
+        overall_difficulty,
+    );
+
+    return { value: speed_value, estimated_slider_breaks: 0 };
+}
+
+function apply_speed_accuracy_scaling(
+    speed_value: number,
+    difficulty: DifficultyAttributes,
+    total_hits: number,
+    count_great: number,
+    count_ok: number,
+    count_meh: number,
+    accuracy: number,
+    overall_difficulty: number,
+): number {
+    const relevant_total_diff = Math.max(
+        0,
+        total_hits - difficulty.speed_note_count,
+    );
+    const relevant_count_great = Math.max(0, count_great - relevant_total_diff);
+    const relevant_count_ok = Math.max(
+        0,
+        count_ok - Math.max(0, relevant_total_diff - count_great),
+    );
+    const relevant_count_meh = Math.max(
+        0,
+        count_meh - Math.max(0, relevant_total_diff - count_great - count_ok),
+    );
+    const relevant_accuracy =
+        difficulty.speed_note_count === 0
+            ? 0
+            : (relevant_count_great * 6 +
+                  relevant_count_ok * 2 +
+                  relevant_count_meh) /
+              (difficulty.speed_note_count * 6);
+
+    return (
+        speed_value *
+        (0.95 + Math.max(0, overall_difficulty) ** 2 / 750) *
+        ((accuracy + relevant_accuracy) / 2) **
+            ((14.5 - overall_difficulty) / 2)
+    );
+}
+
+function compute_accuracy_value(
+    difficulty: DifficultyAttributes,
+    mods: string[],
+    using_classic_slider_accuracy: boolean,
+    total_hits: number,
+    count_great: number,
+    count_ok: number,
+    count_meh: number,
+    overall_difficulty: number,
+): number {
+    if (mods.includes("RX")) return 0;
+
+    let amount_hit_objects_with_accuracy = difficulty.hit_circle_count;
+    if (!using_classic_slider_accuracy)
+        amount_hit_objects_with_accuracy += difficulty.slider_count;
+
+    const better_accuracy_percentage =
+        amount_hit_objects_with_accuracy > 0
+            ? Math.max(
+                  0,
+                  ((count_great -
+                      Math.max(
+                          total_hits - amount_hit_objects_with_accuracy,
+                          0,
+                      )) *
+                      6 +
+                      count_ok * 2 +
+                      count_meh) /
+                      (amount_hit_objects_with_accuracy * 6),
+              )
+            : 0;
+
+    let accuracy_value =
+        1.52163 ** overall_difficulty * better_accuracy_percentage ** 24 * 2.83;
+    accuracy_value *= Math.min(
+        1.15,
+        (amount_hit_objects_with_accuracy / 1000) ** 0.3,
+    );
+
+    if (mods.includes("BL")) accuracy_value *= 1.14;
+    else if (mods.includes("HD") || mods.includes("TC")) {
+        accuracy_value *= 1.08;
+    }
+    if (mods.includes("FL")) accuracy_value *= 1.02;
+
+    return accuracy_value;
+}
+
+function compute_flashlight_value(
+    difficulty: DifficultyAttributes,
+    mods: string[],
+    effective_miss_count: number,
+    total_hits: number,
+    score_max_combo: number,
+    accuracy: number,
+): number {
+    if (!mods.includes("FL")) return 0;
+
+    let flashlight_value = flashlight_difficulty_to_performance(
+        difficulty.flashlight_difficulty,
+    );
+
+    if (effective_miss_count > 0) {
+        flashlight_value *=
+            0.97 *
+            (1 - (effective_miss_count / total_hits) ** 0.775) **
+                (effective_miss_count ** 0.875);
+    }
+
+    flashlight_value *=
+        difficulty.max_combo <= 0
+            ? 1
+            : Math.min(score_max_combo ** 0.8 / difficulty.max_combo ** 0.8, 1);
+    flashlight_value *=
+        0.7 +
+        0.1 * Math.min(1, total_hits / 200) +
+        (total_hits > 200 ? 0.2 * Math.min(1, (total_hits - 200) / 200) : 0);
+    flashlight_value *= 0.5 + accuracy / 2;
+    flashlight_value *= 0.98 + Math.max(0, difficulty.effective_od) ** 2 / 2500;
+
+    return flashlight_value;
+}
+
+function calculate_speed_deviation(
+    difficulty: DifficultyAttributes,
+    total_hits: number,
+    total_successful_hits: number,
+    count_great: number,
+    count_ok: number,
+    count_meh: number,
+    count_miss: number,
+    great_hit_window: number,
+    ok_hit_window: number,
+    meh_hit_window: number,
+): number | null {
+    if (total_successful_hits === 0) return null;
+
+    let speed_note_count = difficulty.speed_note_count;
+    speed_note_count += (total_hits - difficulty.speed_note_count) * 0.1;
+
+    const relevant_count_miss = Math.min(count_miss, speed_note_count);
+    const relevant_count_meh = Math.min(
+        count_meh,
+        speed_note_count - relevant_count_miss,
+    );
+    const relevant_count_ok = Math.min(
+        count_ok,
+        speed_note_count - relevant_count_miss - relevant_count_meh,
+    );
+    const relevant_count_great = Math.max(
+        0,
+        speed_note_count -
+            relevant_count_miss -
+            relevant_count_meh -
+            relevant_count_ok,
+    );
+
+    return calculate_deviation(
+        relevant_count_great,
+        relevant_count_ok,
+        relevant_count_meh,
+        great_hit_window,
+        ok_hit_window,
+        meh_hit_window,
+    );
+}
+
+function calculate_deviation(
+    relevant_count_great: number,
+    relevant_count_ok: number,
+    relevant_count_meh: number,
+    great_hit_window: number,
+    ok_hit_window: number,
+    meh_hit_window: number,
+): number | null {
+    if (relevant_count_great + relevant_count_ok + relevant_count_meh <= 0)
+        return null;
+
+    const n = Math.max(1, relevant_count_great + relevant_count_ok);
+    const z = 2.32634787404;
+    const p = relevant_count_great / n;
+    const p_lower_bound = Math.min(
+        p,
+        (n * p + (z * z) / 2) / (n + z * z) -
+            (z / (n + z * z)) * Math.sqrt(n * p * (1 - p) + (z * z) / 4),
+    );
+
+    let deviation: number;
+    if (p_lower_bound > 0.01) {
+        deviation = great_hit_window / (Math.sqrt(2) * erf_inv(p_lower_bound));
+        const ok_hit_window_tail_amount =
+            (Math.sqrt(2 / Math.PI) *
+                ok_hit_window *
+                Math.exp(-0.5 * (ok_hit_window / deviation) ** 2)) /
+            (deviation * erf(ok_hit_window / (Math.sqrt(2) * deviation)));
+
+        deviation *= Math.sqrt(1 - ok_hit_window_tail_amount);
+    } else {
+        deviation = ok_hit_window / Math.sqrt(3);
+    }
+
+    const meh_variance =
+        (meh_hit_window * meh_hit_window +
+            ok_hit_window * meh_hit_window +
+            ok_hit_window * ok_hit_window) /
+        3;
+
+    return Math.sqrt(
+        ((relevant_count_great + relevant_count_ok) * deviation ** 2 +
+            relevant_count_meh * meh_variance) /
+            (relevant_count_great + relevant_count_ok + relevant_count_meh),
+    );
+}
+
+function calculate_speed_high_deviation_nerf(
+    difficulty: DifficultyAttributes,
+    speed_deviation: number,
+): number {
+    const speed_value = difficulty_to_performance(difficulty.speed_difficulty);
+    const excess_speed_difficulty_cutoff =
+        100 + 220 * (22 / speed_deviation) ** 6.5;
+
+    if (speed_value <= excess_speed_difficulty_cutoff) return 1;
+
+    const scale = 50;
+    let adjusted_speed_value =
+        scale *
+        (Math.log((speed_value - excess_speed_difficulty_cutoff) / scale + 1) +
+            excess_speed_difficulty_cutoff / scale);
+    const amount = 1 - reverse_lerp(speed_deviation, 22, 27);
+    adjusted_speed_value = lerp(adjusted_speed_value, speed_value, amount);
+
+    return adjusted_speed_value / speed_value;
+}
+
+function calculate_miss_penalty(
+    miss_count: number,
+    difficult_strain_count: number,
+): number {
+    return (
+        0.96 / (miss_count / (4 * Math.log(difficult_strain_count) ** 0.94) + 1)
+    );
+}
