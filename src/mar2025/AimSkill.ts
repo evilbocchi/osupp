@@ -15,9 +15,9 @@ const WIDE_ANGLE_MULTIPLIER = 1.5;
 const SLIDER_MULTIPLIER = 1.35;
 const VELOCITY_CHANGE_MULTIPLIER = 0.75;
 const WIGGLE_MULTIPLIER = 1.02;
-const ACUTE_ANGLE_MULTIPLIER = 2.6;
-const SKILL_MULTIPLIER = 25.6;
 const STRAIN_DECAY_BASE = 0.15;
+
+export type OsuRework = "mar2025" | "oct2024";
 
 function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
@@ -31,9 +31,23 @@ function calc_acute_angle_bonus(angle: number): number {
     return smoothstep(angle, (140 * Math.PI) / 180, (40 * Math.PI) / 180);
 }
 
+function calc_oct2024_wide_angle_bonus(angle: number): number {
+    return (
+        Math.sin(
+            (3 / 4) *
+                (clamp(angle, Math.PI / 6, (5 * Math.PI) / 6) - Math.PI / 6),
+        ) ** 2
+    );
+}
+
+function calc_oct2024_acute_angle_bonus(angle: number): number {
+    return 1 - calc_oct2024_wide_angle_bonus(angle);
+}
+
 function evaluate_aim_difficulty(
     current: OsuDifficultyHitObject,
     with_slider_travel_distance: boolean,
+    rework: OsuRework,
 ): number {
     if (
         current.base_object.is_spinner ||
@@ -93,79 +107,138 @@ function evaluate_aim_difficulty(
             const last_angle = osu_last_obj.angle;
             const angle_bonus = Math.min(curr_velocity, prev_velocity);
 
-            wide_angle_bonus = calc_wide_angle_bonus(curr_angle);
-            acute_angle_bonus = calc_acute_angle_bonus(curr_angle);
+            if (rework === "oct2024") {
+                const last_last_angle = osu_last_last_obj.angle;
+                if (last_last_angle != null) {
+                    wide_angle_bonus =
+                        calc_oct2024_wide_angle_bonus(curr_angle);
+                    acute_angle_bonus =
+                        calc_oct2024_acute_angle_bonus(curr_angle);
 
-            wide_angle_bonus *=
-                1 -
-                Math.min(
-                    wide_angle_bonus,
-                    calc_wide_angle_bonus(last_angle) ** 3,
-                );
-            acute_angle_bonus *=
-                0.08 +
-                0.92 *
-                    (1 -
-                        Math.min(
-                            acute_angle_bonus,
-                            calc_acute_angle_bonus(last_angle) ** 3,
-                        ));
+                    if (milliseconds_to_bpm(current.strain_time, 2) < 300) {
+                        acute_angle_bonus = 0;
+                    } else {
+                        acute_angle_bonus *=
+                            calc_oct2024_acute_angle_bonus(last_angle) *
+                            Math.min(
+                                angle_bonus,
+                                (NORMALIZED_DIAMETER * 1.25) /
+                                    current.strain_time,
+                            ) *
+                            Math.sin(
+                                (Math.PI / 2) *
+                                    Math.min(
+                                        1,
+                                        (100 - current.strain_time) / 25,
+                                    ),
+                            ) **
+                                2 *
+                            Math.sin(
+                                ((Math.PI / 2) *
+                                    (clamp(
+                                        current.lazy_jump_distance,
+                                        NORMALIZED_RADIUS,
+                                        NORMALIZED_DIAMETER,
+                                    ) -
+                                        NORMALIZED_RADIUS)) /
+                                    NORMALIZED_RADIUS,
+                            ) **
+                                2;
+                    }
 
-            wide_angle_bonus *=
-                angle_bonus *
-                smootherstep(
-                    current.lazy_jump_distance,
-                    0,
-                    NORMALIZED_DIAMETER,
-                );
+                    wide_angle_bonus *=
+                        angle_bonus *
+                        (1 -
+                            Math.min(
+                                wide_angle_bonus,
+                                calc_oct2024_wide_angle_bonus(last_angle) ** 3,
+                            ));
+                    acute_angle_bonus *=
+                        0.5 +
+                        0.5 *
+                            (1 -
+                                Math.min(
+                                    acute_angle_bonus,
+                                    calc_oct2024_acute_angle_bonus(
+                                        last_last_angle,
+                                    ) ** 3,
+                                ));
+                }
+            } else {
+                wide_angle_bonus = calc_wide_angle_bonus(curr_angle);
+                acute_angle_bonus = calc_acute_angle_bonus(curr_angle);
 
-            acute_angle_bonus *=
-                angle_bonus *
-                smootherstep(
-                    milliseconds_to_bpm(current.strain_time, 2),
-                    300,
-                    400,
-                ) *
-                smootherstep(
-                    current.lazy_jump_distance,
-                    NORMALIZED_DIAMETER,
-                    NORMALIZED_DIAMETER * 2,
-                );
+                wide_angle_bonus *=
+                    1 -
+                    Math.min(
+                        wide_angle_bonus,
+                        calc_wide_angle_bonus(last_angle) ** 3,
+                    );
+                acute_angle_bonus *=
+                    0.08 +
+                    0.92 *
+                        (1 -
+                            Math.min(
+                                acute_angle_bonus,
+                                calc_acute_angle_bonus(last_angle) ** 3,
+                            ));
 
-            wiggle_bonus =
-                angle_bonus *
-                smootherstep(
-                    current.lazy_jump_distance,
-                    NORMALIZED_RADIUS,
-                    NORMALIZED_DIAMETER,
-                ) *
-                reverse_lerp(
-                    current.lazy_jump_distance,
-                    NORMALIZED_DIAMETER * 3,
-                    NORMALIZED_DIAMETER,
-                ) **
-                    1.8 *
-                smootherstep(
-                    curr_angle,
-                    (110 * Math.PI) / 180,
-                    (60 * Math.PI) / 180,
-                ) *
-                smootherstep(
-                    osu_last_obj.lazy_jump_distance,
-                    NORMALIZED_RADIUS,
-                    NORMALIZED_DIAMETER,
-                ) *
-                reverse_lerp(
-                    osu_last_obj.lazy_jump_distance,
-                    NORMALIZED_DIAMETER * 3,
-                    NORMALIZED_DIAMETER,
-                ) **
-                    1.8 *
-                smootherstep(
-                    last_angle,
-                    (110 * Math.PI) / 180,
-                    (60 * Math.PI) / 180,
-                );
+                wide_angle_bonus *=
+                    angle_bonus *
+                    smootherstep(
+                        current.lazy_jump_distance,
+                        0,
+                        NORMALIZED_DIAMETER,
+                    );
+
+                acute_angle_bonus *=
+                    angle_bonus *
+                    smootherstep(
+                        milliseconds_to_bpm(current.strain_time, 2),
+                        300,
+                        400,
+                    ) *
+                    smootherstep(
+                        current.lazy_jump_distance,
+                        NORMALIZED_DIAMETER,
+                        NORMALIZED_DIAMETER * 2,
+                    );
+
+                wiggle_bonus =
+                    angle_bonus *
+                    smootherstep(
+                        current.lazy_jump_distance,
+                        NORMALIZED_RADIUS,
+                        NORMALIZED_DIAMETER,
+                    ) *
+                    reverse_lerp(
+                        current.lazy_jump_distance,
+                        NORMALIZED_DIAMETER * 3,
+                        NORMALIZED_DIAMETER,
+                    ) **
+                        1.8 *
+                    smootherstep(
+                        curr_angle,
+                        (110 * Math.PI) / 180,
+                        (60 * Math.PI) / 180,
+                    ) *
+                    smootherstep(
+                        osu_last_obj.lazy_jump_distance,
+                        NORMALIZED_RADIUS,
+                        NORMALIZED_DIAMETER,
+                    ) *
+                    reverse_lerp(
+                        osu_last_obj.lazy_jump_distance,
+                        NORMALIZED_DIAMETER * 3,
+                        NORMALIZED_DIAMETER,
+                    ) **
+                        1.8 *
+                    smootherstep(
+                        last_angle,
+                        (110 * Math.PI) / 180,
+                        (60 * Math.PI) / 180,
+                    );
+            }
         }
     }
 
@@ -201,9 +274,9 @@ function evaluate_aim_difficulty(
         slider_bonus = osu_last_obj.travel_distance / osu_last_obj.travel_time;
     }
 
-    aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
+    if (rework === "mar2025") aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
     aim_strain += Math.max(
-        acute_angle_bonus * ACUTE_ANGLE_MULTIPLIER,
+        acute_angle_bonus * (rework === "oct2024" ? 1.95 : 2.6),
         wide_angle_bonus * WIDE_ANGLE_MULTIPLIER +
             velocity_change_bonus * VELOCITY_CHANGE_MULTIPLIER,
     );
@@ -231,6 +304,7 @@ export function count_top_weighted_sliders(
 export function calculate_aim_skill(
     objects: OsuDifficultyHitObject[],
     with_sliders: boolean,
+    rework: OsuRework = "mar2025",
 ): {
     difficulty_value: number;
     aim_difficult_strain_count: number;
@@ -270,7 +344,8 @@ export function calculate_aim_skill(
 
         current_strain *= strain_decay(current.delta_time);
         current_strain +=
-            evaluate_aim_difficulty(current, with_sliders) * SKILL_MULTIPLIER;
+            evaluate_aim_difficulty(current, with_sliders, rework) *
+            (rework === "oct2024" ? 25.18 : 25.6);
 
         if (current.base_object.is_slider) slider_strains.push(current_strain);
 

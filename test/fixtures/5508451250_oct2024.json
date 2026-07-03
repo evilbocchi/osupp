@@ -1,0 +1,62 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.80787704130644,
+        "combo": 938,
+        "statistics": {
+            "great": 692,
+            "ok": 2,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 286.1918780368936,
+        "speed": 318.7081430073608,
+        "accuracy": 147.91053773082643,
+        "flashlight": 296.61178683626747,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.925279038087297,
+        "pp": 1067.7930265761315
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.753891020077317,
+        "max_combo": 938,
+        "aim_difficulty": 4.044082138464826,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.114377781461867,
+        "speed_note_count": 314.43919615278554,
+        "flashlight_difficulty": 3.4121868697962667,
+        "slider_factor": 0.9981877733728037,
+        "aim_difficult_strain_count": 137.33931455455277,
+        "speed_difficult_strain_count": 150.63338687701614,
+        "circle_size": 5.8500000000000005,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 111,
+        "code": "pp_oct2024",
+        "version": 1,
+        "last_updated": "2025-03-07 07:30"
+    },
+    "live_pp": 1011.76,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}

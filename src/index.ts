@@ -10,8 +10,9 @@ import PpCalculator, {
     type RulesetId,
 } from "./PpCalculator";
 import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
+import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
 
-export type SupportedRework = "mar2025";
+export type SupportedRework = "mar2025" | "oct2024";
 
 export interface CreatePpCalculatorOptions {
     /** PP rework implementation to use. Defaults to mar2025. */
@@ -31,6 +32,7 @@ export const rulesets = RULESET_IDS;
 
 export const reworks = {
     mar2025: "mar2025",
+    oct2024: "oct2024",
 } as const satisfies Record<SupportedRework, SupportedRework>;
 
 export function parseBeatmap(content: string): BeatmapData {
@@ -47,6 +49,8 @@ export function createPpCalculator(
     switch (options.rework ?? reworks.mar2025) {
         case reworks.mar2025:
             return new Mar2025PpCalculator(calculator_options);
+        case reworks.oct2024:
+            return new Oct2024PpCalculator(calculator_options);
     }
 }
 
@@ -67,6 +71,7 @@ export {
     calculate_bonus_pp as calculateBonusPp,
     calculate_profile_pp as calculateProfilePp,
     Mar2025PpCalculator,
+    Oct2024PpCalculator,
 };
 
 export type {

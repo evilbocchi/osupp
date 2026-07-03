@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { parse_osu_content } from "../src/BeatmapData";
 import Mar2025PpCalculator from "../src/mar2025/Mar2025PpCalculator";
+import Oct2024PpCalculator from "../src/oct2024/Oct2024PpCalculator";
 import {
     calculate_bonus_pp,
     calculate_profile_pp,
@@ -97,6 +98,7 @@ describe("calculate_profile_pp", () => {
 });
 
 for (const [rework_slug, calculator_class] of [
+    ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],
 ] as const) {
     test.each(

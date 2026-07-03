@@ -1,0 +1,60 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2844649,
+        "beatmap": "t+pazolite - Oshama Scramble! (IOException Edit) (IOException) [Special]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 95.66801619433198,
+        "combo": 353,
+        "statistics": {
+            "great": 711,
+            "ok": 37,
+            "meh": 1,
+            "miss": 5,
+            "large_tick_miss": 73,
+            "slider_tail_hit": 433,
+            "slider_tail_miss": 10
+        }
+    },
+    "performance_attributes": {
+        "aim": 1126.9022885306622,
+        "speed": 278.67371204101613,
+        "accuracy": 83.44389350415199,
+        "flashlight": 0,
+        "effective_miss_count": 5,
+        "speed_deviation": 12.844060703227088,
+        "pp": 1612.9109034178537
+    },
+    "difficulty_attributes": {
+        "star_rating": 14.208231571466323,
+        "max_combo": 1322,
+        "aim_difficulty": 8.06360941494876,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.311673754183214,
+        "speed_note_count": 278.5997420624513,
+        "slider_factor": 0.5907671758442385,
+        "aim_difficult_strain_count": 65.0574215289011,
+        "speed_difficult_strain_count": 98.77018363920095,
+        "circle_size": 4,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "id": 111,
+        "code": "pp_oct2024",
+        "version": 1,
+        "last_updated": "2025-03-07 07:30"
+    },
+    "live_pp": 808.291,
+    "user_id": 7562902,
+    "score_id": 3773020400
+}

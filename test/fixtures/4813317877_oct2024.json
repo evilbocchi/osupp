@@ -1,0 +1,58 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2870806,
+        "beatmap": "Noah - Deadly force - Put an end (Keqing) [The end.]",
+        "mods": [
+            {
+                "acronym": "HT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.30421337456514,
+        "combo": 1986,
+        "statistics": {
+            "great": 2560,
+            "ok": 27,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 314.6669737212556,
+        "speed": 260.2680379481273,
+        "accuracy": 108.15718016532543,
+        "flashlight": 0,
+        "effective_miss_count": 1.6373615307150051,
+        "speed_deviation": 12.927338842816255,
+        "pp": 716.6491735202447
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.134524702011172,
+        "max_combo": 3320,
+        "aim_difficulty": 4.003574593550097,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.751103666778022,
+        "speed_note_count": 897.5120616597168,
+        "slider_factor": 0.9998248856907185,
+        "aim_difficult_strain_count": 320.10110110064693,
+        "speed_difficult_strain_count": 253.27561833487826,
+        "circle_size": 4,
+        "approach_rate": 9,
+        "overall_difficulty": 8.88888888888889
+    },
+    "rework_data": {
+        "id": 111,
+        "code": "pp_oct2024",
+        "version": 1,
+        "last_updated": "2025-03-07 07:30"
+    },
+    "live_pp": 749.416,
+    "user_id": 1719471,
+    "score_id": 4813317877
+}

@@ -1,0 +1,58 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5329312,
+        "beatmap": "Manticora - Humiliation Supreme (Urition) [Dignity]",
+        "mods": [
+            {
+                "acronym": "FL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.59313758730589,
+        "combo": 1696,
+        "statistics": {
+            "great": 1374,
+            "ok": 9,
+            "meh": 0,
+            "miss": 0,
+            "large_tick_miss": 0,
+            "slider_tail_hit": 151,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 218.77698086744357,
+        "speed": 249.19876241621765,
+        "accuracy": 154.56974512123688,
+        "flashlight": 406.5767483887044,
+        "effective_miss_count": 0,
+        "speed_deviation": 9.905517156517567,
+        "pp": 1049.847767955281
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.57019113418989,
+        "max_combo": 1696,
+        "aim_difficulty": 3.567268711477157,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.671428746017208,
+        "speed_note_count": 892.3396536631509,
+        "flashlight_difficulty": 4.004748379280196,
+        "slider_factor": 0.9998277437974766,
+        "aim_difficult_strain_count": 279.9392875954028,
+        "speed_difficult_strain_count": 318.36189354475084,
+        "circle_size": 4,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.5
+    },
+    "rework_data": {
+        "id": 111,
+        "code": "pp_oct2024",
+        "version": 1,
+        "last_updated": "2025-03-07 07:30"
+    },
+    "live_pp": 1019.36,
+    "user_id": 6567297,
+    "score_id": 5580342959
+}

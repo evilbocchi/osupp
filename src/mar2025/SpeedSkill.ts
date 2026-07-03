@@ -14,9 +14,9 @@ const HISTORY_TIME_MAX = 5000;
 const HISTORY_OBJECTS_MAX = 32;
 const RHYTHM_OVERALL_MULTIPLIER = 0.95;
 const RHYTHM_RATIO_MULTIPLIER = 12;
-const DISTANCE_MULTIPLIER = 0.9;
-const SKILL_MULTIPLIER = 1.46;
 const STRAIN_DECAY_BASE = 0.3;
+
+import type { OsuRework } from "./AimSkill";
 
 function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
@@ -25,6 +25,7 @@ function strain_decay(ms: number): number {
 function evaluate_speed_difficulty(
     current: OsuDifficultyHitObject,
     mods: string[],
+    rework: OsuRework,
 ): number {
     if (current.base_object.is_spinner) return 0;
 
@@ -53,9 +54,10 @@ function evaluate_speed_difficulty(
         SINGLE_SPACING_THRESHOLD,
     );
     let distance_bonus =
-        (distance / SINGLE_SPACING_THRESHOLD) ** 3.95 * DISTANCE_MULTIPLIER;
+        (distance / SINGLE_SPACING_THRESHOLD) ** 3.95 *
+        (rework === "oct2024" ? 0.94 : 0.9);
 
-    if (mods.includes("AP")) distance_bonus = 0;
+    if (rework === "mar2025" && mods.includes("AP")) distance_bonus = 0;
 
     return (
         ((1 + speed_bonus + distance_bonus) * 1000 * doubletapness) /
@@ -248,6 +250,7 @@ export function count_top_weighted_sliders(
 export function calculate_speed_skill(
     objects: OsuDifficultyHitObject[],
     mods: string[],
+    rework: OsuRework = "mar2025",
 ): {
     difficulty_value: number;
     speed_difficult_strain_count: number;
@@ -289,7 +292,8 @@ export function calculate_speed_skill(
 
         current_strain *= strain_decay(current.strain_time);
         current_strain +=
-            evaluate_speed_difficulty(current, mods) * SKILL_MULTIPLIER;
+            evaluate_speed_difficulty(current, mods, rework) *
+            (rework === "oct2024" ? 1.43 : 1.46);
         current_rhythm = evaluate_rhythm_difficulty(current);
 
         const total_strain = current_strain * current_rhythm;

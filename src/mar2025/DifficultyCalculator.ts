@@ -4,6 +4,7 @@ import { clamp, difficulty_range } from "../utils";
 import {
     calculate_aim_skill,
     count_top_weighted_sliders as count_aim_top_weighted_sliders,
+    type OsuRework,
 } from "./AimSkill";
 import {
     calculate_flashlight_skill,
@@ -230,6 +231,7 @@ function calculate_maximum_legacy_combo_score(beatmap: BeatmapData): number {
 export function calculate_difficulty(
     beatmap: BeatmapData,
     mods: string[],
+    rework: OsuRework = "mar2025",
 ): DifficultyAttributes {
     const { clock_rate, ar, od, cs } = apply_mods_to_difficulty(beatmap, mods);
     const hit_objects = prepare_hit_objects_for_difficulty(
@@ -266,9 +268,13 @@ export function calculate_difficulty(
         );
     }
 
-    const aim_result = calculate_aim_skill(all_objects, true);
-    const aim_without_sliders_result = calculate_aim_skill(all_objects, false);
-    const speed_result = calculate_speed_skill(all_objects, mods);
+    const aim_result = calculate_aim_skill(all_objects, true, rework);
+    const aim_without_sliders_result = calculate_aim_skill(
+        all_objects,
+        false,
+        rework,
+    );
+    const speed_result = calculate_speed_skill(all_objects, mods, rework);
     const flashlight_result = mods.includes("FL")
         ? calculate_flashlight_skill(all_objects, mods.includes("HD"))
         : null;
@@ -372,7 +378,8 @@ export function calculate_difficulty(
         star_rating: star_rating,
         max_combo: beatmap.max_combo,
         aim_difficulty: aim_rating,
-        aim_difficult_slider_count: aim_difficult_slider_count,
+        aim_difficult_slider_count:
+            rework === "oct2024" ? 0 : aim_difficult_slider_count,
         speed_difficulty: speed_rating,
         speed_note_count: speed_note_count,
         flashlight_difficulty: flashlight_rating,

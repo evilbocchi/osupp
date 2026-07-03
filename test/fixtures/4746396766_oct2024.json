@@ -1,0 +1,61 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5047712,
+        "beatmap": "Various Artists - Songs Compilation VI (Sotarks) [Collab Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.21074727120067,
+        "combo": 1829,
+        "statistics": {
+            "great": 1962,
+            "ok": 22,
+            "meh": 0,
+            "miss": 1,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1473.8628240139988,
+        "speed": 354.1292922280262,
+        "accuracy": 226.3309665434836,
+        "flashlight": 0,
+        "effective_miss_count": 1.5412793876435211,
+        "speed_deviation": 6.5420249194595055,
+        "pp": 2205.088056544308
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.161162358563448,
+        "max_combo": 2905,
+        "aim_difficulty": 6.222295745956463,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.7930145706732596,
+        "speed_note_count": 1070.1532901262676,
+        "slider_factor": 0.9947030685460899,
+        "aim_difficult_strain_count": 163.13207359462822,
+        "speed_difficult_strain_count": 314.6980335663688,
+        "circle_size": 3.6,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 111,
+        "code": "pp_oct2024",
+        "version": 1,
+        "last_updated": "2025-03-07 07:30"
+    },
+    "live_pp": 1807.26,
+    "user_id": 7562902,
+    "score_id": 4746396766
+}
