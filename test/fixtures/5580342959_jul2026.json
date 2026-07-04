@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5329312,
+        "beatmap": "Manticora - Humiliation Supreme (Urition) [Dignity]",
+        "mods": [
+            {
+                "acronym": "FL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.59313758730589,
+        "combo": 1696,
+        "statistics": {
+            "great": 1374,
+            "ok": 9,
+            "meh": 0,
+            "miss": 0,
+            "large_tick_miss": 0,
+            "slider_tail_hit": 151,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 295.0119254483958,
+        "speed": 154.64565463592484,
+        "accuracy": 142.04394006940504,
+        "flashlight": 424.2863686149564,
+        "reading": 1.4755541419593976,
+        "effective_miss_count": 0,
+        "speed_deviation": 9.366349774838527,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1014.0799680521982
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.4637278342447,
+        "max_combo": 1696,
+        "aim_difficulty": 3.9605448354960884,
+        "aim_difficult_slider_count": 49.23891195034423,
+        "speed_difficulty": 3.3844530833657935,
+        "speed_note_count": 1146.855868087126,
+        "flashlight_difficulty": 4.1238392740253,
+        "reading_difficulty": 0.7201157418594129,
+        "slider_factor": 0.9997738441147248,
+        "aim_top_weighted_slider_factor": 0.029109164279674526,
+        "speed_top_weighted_slider_factor": 0.05336803982552883,
+        "aim_difficult_strain_count": 241.20880110929573,
+        "speed_difficult_strain_count": 718.424844881462,
+        "reading_difficult_note_count": 75.43612883889577,
+        "nested_score_per_object": 20.911062906724514,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 68662020,
+        "circle_size": 4,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.5
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1019.36,
+    "user_id": 6567297,
+    "score_id": 5580342959
+}

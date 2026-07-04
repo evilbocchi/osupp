@@ -1,0 +1,77 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1620144,
+        "beatmap": "Tanaka Hirokazu - C-TYPE (Arf) [Bonsai's BasS-TYPE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 1046176,
+        "accuracy": 97.11934156378601,
+        "combo": 162,
+        "statistics": {
+            "great": 155,
+            "ok": 7,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 881.2282545221464,
+        "speed": 21.71661239915931,
+        "accuracy": 85.22569464954896,
+        "flashlight": 164.38981916140622,
+        "reading": 118.53490493228696,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.08614431254641,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1306.4673695271347
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.919710946470643,
+        "max_combo": 162,
+        "aim_difficulty": 6.143409728236186,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 1.757565799070356,
+        "speed_note_count": 143.7927007255582,
+        "flashlight_difficulty": 2.5829609025309743,
+        "reading_difficulty": 3.186322219609993,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 79.0656239220392,
+        "speed_difficult_strain_count": 104.34115652065026,
+        "reading_difficult_note_count": 58.00237881173072,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 772800,
+        "circle_size": 8.06,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1312.15,
+    "user_id": 1473890,
+    "score_id": 1069222342
+}

@@ -1,0 +1,76 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5416765,
+        "beatmap": "Altermis & takehirotei & Violet Delta - Christmas Slop (Sotarks) [Nymphe's Ultra+]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 2081046,
+        "accuracy": 100,
+        "combo": 392,
+        "statistics": {
+            "great": 280,
+            "ok": 0,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 750.0443114148161,
+        "speed": 82.64479800944622,
+        "accuracy": 39.879554068014286,
+        "flashlight": 0,
+        "reading": 375.595458186784,
+        "effective_miss_count": 0,
+        "speed_deviation": 15.181701167937298,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1284.4400575462837
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.805056825993681,
+        "max_combo": 392,
+        "aim_difficulty": 5.725593097904919,
+        "aim_difficult_slider_count": 58.474980300433046,
+        "speed_difficulty": 2.80999830357366,
+        "speed_note_count": 216.36459972485622,
+        "reading_difficulty": 4.545204697923411,
+        "slider_factor": 0.9956217260431067,
+        "aim_top_weighted_slider_factor": 0.3738073252483673,
+        "speed_top_weighted_slider_factor": 0.4071337350715643,
+        "aim_difficult_strain_count": 101.57415905319453,
+        "speed_difficult_strain_count": 119.21472723755653,
+        "reading_difficult_note_count": 84.01756873362886,
+        "nested_score_per_object": 61.107142857142854,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 3328140,
+        "circle_size": 2,
+        "approach_rate": 7.613333333333333,
+        "overall_difficulty": 7.544444444444445
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1184.37,
+    "user_id": 10077431,
+    "score_id": 6133830008
+}

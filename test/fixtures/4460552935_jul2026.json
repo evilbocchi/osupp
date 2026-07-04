@@ -1,0 +1,73 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4921872,
+        "beatmap": "Tim Follin - Title Screen (Mekadon) [The Game of Video Quick Draw]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 2789907,
+        "accuracy": 97.56521739130434,
+        "combo": 207,
+        "statistics": {
+            "great": 557,
+            "ok": 12,
+            "meh": 0,
+            "miss": 6,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1085.1636659961011,
+        "speed": 89.25641214899541,
+        "accuracy": 94.41542704993498,
+        "flashlight": 0,
+        "reading": 255.38473959242316,
+        "effective_miss_count": 6,
+        "speed_deviation": 6.800487316685606,
+        "combo_based_estimated_miss_count": 3.5457785465363094,
+        "score_based_estimated_miss_count": 5.050269104270912,
+        "aim_estimated_slider_breaks": 1.2338881773476371,
+        "speed_estimated_slider_breaks": 1.819617824115755,
+        "pp": 1581.4089015499578
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.999273297954565,
+        "max_combo": 745,
+        "aim_difficulty": 7.304702032457037,
+        "aim_difficult_slider_count": 76.09933296573894,
+        "speed_difficulty": 3.1874054494035864,
+        "speed_note_count": 515.3240557357847,
+        "reading_difficulty": 4.631936488329195,
+        "slider_factor": 0.9975235020507797,
+        "aim_top_weighted_slider_factor": 0.21711356357962272,
+        "speed_top_weighted_slider_factor": 0.3359375517906382,
+        "aim_difficult_strain_count": 143.83809866622173,
+        "speed_difficult_strain_count": 268.16579044496757,
+        "reading_difficult_note_count": 190.84131475582848,
+        "nested_score_per_object": 17.42608695652174,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 13068540,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1657.26,
+    "user_id": 7562902,
+    "score_id": 4460552935
+}

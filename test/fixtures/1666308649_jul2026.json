@@ -1,0 +1,76 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1911308,
+        "beatmap": "Koda Kumi - Guess Who Is Back (TV Size) (Sotarks) [Fiery's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 7116229,
+        "accuracy": 97.7997799779978,
+        "combo": 547,
+        "statistics": {
+            "great": 293,
+            "ok": 10,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 564.4090402235593,
+        "speed": 52.01304157091467,
+        "accuracy": 62.17831513287351,
+        "flashlight": 0,
+        "reading": 206.41605143766756,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.355926302795124,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 909.2868417992165
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.62899076584589,
+        "max_combo": 549,
+        "aim_difficulty": 5.25815827456435,
+        "aim_difficult_slider_count": 48.19187387286574,
+        "speed_difficulty": 2.35160293637021,
+        "speed_note_count": 148.9577983948988,
+        "reading_difficulty": 3.8067697873243116,
+        "slider_factor": 0.9703775504521822,
+        "aim_top_weighted_slider_factor": 0.4977482160823862,
+        "speed_top_weighted_slider_factor": 0.4726520153606237,
+        "aim_difficult_strain_count": 76.51918083776617,
+        "speed_difficult_strain_count": 78.76825564376297,
+        "reading_difficult_note_count": 66.08101068593965,
+        "nested_score_per_object": 43.5973597359736,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 5739000,
+        "circle_size": 5.460000000000001,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 908.812,
+    "user_id": 10077431,
+    "score_id": 1666308649
+}

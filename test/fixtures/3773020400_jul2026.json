@@ -1,0 +1,72 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2844649,
+        "beatmap": "t+pazolite - Oshama Scramble! (IOException Edit) (IOException) [Special]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 95.66801619433198,
+        "combo": 353,
+        "statistics": {
+            "great": 711,
+            "ok": 37,
+            "meh": 1,
+            "miss": 5,
+            "large_tick_miss": 73,
+            "slider_tail_hit": 433,
+            "slider_tail_miss": 10
+        }
+    },
+    "performance_attributes": {
+        "aim": 551.1210317834991,
+        "speed": 226.56744327809074,
+        "accuracy": 76.36716422096666,
+        "flashlight": 0,
+        "reading": 88.97085795772689,
+        "effective_miss_count": 5,
+        "speed_deviation": 13.14590113363272,
+        "combo_based_estimated_miss_count": 3.71671388101983,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 959.3978272385986
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.395114139761949,
+        "max_combo": 1322,
+        "aim_difficulty": 6.951352861827712,
+        "aim_difficult_slider_count": 241.93870249685733,
+        "speed_difficulty": 4.3636289043930185,
+        "speed_note_count": 242.21344667144731,
+        "reading_difficulty": 3.2402053424787773,
+        "slider_factor": 0.7411941624370211,
+        "aim_top_weighted_slider_factor": 1.5665473399617404,
+        "speed_top_weighted_slider_factor": 1.0311150390269703,
+        "aim_difficult_strain_count": 105.3154703614758,
+        "speed_difficult_strain_count": 110.93957116977585,
+        "reading_difficult_note_count": 162.95501311330696,
+        "nested_score_per_object": 58.02387267904509,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 28256700,
+        "circle_size": 4,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 808.291,
+    "user_id": 7562902,
+    "score_id": 3773020400
+}

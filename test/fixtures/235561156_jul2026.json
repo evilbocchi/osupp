@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 550235,
+        "beatmap": "Our Stolen Theory - United (L.A.O.S Remix) (Asphyxia) [Infinity]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 127472559,
+        "accuracy": 99.3932499051953,
+        "combo": 2274,
+        "statistics": {
+            "great": 1742,
+            "ok": 16,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 226.0366816136445,
+        "speed": 98.13250404937038,
+        "accuracy": 159.9911532126041,
+        "flashlight": 0,
+        "reading": 1.939816027758777,
+        "effective_miss_count": 0,
+        "speed_deviation": 9.123950532321233,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 494.48578426144013
+    },
+    "difficulty_attributes": {
+        "star_rating": 6.664859282080652,
+        "max_combo": 2275,
+        "aim_difficulty": 3.562681462794051,
+        "aim_difficult_slider_count": 278.02923734760856,
+        "speed_difficulty": 2.906723298261472,
+        "speed_note_count": 765.6607341000197,
+        "reading_difficulty": 0.7904540449579711,
+        "slider_factor": 0.9908101500755756,
+        "aim_top_weighted_slider_factor": 0.22097269749447462,
+        "speed_top_weighted_slider_factor": 0.18533230193418948,
+        "aim_difficult_strain_count": 305.11685609103864,
+        "speed_difficult_strain_count": 265.02889478923373,
+        "reading_difficult_note_count": 160.33667083434955,
+        "nested_score_per_object": 34.69283276450512,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 120441840,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 506.433,
+    "user_id": 352328,
+    "score_id": 235561156
+}

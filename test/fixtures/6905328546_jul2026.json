@@ -1,0 +1,73 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5577996,
+        "beatmap": "Ariabl'eyeS - Souzou no Idea (Maaadbot) [Eternity]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 11481568,
+        "accuracy": 96.69669669669669,
+        "combo": 428,
+        "statistics": {
+            "great": 1483,
+            "ok": 59,
+            "meh": 0,
+            "miss": 12,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 974.6806601060433,
+        "speed": 151.30788760970944,
+        "accuracy": 65.29825284140361,
+        "flashlight": 0,
+        "reading": 288.9781301766534,
+        "effective_miss_count": 12,
+        "speed_deviation": 10.873198433082793,
+        "combo_based_estimated_miss_count": 5.516278505439649,
+        "score_based_estimated_miss_count": 8.683340951993442,
+        "aim_estimated_slider_breaks": 5.938125635814711,
+        "speed_estimated_slider_breaks": 7.267488844359219,
+        "pp": 1523.1334692439627
+    },
+    "difficulty_attributes": {
+        "star_rating": 13.951572391261397,
+        "max_combo": 2405,
+        "aim_difficulty": 7.474604259264828,
+        "aim_difficult_slider_count": 254.72120959725072,
+        "speed_difficulty": 4.411350734208679,
+        "speed_note_count": 207.48999066641633,
+        "reading_difficulty": 5.347396254733231,
+        "slider_factor": 0.9862509677642021,
+        "aim_top_weighted_slider_factor": 0.5480047178785573,
+        "speed_top_weighted_slider_factor": 0.6916260731947067,
+        "aim_difficult_strain_count": 214.81465960301296,
+        "speed_difficult_strain_count": 93.91807168636021,
+        "reading_difficult_note_count": 314.7622427474261,
+        "nested_score_per_object": 28.55212355212355,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 90480288,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1497.32,
+    "user_id": 7562902,
+    "score_id": 6905328546
+}

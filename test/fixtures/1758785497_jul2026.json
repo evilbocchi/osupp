@@ -1,0 +1,76 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 3746239,
+        "beatmap": "Wire - Brazil (Apo11o) [Kuki's Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 1626203,
+        "accuracy": 97.9381443298969,
+        "combo": 262,
+        "statistics": {
+            "great": 188,
+            "ok": 6,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 572.9392868067204,
+        "speed": 55.76012863295091,
+        "accuracy": 72.85512702593947,
+        "flashlight": 0,
+        "reading": 161.22545895024336,
+        "effective_miss_count": 0,
+        "speed_deviation": 7.620590542388768,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 887.3865881163906
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.537588899974994,
+        "max_combo": 265,
+        "aim_difficulty": 5.3113542249077295,
+        "aim_difficult_slider_count": 59.20321416432952,
+        "speed_difficulty": 2.4067109899464647,
+        "speed_note_count": 160.86442889877424,
+        "reading_difficulty": 3.500843304824276,
+        "slider_factor": 0.9814692371168555,
+        "aim_top_weighted_slider_factor": 0.4283073595901254,
+        "speed_top_weighted_slider_factor": 0.5214388901488893,
+        "aim_difficult_strain_count": 76.43811542712574,
+        "speed_difficult_strain_count": 85.35723603071948,
+        "reading_difficult_note_count": 74.86707940735586,
+        "nested_score_per_object": 21.649484536082475,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 1284336,
+        "circle_size": 4.9399999999999995,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 912.363,
+    "user_id": 10077431,
+    "score_id": 1758785497
+}

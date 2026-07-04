@@ -1,0 +1,67 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 129891,
+        "beatmap": "xi - FREEDOM DiVE (Nakagawa-Kanon) [FOUR DIMENSIONS]",
+        "mods": [
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 115717546,
+        "accuracy": 98.55437888720793,
+        "combo": 2383,
+        "statistics": {
+            "great": 1941,
+            "ok": 40,
+            "meh": 0,
+            "miss": 2,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 205.0336846722595,
+        "speed": 194.61906330180219,
+        "accuracy": 56.07572196520368,
+        "flashlight": 0,
+        "reading": 6.525077116261913,
+        "effective_miss_count": 2,
+        "speed_deviation": 15.43244647609499,
+        "combo_based_estimated_miss_count": 2,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0.002404364691022423,
+        "speed_estimated_slider_breaks": 0.0007991183488674452,
+        "pp": 471.6289454190154
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.805787543366753,
+        "max_combo": 2385,
+        "aim_difficulty": 3.6069011482017337,
+        "aim_difficult_slider_count": 187.80960481283591,
+        "speed_difficulty": 4.014213982297333,
+        "speed_note_count": 1326.4351903743843,
+        "reading_difficulty": 1.2639800913447141,
+        "slider_factor": 0.9846743081010821,
+        "aim_top_weighted_slider_factor": 0.1681732806977311,
+        "speed_top_weighted_slider_factor": 0.05561085326067963,
+        "aim_difficult_strain_count": 321.6036650497266,
+        "speed_difficult_strain_count": 729.8053576757787,
+        "reading_difficult_note_count": 134.94997922594555,
+        "nested_score_per_object": 20.630358043368634,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 117510000,
+        "circle_size": 4,
+        "approach_rate": 9,
+        "overall_difficulty": 8
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 501.838,
+    "user_id": 352328,
+    "score_id": 176782980
+}

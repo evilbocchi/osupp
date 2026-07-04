@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2654458,
+        "beatmap": "UNDEAD CORPORATION - Frozen (Daycore) [Everything Will Freeze]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 56787063,
+        "accuracy": 98.51079672375279,
+        "combo": 1682,
+        "statistics": {
+            "great": 1313,
+            "ok": 30,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 448.2601418361283,
+        "speed": 209.2617723562382,
+        "accuracy": 119.27411467627152,
+        "flashlight": 0,
+        "reading": 18.719752908526395,
+        "effective_miss_count": 0,
+        "speed_deviation": 10.475479597446556,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 811.5856829331414
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.645317056099124,
+        "max_combo": 1687,
+        "aim_difficulty": 4.58931503418193,
+        "aim_difficult_slider_count": 142.0443486268894,
+        "speed_difficulty": 3.7544999955799785,
+        "speed_note_count": 651.8682642864184,
+        "reading_difficulty": 1.6979681594415732,
+        "slider_factor": 0.9775495300069559,
+        "aim_top_weighted_slider_factor": 0.23378436500485275,
+        "speed_top_weighted_slider_factor": 0.14427520560990692,
+        "aim_difficult_strain_count": 166.06047067780025,
+        "speed_difficult_strain_count": 325.8356466778133,
+        "reading_difficult_note_count": 54.70901809429618,
+        "nested_score_per_object": 14.050632911392405,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 54365664,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 804.771,
+    "user_id": 1719471,
+    "score_id": 1797109840
+}

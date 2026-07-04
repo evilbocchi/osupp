@@ -1,0 +1,73 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5047712,
+        "beatmap": "Various Artists - Songs Compilation VI (Sotarks) [Collab Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 89731914,
+        "accuracy": 99.21074727120067,
+        "combo": 1829,
+        "statistics": {
+            "great": 1962,
+            "ok": 22,
+            "meh": 0,
+            "miss": 1,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 968.3377587889646,
+        "speed": 122.5761162948321,
+        "accuracy": 204.35546142035892,
+        "flashlight": 0,
+        "reading": 235.84359195321417,
+        "effective_miss_count": 3.014116057749735,
+        "speed_deviation": 7.186963978741502,
+        "combo_based_estimated_miss_count": 1.5547622534554215,
+        "score_based_estimated_miss_count": 3.014116057749735,
+        "aim_estimated_slider_breaks": 1.224798312764466,
+        "speed_estimated_slider_breaks": 1.3233418381723319,
+        "pp": 1563.2335594066665
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.403641859013023,
+        "max_combo": 2905,
+        "aim_difficulty": 6.22377715878207,
+        "aim_difficult_slider_count": 446.70017221249503,
+        "speed_difficulty": 3.3975175408892464,
+        "speed_note_count": 469.81535970194903,
+        "reading_difficulty": 4.23926896156936,
+        "slider_factor": 0.9886215064449814,
+        "aim_top_weighted_slider_factor": 0.6667612107868638,
+        "speed_top_weighted_slider_factor": 0.7256677652416279,
+        "aim_difficult_strain_count": 297.0693519324604,
+        "speed_difficult_strain_count": 299.8251955392723,
+        "reading_difficult_note_count": 450.0631958908509,
+        "nested_score_per_object": 34.005037783375315,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 174482280,
+        "circle_size": 3.6,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1807.26,
+    "user_id": 7562902,
+    "score_id": 4746396766
+}

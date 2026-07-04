@@ -1,0 +1,76 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5098651,
+        "beatmap": "BAD NERVES - ANTIDOTE (midwest) [SMOKE'S ANTIDOTE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 2372915,
+        "accuracy": 98.10606060606061,
+        "combo": 343,
+        "statistics": {
+            "great": 514,
+            "ok": 12,
+            "meh": 0,
+            "miss": 2,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 502.7136145466888,
+        "speed": 63.073548171062875,
+        "accuracy": 20.792981599913173,
+        "flashlight": 0,
+        "reading": 231.1093703948909,
+        "effective_miss_count": 2.5698733946912946,
+        "speed_deviation": 17.285241238744167,
+        "combo_based_estimated_miss_count": 2.261321204267858,
+        "score_based_estimated_miss_count": 2.5698733946912946,
+        "aim_estimated_slider_breaks": 1.7091568540712265,
+        "speed_estimated_slider_breaks": 1.8084665960977624,
+        "pp": 842.2519477302624
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.357533750591912,
+        "max_combo": 798,
+        "aim_difficulty": 5.481901443655328,
+        "aim_difficult_slider_count": 112.59447237319176,
+        "speed_difficulty": 2.8652940317990043,
+        "speed_note_count": 392.67800825250913,
+        "reading_difficulty": 4.3063195794544695,
+        "slider_factor": 0.9917616982102272,
+        "aim_top_weighted_slider_factor": 0.7501372893587734,
+        "speed_top_weighted_slider_factor": 0.8008923290905986,
+        "aim_difficult_strain_count": 92.03438278907315,
+        "speed_difficult_strain_count": 181.12250305218828,
+        "reading_difficult_note_count": 149.09074740107644,
+        "nested_score_per_object": 29.488636363636363,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 12540360,
+        "circle_size": 1.75,
+        "approach_rate": 7.586666666666666,
+        "overall_difficulty": 7.677777777777777
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 852.529,
+    "user_id": 10077431,
+    "score_id": 5827711266
+}

@@ -1,0 +1,79 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4791385,
+        "beatmap": "toby fox - Song That Might Play When You Fight Sans (Smoke) [browiec's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "NF"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 1029141,
+        "accuracy": 93.69658119658119,
+        "combo": 286,
+        "statistics": {
+            "great": 283,
+            "ok": 27,
+            "meh": 2,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 639.6131930176782,
+        "speed": 145.73732406251122,
+        "accuracy": 18.24499174389048,
+        "flashlight": 0,
+        "reading": 103.05172397450839,
+        "effective_miss_count": 1.2529555419970517,
+        "speed_deviation": 12.404763146820203,
+        "combo_based_estimated_miss_count": 1.4497457121460917,
+        "score_based_estimated_miss_count": 1.2529555419970517,
+        "aim_estimated_slider_breaks": 0.027869210761866197,
+        "speed_estimated_slider_breaks": 0.039129131434249766,
+        "pp": 917.94408690137
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.5274526474163,
+        "max_combo": 423,
+        "aim_difficulty": 5.8468396950291766,
+        "aim_difficult_slider_count": 39.98820792004085,
+        "speed_difficulty": 3.5189072277766935,
+        "speed_note_count": 152.63110524834835,
+        "reading_difficulty": 3.2950183631168857,
+        "slider_factor": 0.9932998001614249,
+        "aim_top_weighted_slider_factor": 0.2909654288630151,
+        "speed_top_weighted_slider_factor": 0.4103763664215781,
+        "aim_difficult_strain_count": 81.19489577875564,
+        "speed_difficult_strain_count": 76.23382970061697,
+        "reading_difficult_note_count": 171.18155161108774,
+        "nested_score_per_object": 50.96153846153846,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 2944272,
+        "circle_size": 3.9000000000000004,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1020.73,
+    "user_id": 10077431,
+    "score_id": 4111017165
+}

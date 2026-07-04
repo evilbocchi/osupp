@@ -1,0 +1,74 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 24287660,
+        "accuracy": 99.80787704130644,
+        "combo": 938,
+        "statistics": {
+            "great": 692,
+            "ok": 2,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 439.1204695856134,
+        "speed": 124.27940293611806,
+        "accuracy": 145.01033110865336,
+        "flashlight": 308.46709051752856,
+        "reading": 15.145129104991334,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.419938884765678,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1027.0145862888896
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.560683553786538,
+        "max_combo": 938,
+        "aim_difficulty": 4.682333263389821,
+        "aim_difficult_slider_count": 22.23667112851698,
+        "speed_difficulty": 3.144278694702656,
+        "speed_note_count": 401.247922509604,
+        "flashlight_difficulty": 3.514334608367166,
+        "reading_difficulty": 1.5616109470808706,
+        "slider_factor": 0.9955588268758906,
+        "aim_top_weighted_slider_factor": 0.03267033138782767,
+        "speed_top_weighted_slider_factor": 0.022998976413887758,
+        "aim_difficult_strain_count": 141.6542142507445,
+        "speed_difficult_strain_count": 290.5188052903234,
+        "reading_difficult_note_count": 59.248305950707845,
+        "nested_score_per_object": 24.582132564841498,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 20337300,
+        "circle_size": 5.8500000000000005,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 14,
+        "code": "master",
+        "version": 109,
+        "last_updated": "2026-06-30 17:15"
+    },
+    "live_pp": 1011.76,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}
