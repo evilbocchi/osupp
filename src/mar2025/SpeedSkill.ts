@@ -4,6 +4,7 @@ import {
     lerp,
     logistic,
     milliseconds_to_bpm,
+    smoothstep_bell_curve,
 } from "../utils";
 import type { OsuDifficultyHitObject } from "./OsuDifficultyHitObject";
 
@@ -55,9 +56,13 @@ function evaluate_speed_difficulty(
     );
     let distance_bonus =
         (distance / SINGLE_SPACING_THRESHOLD) ** 3.95 *
-        (rework === "oct2024" ? 0.94 : 0.9);
+        (rework === "oct2024" ? 0.94 : rework === "oct2025" ? 0.8 : 0.9);
 
-    if (rework === "mar2025" && mods.includes("AP")) distance_bonus = 0;
+    if (rework === "oct2025") {
+        distance_bonus *= Math.sqrt(current.small_circle_bonus);
+    }
+
+    if (rework !== "oct2024" && mods.includes("AP")) distance_bonus = 0;
 
     return (
         ((1 + speed_bonus + distance_bonus) * 1000 * doubletapness) /
@@ -95,7 +100,10 @@ class Island {
     }
 }
 
-function evaluate_rhythm_difficulty(current: OsuDifficultyHitObject): number {
+function evaluate_rhythm_difficulty(
+    current: OsuDifficultyHitObject,
+    rework: OsuRework,
+): number {
     if (current.base_object.is_spinner) return 0;
 
     let rhythm_complexity_sum = 0;
@@ -118,14 +126,12 @@ function evaluate_rhythm_difficulty(current: OsuDifficultyHitObject): number {
         rhythm_start++;
     }
 
-    const start_previous = current.previous(rhythm_start);
-    const start_last = current.previous(rhythm_start + 1);
-    if (!start_previous || !start_last) return 1;
-
-    let prev_obj = start_previous;
-    let last_obj = start_last;
+    let prev_obj = current.previous(rhythm_start);
+    let last_obj = current.previous(rhythm_start + 1);
 
     for (let i = rhythm_start; i > 0; i--) {
+        if (!prev_obj || !last_obj) break;
+
         const curr_obj = current.previous(i - 1)!;
 
         const time_decay =
@@ -134,22 +140,54 @@ function evaluate_rhythm_difficulty(current: OsuDifficultyHitObject): number {
         const note_decay = (historical_note_count - i) / historical_note_count;
         const curr_historical_decay = Math.min(note_decay, time_decay);
 
-        const curr_delta = curr_obj.strain_time;
-        const prev_delta = prev_obj.strain_time;
-        const last_delta = last_obj.strain_time;
+        const curr_delta =
+            rework === "oct2025"
+                ? Math.max(curr_obj.delta_time, 1e-7)
+                : curr_obj.strain_time;
+        const prev_delta =
+            rework === "oct2025"
+                ? Math.max(prev_obj.delta_time, 1e-7)
+                : prev_obj.strain_time;
+        const last_delta =
+            rework === "oct2025"
+                ? Math.max(last_obj.delta_time, 1e-7)
+                : last_obj.strain_time;
 
-        const delta_difference_ratio =
-            Math.min(prev_delta, curr_delta) / Math.max(prev_delta, curr_delta);
-        const curr_ratio =
-            1 +
-            RHYTHM_RATIO_MULTIPLIER *
-                Math.min(0.5, Math.sin(Math.PI / delta_difference_ratio) ** 2);
+        let curr_ratio: number;
+        let fraction_multiplier: number;
 
-        const fraction = Math.max(
-            prev_delta / curr_delta,
-            curr_delta / prev_delta,
-        );
-        const fraction_multiplier = clamp(2 - fraction / 8, 0, 1);
+        if (rework === "oct2025") {
+            const delta_difference =
+                Math.max(prev_delta, curr_delta) /
+                Math.min(prev_delta, curr_delta);
+            const delta_difference_fraction =
+                delta_difference - Math.trunc(delta_difference);
+            curr_ratio =
+                1 +
+                15 *
+                    Math.min(
+                        0.5,
+                        smoothstep_bell_curve(delta_difference_fraction),
+                    );
+            fraction_multiplier = clamp(2 - delta_difference / 8, 0, 1);
+        } else {
+            const delta_difference_ratio =
+                Math.min(prev_delta, curr_delta) /
+                Math.max(prev_delta, curr_delta);
+            curr_ratio =
+                1 +
+                RHYTHM_RATIO_MULTIPLIER *
+                    Math.min(
+                        0.5,
+                        Math.sin(Math.PI / delta_difference_ratio) ** 2,
+                    );
+
+            const fraction = Math.max(
+                prev_delta / curr_delta,
+                curr_delta / prev_delta,
+            );
+            fraction_multiplier = clamp(2 - fraction / 8, 0, 1);
+        }
         const window_penalty = Math.min(
             1,
             Math.max(
@@ -230,7 +268,18 @@ function evaluate_rhythm_difficulty(current: OsuDifficultyHitObject): number {
         prev_obj = curr_obj;
     }
 
-    return Math.sqrt(4 + rhythm_complexity_sum * RHYTHM_OVERALL_MULTIPLIER) / 2;
+    let rhythm_difficulty =
+        Math.sqrt(
+            4 +
+                rhythm_complexity_sum *
+                    (rework === "oct2025" ? 1 : RHYTHM_OVERALL_MULTIPLIER),
+        ) / 2;
+
+    if (rework === "oct2025") {
+        rhythm_difficulty *= 1 - current.get_doubletapness(current.next(0));
+    }
+
+    return rhythm_difficulty;
 }
 
 export function count_top_weighted_sliders(
@@ -293,8 +342,8 @@ export function calculate_speed_skill(
         current_strain *= strain_decay(current.strain_time);
         current_strain +=
             evaluate_speed_difficulty(current, mods, rework) *
-            (rework === "oct2024" ? 1.43 : 1.46);
-        current_rhythm = evaluate_rhythm_difficulty(current);
+            (rework === "oct2024" ? 1.43 : rework === "oct2025" ? 1.47 : 1.46);
+        current_rhythm = evaluate_rhythm_difficulty(current, rework);
 
         const total_strain = current_strain * current_rhythm;
         if (current.base_object.is_slider) slider_strains.push(total_strain);

@@ -17,7 +17,7 @@ const VELOCITY_CHANGE_MULTIPLIER = 0.75;
 const WIGGLE_MULTIPLIER = 1.02;
 const STRAIN_DECAY_BASE = 0.15;
 
-export type OsuRework = "mar2025" | "oct2024";
+export type OsuRework = "mar2025" | "oct2024" | "oct2025";
 
 function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
@@ -99,8 +99,106 @@ function evaluate_aim_difficulty(
     let aim_strain = curr_velocity;
 
     if (
+        rework === "oct2025" &&
+        current.angle != null &&
+        osu_last_obj.angle != null
+    ) {
+        const curr_angle = current.angle;
+        const last_angle = osu_last_obj.angle;
+        const angle_bonus = Math.min(curr_velocity, prev_velocity);
+
+        if (
+            Math.max(current.strain_time, osu_last_obj.strain_time) <
+            1.25 * Math.min(current.strain_time, osu_last_obj.strain_time)
+        ) {
+            acute_angle_bonus = calc_acute_angle_bonus(curr_angle);
+            acute_angle_bonus *=
+                0.08 +
+                0.92 *
+                    (1 -
+                        Math.min(
+                            acute_angle_bonus,
+                            calc_acute_angle_bonus(last_angle) ** 3,
+                        ));
+            acute_angle_bonus *=
+                angle_bonus *
+                smootherstep(
+                    milliseconds_to_bpm(current.strain_time, 2),
+                    300,
+                    400,
+                ) *
+                smootherstep(
+                    current.lazy_jump_distance,
+                    NORMALIZED_DIAMETER,
+                    NORMALIZED_DIAMETER * 2,
+                );
+        }
+
+        wide_angle_bonus = calc_wide_angle_bonus(curr_angle);
+        wide_angle_bonus *=
+            1 -
+            Math.min(wide_angle_bonus, calc_wide_angle_bonus(last_angle) ** 3);
+        wide_angle_bonus *=
+            angle_bonus *
+            smootherstep(current.lazy_jump_distance, 0, NORMALIZED_DIAMETER);
+
+        wiggle_bonus =
+            angle_bonus *
+            smootherstep(
+                current.lazy_jump_distance,
+                NORMALIZED_RADIUS,
+                NORMALIZED_DIAMETER,
+            ) *
+            reverse_lerp(
+                current.lazy_jump_distance,
+                NORMALIZED_DIAMETER * 3,
+                NORMALIZED_DIAMETER,
+            ) **
+                1.8 *
+            smootherstep(
+                curr_angle,
+                (110 * Math.PI) / 180,
+                (60 * Math.PI) / 180,
+            ) *
+            smootherstep(
+                osu_last_obj.lazy_jump_distance,
+                NORMALIZED_RADIUS,
+                NORMALIZED_DIAMETER,
+            ) *
+            reverse_lerp(
+                osu_last_obj.lazy_jump_distance,
+                NORMALIZED_DIAMETER * 3,
+                NORMALIZED_DIAMETER,
+            ) **
+                1.8 *
+            smootherstep(
+                last_angle,
+                (110 * Math.PI) / 180,
+                (60 * Math.PI) / 180,
+            );
+
+        const osu_last2_obj = current.previous(2);
+        if (osu_last2_obj) {
+            const dx =
+                osu_last2_obj.base_object.stacked_x -
+                osu_last_obj.base_object.stacked_x;
+            const dy =
+                osu_last2_obj.base_object.stacked_y -
+                osu_last_obj.base_object.stacked_y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 1) {
+                wide_angle_bonus *= 1 - 0.35 * (1 - distance);
+            }
+        }
+    }
+
+    const use_legacy_angle_gate = rework !== "oct2025";
+
+    if (
+        use_legacy_angle_gate &&
         Math.max(current.strain_time, osu_last_obj.strain_time) <
-        1.25 * Math.min(current.strain_time, osu_last_obj.strain_time)
+            1.25 * Math.min(current.strain_time, osu_last_obj.strain_time)
     ) {
         if (current.angle != null && osu_last_obj.angle != null) {
             const curr_angle = current.angle;
@@ -251,12 +349,13 @@ function evaluate_aim_difficulty(
             (current.lazy_jump_distance + osu_last_obj.travel_distance) /
             current.strain_time;
 
+        const velocity_ratio =
+            Math.abs(prev_velocity - curr_velocity) /
+            Math.max(prev_velocity, curr_velocity);
         const dist_ratio =
-            Math.sin(
-                (Math.PI / 2) *
-                    (Math.abs(prev_velocity - curr_velocity) /
-                        Math.max(prev_velocity, curr_velocity)),
-            ) ** 2;
+            rework === "oct2025"
+                ? smoothstep(velocity_ratio, 0, 1)
+                : Math.sin((Math.PI / 2) * velocity_ratio) ** 2;
         const overlap_velocity_buff = Math.min(
             (NORMALIZED_DIAMETER * 1.25) /
                 Math.min(current.strain_time, osu_last_obj.strain_time),
@@ -274,12 +373,23 @@ function evaluate_aim_difficulty(
         slider_bonus = osu_last_obj.travel_distance / osu_last_obj.travel_time;
     }
 
-    if (rework === "mar2025") aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
-    aim_strain += Math.max(
-        acute_angle_bonus * (rework === "oct2024" ? 1.95 : 2.6),
-        wide_angle_bonus * WIDE_ANGLE_MULTIPLIER +
-            velocity_change_bonus * VELOCITY_CHANGE_MULTIPLIER,
-    );
+    if (rework === "oct2025") {
+        aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
+        aim_strain += velocity_change_bonus * VELOCITY_CHANGE_MULTIPLIER;
+        aim_strain += Math.max(
+            acute_angle_bonus * 2.55,
+            wide_angle_bonus * WIDE_ANGLE_MULTIPLIER,
+        );
+        aim_strain *= current.small_circle_bonus;
+    } else {
+        if (rework === "mar2025")
+            aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
+        aim_strain += Math.max(
+            acute_angle_bonus * (rework === "oct2024" ? 1.95 : 2.6),
+            wide_angle_bonus * WIDE_ANGLE_MULTIPLIER +
+                velocity_change_bonus * VELOCITY_CHANGE_MULTIPLIER,
+        );
+    }
     if (with_slider_travel_distance) {
         aim_strain += slider_bonus * SLIDER_MULTIPLIER;
     }
@@ -345,7 +455,7 @@ export function calculate_aim_skill(
         current_strain *= strain_decay(current.delta_time);
         current_strain +=
             evaluate_aim_difficulty(current, with_sliders, rework) *
-            (rework === "oct2024" ? 25.18 : 25.6);
+            (rework === "oct2024" ? 25.18 : rework === "oct2025" ? 26 : 25.6);
 
         if (current.base_object.is_slider) slider_strains.push(current_strain);
 

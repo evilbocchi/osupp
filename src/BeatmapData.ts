@@ -31,6 +31,11 @@ export interface HitObject {
     tail_y?: number;
 }
 
+export interface BreakPeriod {
+    start_time: number;
+    end_time: number;
+}
+
 export interface BeatmapData {
     od: number;
     ar: number;
@@ -42,6 +47,7 @@ export interface BeatmapData {
     num_sliders: number;
     num_spinners: number;
     max_combo: number;
+    breaks: BreakPeriod[];
     hit_objects: HitObject[];
 }
 
@@ -259,6 +265,7 @@ export function parse_osu_content(content: string): BeatmapData {
     );
     let in_hit_objects = false;
     let in_timing_points = false;
+    let in_events = false;
     let od = 5,
         ar = 5,
         cs = 5,
@@ -279,6 +286,7 @@ export function parse_osu_content(content: string): BeatmapData {
     }[] = [];
 
     const hit_objects: HitObject[] = [];
+    const breaks: BreakPeriod[] = [];
 
     const LEGACY_SCALE_FUDGE = 1.00041;
     const circle_scale = (circle_size: number = cs) =>
@@ -758,6 +766,15 @@ export function parse_osu_content(content: string): BeatmapData {
         if (trimmed === "[General]") {
             in_general = true;
             in_difficulty = false;
+            in_events = false;
+            in_hit_objects = false;
+            in_timing_points = false;
+            continue;
+        }
+        if (trimmed === "[Events]") {
+            in_general = false;
+            in_difficulty = false;
+            in_events = true;
             in_hit_objects = false;
             in_timing_points = false;
             continue;
@@ -765,6 +782,7 @@ export function parse_osu_content(content: string): BeatmapData {
         if (trimmed === "[TimingPoints]") {
             in_general = false;
             in_difficulty = false;
+            in_events = false;
             in_hit_objects = false;
             in_timing_points = true;
             continue;
@@ -772,6 +790,7 @@ export function parse_osu_content(content: string): BeatmapData {
         if (trimmed === "[HitObjects]") {
             in_general = false;
             in_difficulty = false;
+            in_events = false;
             in_hit_objects = true;
             in_timing_points = false;
             timing_points.sort((a, b) => a.time - b.time);
@@ -780,6 +799,7 @@ export function parse_osu_content(content: string): BeatmapData {
         if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
             in_general = false;
             in_difficulty = false;
+            in_events = false;
             in_hit_objects = false;
             in_timing_points = false;
             continue;
@@ -828,6 +848,16 @@ export function parse_osu_content(content: string): BeatmapData {
                 const uninherited =
                     parts.length > 6 ? parseInt(parts[6]!, 10) === 1 : true;
                 timing_points.push({ time, beat_length, uninherited });
+            }
+        }
+
+        if (in_events && trimmed.length > 0 && !trimmed.startsWith("//")) {
+            const parts = trimmed.split(",");
+            if (parts[0] === "2" && parts.length >= 3) {
+                breaks.push({
+                    start_time: parseFloat(parts[1]!),
+                    end_time: parseFloat(parts[2]!),
+                });
             }
         }
 
@@ -928,6 +958,9 @@ export function parse_osu_content(content: string): BeatmapData {
             } else if (is_spinner) {
                 num_spinners++;
                 max_combo++;
+                if (parts.length >= 6) {
+                    hit_object.end_time = parseFloat(parts[5]!);
+                }
             }
             hit_objects.push(hit_object);
             last_time = time;
@@ -959,6 +992,7 @@ export function parse_osu_content(content: string): BeatmapData {
         num_sliders,
         num_spinners,
         max_combo,
+        breaks,
         hit_objects,
     };
 }

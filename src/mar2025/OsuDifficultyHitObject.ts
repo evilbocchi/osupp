@@ -1,5 +1,6 @@
 import type { HitObject } from "../BeatmapData";
-import { difficulty_range } from "../utils";
+import { difficulty_range, osu_hit_window } from "../utils";
+import type { OsuRework } from "./AimSkill";
 
 const NORMALIZED_RADIUS = 50;
 const LEGACY_SCALE_FUDGE = 1.00041;
@@ -42,6 +43,7 @@ export class OsuDifficultyHitObject {
         circle_size: number,
         overall_difficulty: number,
         approach_rate: number,
+        private readonly rework: OsuRework,
         all_objects: OsuDifficultyHitObject[],
         index: number,
     ) {
@@ -57,10 +59,15 @@ export class OsuDifficultyHitObject {
 
         this.strain_time = Math.max(MIN_DELTA_TIME, this.delta_time);
         this.hit_window_great =
-            (2 * (80 - 6 * overall_difficulty)) / clock_rate;
-        const obj_scale =
-            ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * LEGACY_SCALE_FUDGE;
-        this.radius = 64 * obj_scale;
+            (2 *
+                (this.rework === "oct2025"
+                    ? osu_hit_window(overall_difficulty, 80, 50, 20)
+                    : 80 - 6 * overall_difficulty)) /
+            clock_rate;
+        const obj_scale = Math.fround(
+            ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * LEGACY_SCALE_FUDGE,
+        );
+        this.radius = Math.fround(64 * obj_scale);
         this.small_circle_bonus = Math.max(1, 1 + (30 - this.radius) / 40);
         this.time_preempt = difficulty_range(approach_rate, 1800, 1200, 450);
         this.time_fade_in = 400 * Math.min(1, this.time_preempt / 450);
@@ -145,18 +152,23 @@ export class OsuDifficultyHitObject {
 
         if (base_obj.is_spinner || last_obj.is_spinner) return;
 
-        const obj_scale =
-            ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * LEGACY_SCALE_FUDGE;
+        const obj_scale = Math.fround(
+            ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * LEGACY_SCALE_FUDGE,
+        );
         const radius = Math.fround(64 * obj_scale);
         let scaling_factor = Math.fround(NORMALIZED_RADIUS / radius);
-        if (radius < 30) {
+        if (this.rework !== "oct2025" && radius < 30) {
             const small_circle_bonus = Math.min(30 - radius, 5) / 50;
             scaling_factor = Math.fround(
                 scaling_factor * (1 + small_circle_bonus),
             );
         }
 
-        const last_cursor_pos = this.get_end_cursor_position(last_obj);
+        const has_last_difficulty_object =
+            this.rework === "oct2025" ? this.index > 0 : true;
+        const last_cursor_pos = has_last_difficulty_object
+            ? this.get_end_cursor_position(last_obj)
+            : { x: last_obj.stacked_x, y: last_obj.stacked_y };
 
         const start_x = Math.fround(base_obj.stacked_x * scaling_factor);
         const start_y = Math.fround(base_obj.stacked_y * scaling_factor);
@@ -171,7 +183,11 @@ export class OsuDifficultyHitObject {
         this.minimum_jump_distance = this.lazy_jump_distance;
         this.minimum_jump_time = this.strain_time;
 
-        if (last_obj.is_slider && last_obj.lazy_travel_time != null) {
+        if (
+            has_last_difficulty_object &&
+            last_obj.is_slider &&
+            last_obj.lazy_travel_time != null
+        ) {
             const last_travel_time = Math.max(
                 last_obj.lazy_travel_time / clock_rate,
                 MIN_DELTA_TIME,

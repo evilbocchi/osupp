@@ -1,6 +1,12 @@
 import type { BeatmapData, HitObject } from "../BeatmapData";
 import { apply_osu_stacking, point_at_slider_path } from "../BeatmapData";
-import { clamp, difficulty_range } from "../utils";
+import {
+    clamp,
+    difficulty_range,
+    lerp,
+    osu_hit_window,
+    reverse_lerp,
+} from "../utils";
 import {
     calculate_aim_skill,
     count_top_weighted_sliders as count_aim_top_weighted_sliders,
@@ -38,6 +44,9 @@ export interface DifficultyAttributes {
     total_hits: number;
     effective_ar: number;
     effective_od: number;
+    hit_window_great: number;
+    hit_window_ok: number;
+    hit_window_meh: number;
     drain_rate: number;
     nested_score_per_object: number;
     legacy_score_base_multiplier: number;
@@ -46,7 +55,9 @@ export interface DifficultyAttributes {
 
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const PERFORMANCE_BASE_MULTIPLIER = 1.15;
+const OCT2025_PERFORMANCE_BASE_MULTIPLIER = 1.14;
 const STAR_RATING_MULTIPLIER = 0.027;
+const OCT2025_STAR_RATING_MULTIPLIER = 0.0265;
 
 export function apply_mods_to_difficulty(
     beatmap: BeatmapData,
@@ -56,6 +67,7 @@ export function apply_mods_to_difficulty(
     ar: number;
     od: number;
     cs: number;
+    hp: number;
 } {
     let clock_rate = 1;
 
@@ -65,32 +77,41 @@ export function apply_mods_to_difficulty(
     let ar = Math.fround(beatmap.ar);
     let od = Math.fround(beatmap.od);
     let cs = Math.fround(beatmap.cs);
+    let hp = Math.fround(beatmap.hp);
 
     if (mods.includes("HR")) {
         ar = Math.fround(Math.min(10, ar * 1.4));
         od = Math.fround(Math.min(10, od * 1.4));
         cs = Math.fround(Math.min(10, cs * 1.3));
+        hp = Math.fround(Math.min(10, hp * 1.4));
     }
 
     if (mods.includes("EZ")) {
         ar = Math.fround(ar * 0.5);
         od = Math.fround(od * 0.5);
         cs = Math.fround(cs * 0.5);
+        hp = Math.fround(hp * 0.5);
     }
 
-    return { clock_rate, ar, od, cs };
+    return { clock_rate, ar, od, cs, hp };
 }
 
 export function calculate_effective_arod(
     ar: number,
     od: number,
     clock_rate: number,
+    rework: OsuRework = "mar2025",
 ): { effective_ar: number; effective_od: number } {
-    const great_hit_window = (80 - 6 * od) / clock_rate;
+    const great_hit_window =
+        (rework === "oct2025" ? osu_hit_window(od, 80, 50, 20) : 80 - 6 * od) /
+        clock_rate;
     const preempt = difficulty_range(ar, 1800, 1200, 450) / clock_rate;
 
     return {
-        effective_od: (80 - great_hit_window) / 6,
+        effective_od:
+            rework === "oct2025"
+                ? (79.5 - great_hit_window) / 6
+                : (80 - great_hit_window) / 6,
         effective_ar:
             preempt > 1200
                 ? (1800 - preempt) / 120
@@ -108,10 +129,22 @@ function calculate_difficulty_rating(difficulty_value: number): number {
     return Math.sqrt(difficulty_value) * DIFFICULTY_MULTIPLIER;
 }
 
-function calculate_star_rating(base_performance: number): number {
+function calculate_star_rating(
+    base_performance: number,
+    rework: OsuRework,
+): number {
+    const performance_base_multiplier =
+        rework === "oct2025"
+            ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
+            : PERFORMANCE_BASE_MULTIPLIER;
+    const star_rating_multiplier =
+        rework === "oct2025"
+            ? OCT2025_STAR_RATING_MULTIPLIER
+            : STAR_RATING_MULTIPLIER;
+
     return base_performance > 0.00001
-        ? Math.cbrt(PERFORMANCE_BASE_MULTIPLIER) *
-              STAR_RATING_MULTIPLIER *
+        ? Math.cbrt(performance_base_multiplier) *
+              star_rating_multiplier *
               (Math.cbrt((100000 / 2 ** (1 / 1.1)) * base_performance) + 4)
         : 0;
 }
@@ -124,12 +157,59 @@ function compute_aim_rating(
     overall_difficulty: number,
     mechanical_difficulty_rating: number,
     slider_factor: number,
+    rework: OsuRework,
 ): number {
     if (mods.includes("AP")) return 0;
 
     let aim_rating = calculate_difficulty_rating(difficulty_value);
     if (mods.includes("TD")) aim_rating = aim_rating ** 0.8;
     if (mods.includes("RX")) aim_rating *= 0.9;
+
+    if (rework === "oct2025") {
+        let rating_multiplier = 1;
+        const approach_rate_length_bonus =
+            0.95 +
+            0.4 * Math.min(1, total_hits / 2000) +
+            (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
+
+        let approach_rate_factor = 0;
+        if (approach_rate > 10.33)
+            approach_rate_factor = 0.3 * (approach_rate - 10.33);
+        else if (approach_rate < 8)
+            approach_rate_factor = 0.05 * (8 - approach_rate);
+
+        if (mods.includes("RX")) approach_rate_factor = 0;
+
+        rating_multiplier += approach_rate_factor * approach_rate_length_bonus;
+
+        if (mods.includes("HD")) {
+            const mechanical_difficulty_factor = reverse_lerp(
+                mechanical_difficulty_rating,
+                5,
+                10,
+            );
+            const ar_factor_starting_point = lerp(
+                9,
+                10.33,
+                mechanical_difficulty_factor,
+            );
+            const visibility_factor = reverse_lerp(
+                approach_rate,
+                11.5,
+                ar_factor_starting_point,
+            );
+            rating_multiplier += calculate_visibility_bonus(
+                mods,
+                approach_rate,
+                visibility_factor,
+                slider_factor,
+            );
+        }
+
+        rating_multiplier *= 0.98 + Math.max(0, overall_difficulty) ** 2 / 2500;
+
+        return aim_rating * Math.cbrt(rating_multiplier);
+    }
 
     return aim_rating;
 }
@@ -141,11 +221,54 @@ function compute_speed_rating(
     approach_rate: number,
     overall_difficulty: number,
     mechanical_difficulty_rating: number,
+    rework: OsuRework,
 ): number {
     if (mods.includes("RX")) return 0;
 
     let speed_rating = calculate_difficulty_rating(difficulty_value);
     if (mods.includes("AP")) speed_rating *= 0.5;
+
+    if (rework === "oct2025") {
+        let rating_multiplier = 1;
+        const approach_rate_length_bonus =
+            0.95 +
+            0.4 * Math.min(1, total_hits / 2000) +
+            (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
+
+        let approach_rate_factor = 0;
+        if (approach_rate > 10.33)
+            approach_rate_factor = 0.3 * (approach_rate - 10.33);
+        if (mods.includes("AP")) approach_rate_factor = 0;
+
+        rating_multiplier += approach_rate_factor * approach_rate_length_bonus;
+
+        if (mods.includes("HD")) {
+            const mechanical_difficulty_factor = reverse_lerp(
+                mechanical_difficulty_rating,
+                5,
+                10,
+            );
+            const ar_factor_starting_point = lerp(
+                10,
+                10.33,
+                mechanical_difficulty_factor,
+            );
+            const visibility_factor = reverse_lerp(
+                approach_rate,
+                11.5,
+                ar_factor_starting_point,
+            );
+            rating_multiplier += calculate_visibility_bonus(
+                mods,
+                approach_rate,
+                visibility_factor,
+            );
+        }
+
+        rating_multiplier *= 0.95 + Math.max(0, overall_difficulty) ** 2 / 750;
+
+        return speed_rating * Math.cbrt(rating_multiplier);
+    }
 
     return speed_rating;
 }
@@ -155,6 +278,7 @@ function compute_flashlight_rating(
     mods: string[],
     total_hits: number,
     overall_difficulty: number,
+    rework: OsuRework,
 ): number {
     if (!mods.includes("FL")) return 0;
 
@@ -163,16 +287,69 @@ function compute_flashlight_rating(
     if (mods.includes("RX")) flashlight_rating *= 0.7;
     else if (mods.includes("AP")) flashlight_rating *= 0.4;
 
+    if (rework === "oct2025") {
+        let rating_multiplier =
+            0.7 +
+            0.1 * Math.min(1, total_hits / 200) +
+            (total_hits > 200
+                ? 0.2 * Math.min(1, (total_hits - 200) / 200)
+                : 0);
+        rating_multiplier *= 0.98 + Math.max(0, overall_difficulty) ** 2 / 2500;
+
+        return flashlight_rating * Math.sqrt(rating_multiplier);
+    }
+
     return flashlight_rating;
 }
 
-function calculate_difficulty_peppy_stars(beatmap: BeatmapData): number {
+function calculate_visibility_bonus(
+    mods: string[],
+    approach_rate: number,
+    visibility_factor = 1,
+    slider_factor = 1,
+): number {
+    const is_always_partially_visible = mods.includes("TC");
+    let reading_bonus = 0.04 * (12 - Math.max(approach_rate, 7));
+    reading_bonus *= visibility_factor;
+
+    const slider_visibility_factor = slider_factor ** 3;
+
+    if (approach_rate < 7) {
+        reading_bonus +=
+            (is_always_partially_visible ? 0.03 : 0.045) *
+            (7 - Math.max(approach_rate, 0)) *
+            slider_visibility_factor;
+    }
+
+    if (approach_rate < 0) {
+        reading_bonus +=
+            (is_always_partially_visible ? 0.075 : 0.1) *
+            (1 - 1.5 ** approach_rate) *
+            slider_visibility_factor;
+    }
+
+    return reading_bonus;
+}
+
+function calculate_difficulty_peppy_stars(
+    beatmap: BeatmapData,
+    hp: number,
+    od: number,
+    cs: number,
+): number {
     const object_count = beatmap.hit_objects.length;
     const drain_length =
         object_count > 0
             ? Math.trunc(
                   (Math.round(beatmap.hit_objects[object_count - 1]!.time) -
-                      Math.round(beatmap.hit_objects[0]!.time)) /
+                      Math.round(beatmap.hit_objects[0]!.time) -
+                      beatmap.breaks.reduce(
+                          (sum, break_period) =>
+                              sum +
+                              (Math.round(break_period.end_time) -
+                                  Math.round(break_period.start_time)),
+                          0,
+                      )) /
                       1000,
               )
             : 0;
@@ -181,10 +358,36 @@ function calculate_difficulty_peppy_stars(beatmap: BeatmapData): number {
             ? clamp((object_count / drain_length) * 8, 0, 16)
             : 16;
 
-    return Math.round(
-        ((beatmap.hp + beatmap.od + beatmap.cs + object_to_drain_ratio) / 38) *
-            5,
+    return Math.round(((hp + od + cs + object_to_drain_ratio) / 38) * 5);
+}
+
+function calculate_spinner_score(hit_object: HitObject): number {
+    const SPIN_SCORE = 100;
+    const BONUS_SPIN_SCORE = 1000;
+    const MAXIMUM_ROTATIONS_PER_SECOND = 477 / 60;
+    const MINIMUM_ROTATIONS_PER_SECOND = 3;
+
+    const seconds_duration = (hit_object.end_time - hit_object.time) / 1000;
+    const total_half_spins_possible = Math.trunc(
+        seconds_duration * MAXIMUM_ROTATIONS_PER_SECOND * 2,
     );
+    const half_spins_required_for_completion = Math.trunc(
+        seconds_duration * MINIMUM_ROTATIONS_PER_SECOND,
+    );
+    const half_spins_required_before_bonus =
+        half_spins_required_for_completion + 3;
+
+    const full_spins = Math.trunc(total_half_spins_possible / 2);
+    let score = SPIN_SCORE * full_spins;
+
+    let bonus_spins = Math.trunc(
+        (total_half_spins_possible - half_spins_required_before_bonus) / 2,
+    );
+    bonus_spins = Math.max(0, bonus_spins - Math.trunc(full_spins / 2));
+
+    score += BONUS_SPIN_SCORE * bonus_spins;
+
+    return score;
 }
 
 function calculate_nested_score_per_object(beatmap: BeatmapData): number {
@@ -203,11 +406,31 @@ function calculate_nested_score_per_object(beatmap: BeatmapData): number {
         small_ticks += Math.max(0, nested_count - 2 - repeat_count);
     }
 
-    return (big_ticks * 30 + small_ticks * 10) / beatmap.hit_objects.length;
+    let spinner_score = 0;
+    for (const hit_object of beatmap.hit_objects) {
+        if (hit_object.is_spinner) {
+            spinner_score += calculate_spinner_score(hit_object);
+        }
+    }
+
+    return (
+        (big_ticks * 30 + small_ticks * 10 + spinner_score) /
+        beatmap.hit_objects.length
+    );
 }
 
-function calculate_maximum_legacy_combo_score(beatmap: BeatmapData): number {
-    const score_multiplier = calculate_difficulty_peppy_stars(beatmap);
+function calculate_maximum_legacy_combo_score(
+    beatmap: BeatmapData,
+    hp: number,
+    od: number,
+    cs: number,
+): number {
+    const score_multiplier = calculate_difficulty_peppy_stars(
+        beatmap,
+        hp,
+        od,
+        cs,
+    );
     let combo = 0;
     let combo_score = 0;
 
@@ -233,7 +456,10 @@ export function calculate_difficulty(
     mods: string[],
     rework: OsuRework = "mar2025",
 ): DifficultyAttributes {
-    const { clock_rate, ar, od, cs } = apply_mods_to_difficulty(beatmap, mods);
+    const { clock_rate, ar, od, cs, hp } = apply_mods_to_difficulty(
+        beatmap,
+        mods,
+    );
     const hit_objects = prepare_hit_objects_for_difficulty(
         beatmap,
         mods,
@@ -244,6 +470,7 @@ export function calculate_difficulty(
         ar,
         od,
         clock_rate,
+        rework,
     );
 
     const all_objects: OsuDifficultyHitObject[] = [];
@@ -251,7 +478,14 @@ export function calculate_difficulty(
     for (let i = 1; i < hit_objects.length; i++) {
         const current = hit_objects[i]!;
         const last = hit_objects[i - 1]!;
-        const last_last = i > 1 ? hit_objects[i - 2]! : null;
+        const last_last =
+            rework === "oct2025"
+                ? i > 2
+                    ? hit_objects[i - 2]!
+                    : null
+                : i > 1
+                  ? hit_objects[i - 2]!
+                  : null;
 
         all_objects.push(
             new OsuDifficultyHitObject(
@@ -262,6 +496,7 @@ export function calculate_difficulty(
                 cs,
                 od,
                 ar,
+                rework,
                 all_objects,
                 all_objects.length,
             ),
@@ -334,6 +569,7 @@ export function calculate_difficulty(
             1.1;
     const mechanical_difficulty_rating = calculate_star_rating(
         mechanical_base_performance ** (1 / 1.1),
+        rework,
     );
 
     const aim_rating = compute_aim_rating(
@@ -344,6 +580,7 @@ export function calculate_difficulty(
         effective_od,
         mechanical_difficulty_rating,
         slider_factor,
+        rework,
     );
     const speed_rating = compute_speed_rating(
         speed_difficulty_value,
@@ -352,12 +589,14 @@ export function calculate_difficulty(
         effective_ar,
         effective_od,
         mechanical_difficulty_rating,
+        rework,
     );
     const flashlight_rating = compute_flashlight_rating(
         flashlight_result?.difficulty_value ?? 0,
         mods,
         beatmap.hit_objects.length,
         effective_od,
+        rework,
     );
 
     const base_aim_performance = difficulty_to_performance(aim_rating);
@@ -372,7 +611,7 @@ export function calculate_difficulty(
             base_flashlight_performance ** 1.1) **
         (1 / 1.1);
 
-    const star_rating = calculate_star_rating(base_performance);
+    const star_rating = calculate_star_rating(base_performance, rework);
 
     return {
         star_rating: star_rating,
@@ -397,11 +636,32 @@ export function calculate_difficulty(
         total_hits: beatmap.hit_objects.length,
         effective_ar: effective_ar,
         effective_od: effective_od,
-        drain_rate: beatmap.hp,
+        hit_window_great:
+            rework === "oct2025"
+                ? osu_hit_window(od, 80, 50, 20) / clock_rate
+                : (80 - 6 * od) / clock_rate,
+        hit_window_ok:
+            rework === "oct2025"
+                ? osu_hit_window(od, 140, 100, 60) / clock_rate
+                : (140 - 8 * od) / clock_rate,
+        hit_window_meh:
+            rework === "oct2025"
+                ? osu_hit_window(od, 200, 150, 100) / clock_rate
+                : (200 - 10 * od) / clock_rate,
+        drain_rate: hp,
         nested_score_per_object: calculate_nested_score_per_object(beatmap),
-        legacy_score_base_multiplier: calculate_difficulty_peppy_stars(beatmap),
-        maximum_legacy_combo_score:
-            calculate_maximum_legacy_combo_score(beatmap),
+        legacy_score_base_multiplier: calculate_difficulty_peppy_stars(
+            beatmap,
+            hp,
+            od,
+            cs,
+        ),
+        maximum_legacy_combo_score: calculate_maximum_legacy_combo_score(
+            beatmap,
+            beatmap.hp,
+            beatmap.od,
+            beatmap.cs,
+        ),
     };
 }
 
@@ -495,7 +755,9 @@ function compute_lazy_slider_position(
     nested_times: number[],
     circle_size: number,
 ) {
-    const radius = 64 * ((1 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041;
+    const radius = Math.fround(
+        64 * Math.fround(((1 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041),
+    );
     const scaling_factor = 50 / radius;
     const span_duration = duration / span_count;
     const tail_leniency = -36;
@@ -610,11 +872,11 @@ function compute_lazy_slider_position(
     const tail = position_at_progress(1);
 
     return {
-        lazy_end_x: Math.fround(lazy_end.x),
-        lazy_end_y: Math.fround(lazy_end.y),
-        lazy_travel_distance: Math.fround(lazy_travel_distance),
+        lazy_end_x: lazy_end.x,
+        lazy_end_y: lazy_end.y,
+        lazy_travel_distance,
         lazy_travel_time,
-        tail_x: Math.fround(tail.x),
-        tail_y: Math.fround(tail.y),
+        tail_x: tail.x,
+        tail_y: tail.y,
     };
 }

@@ -26,6 +26,16 @@ export function smoothstep(x: number, start: number, end: number): number {
     return x * x * (3 - 2 * x);
 }
 
+export function smoothstep_bell_curve(
+    x: number,
+    mean: number = 0.5,
+    width: number = 0.5,
+): number {
+    x -= mean;
+    x = x > 0 ? width - x : width + x;
+    return smoothstep(x, 0, width);
+}
+
 export function smootherstep(x: number, start: number, end: number): number {
     x = clamp((x - start) / (end - start), 0, 1);
     return x * x * x * (x * (6 * x - 15) + 10);

@@ -22,6 +22,7 @@ export default class Mar2025PpCalculator extends PpCalculator {
                     mods,
                     accuracy: (score.accuracy ?? 0) / 100,
                     combo: source_score.combo ?? score.max_combo ?? 0,
+                    legacy_total_score: score.legacy_total_score,
                     statistics: {
                         great: stats.great ?? 0,
                         ok: stats.ok ?? 0,
