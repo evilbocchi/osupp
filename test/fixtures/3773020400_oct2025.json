@@ -1,0 +1,69 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2844649,
+        "beatmap": "t+pazolite - Oshama Scramble! (IOException Edit) (IOException) [Special]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 95.66801619433198,
+        "combo": 353,
+        "statistics": {
+            "great": 711,
+            "ok": 37,
+            "meh": 1,
+            "miss": 5,
+            "large_tick_miss": 73,
+            "slider_tail_hit": 433,
+            "slider_tail_miss": 10
+        }
+    },
+    "performance_attributes": {
+        "aim": 413.9664172553512,
+        "speed": 277.4888766009711,
+        "accuracy": 79.76126040856518,
+        "flashlight": 0,
+        "effective_miss_count": 5,
+        "speed_deviation": 12.74910353054802,
+        "combo_based_estimated_miss_count": 3.71671388101983,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 808.2909834157886
+    },
+    "difficulty_attributes": {
+        "star_rating": 14.858742686100259,
+        "max_combo": 1322,
+        "aim_difficulty": 8.599272303171643,
+        "aim_difficult_slider_count": 101.54790663558333,
+        "speed_difficulty": 4.68314653219861,
+        "speed_note_count": 268.51638993713897,
+        "slider_factor": 0.598308060169761,
+        "aim_top_weighted_slider_factor": 1.1648476089057367,
+        "speed_top_weighted_slider_factor": 1.0519745449124702,
+        "aim_difficult_strain_count": 65.15547745815053,
+        "speed_difficult_strain_count": 96.6796757906422,
+        "nested_score_per_object": 58.02387267904509,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 28256700,
+        "circle_size": 4,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 808.291,
+    "user_id": 7562902,
+    "score_id": 3773020400
+}

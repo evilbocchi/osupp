@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1811527,
+        "beatmap": "Avenged Sevenfold - Save Me (Sersh4nt) [Nightmare]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 389718226,
+        "accuracy": 99.20245398773007,
+        "combo": 4310,
+        "statistics": {
+            "great": 3221,
+            "ok": 39,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 643.0638655332783,
+        "speed": 846.8013114529854,
+        "accuracy": 195.26452117655398,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.669969284281018,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1761.5678481712253
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.467481383517606,
+        "max_combo": 4312,
+        "aim_difficulty": 4.839016181522317,
+        "aim_difficult_slider_count": 285.51776551694064,
+        "speed_difficulty": 5.341455660146997,
+        "speed_note_count": 1137.9272997416704,
+        "slider_factor": 0.996123476211611,
+        "aim_top_weighted_slider_factor": 0.354019135725039,
+        "speed_top_weighted_slider_factor": 0.18991272121304026,
+        "aim_difficult_strain_count": 229.6671203858097,
+        "speed_difficult_strain_count": 250.0788986985256,
+        "nested_score_per_object": 31.757668711656443,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 330247632,
+        "circle_size": 4,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.244444444444445
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1761.57,
+    "user_id": 7562902,
+    "score_id": 3427873257
+}

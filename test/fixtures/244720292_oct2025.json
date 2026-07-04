@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 164020,
+        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 10520461,
+        "accuracy": 98.32985386221294,
+        "combo": 651,
+        "statistics": {
+            "great": 467,
+            "ok": 12,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 304.6482563862694,
+        "speed": 133.09045434280415,
+        "accuracy": 98.59607266420933,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 10.627450099330913,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 559.9729437844545
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.849432504903062,
+        "max_combo": 652,
+        "aim_difficulty": 4.239353359773123,
+        "aim_difficult_slider_count": 59.832385772808315,
+        "speed_difficulty": 3.275068666380108,
+        "speed_note_count": 173.44274124469845,
+        "slider_factor": 0.961149940592748,
+        "aim_top_weighted_slider_factor": 0.354989501027595,
+        "speed_top_weighted_slider_factor": 0.2585124029452418,
+        "aim_difficult_strain_count": 74.33153441221889,
+        "speed_difficult_strain_count": 65.80496073794113,
+        "nested_score_per_object": 68.91440501043841,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 8872920,
+        "circle_size": 4,
+        "approach_rate": 10.333333333333332,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 559.973,
+    "user_id": 352328,
+    "score_id": 244720292
+}

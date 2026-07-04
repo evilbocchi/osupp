@@ -1,0 +1,67 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2870806,
+        "beatmap": "Noah - Deadly force - Put an end (Keqing) [The end.]",
+        "mods": [
+            {
+                "acronym": "HT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 32667442,
+        "accuracy": 99.30421337456514,
+        "combo": 1986,
+        "statistics": {
+            "great": 2560,
+            "ok": 27,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 339.2537604599199,
+        "speed": 271.3596939478118,
+        "accuracy": 109.42574109506937,
+        "flashlight": 0,
+        "effective_miss_count": 1.0148146775873188,
+        "speed_deviation": 12.682757573257403,
+        "combo_based_estimated_miss_count": 1.6373615307150051,
+        "score_based_estimated_miss_count": 1.0148146775873188,
+        "aim_estimated_slider_breaks": 0.00010175257931085085,
+        "speed_estimated_slider_breaks": 0.00007442218544700434,
+        "pp": 749.4159732978922
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.125749281968575,
+        "max_combo": 3320,
+        "aim_difficulty": 4.081242439206317,
+        "aim_difficult_slider_count": 320.0966243075148,
+        "speed_difficulty": 3.8350966904379753,
+        "speed_note_count": 862.8922804183773,
+        "slider_factor": 0.9994872845710331,
+        "aim_top_weighted_slider_factor": 0.2039709836456252,
+        "speed_top_weighted_slider_factor": 0.1488801107294096,
+        "aim_difficult_strain_count": 339.24318974588977,
+        "speed_difficult_strain_count": 251.4874888140415,
+        "nested_score_per_object": 16.161577116350987,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 207073056,
+        "circle_size": 4,
+        "approach_rate": 9,
+        "overall_difficulty": 8.88888888888889
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 749.416,
+    "user_id": 1719471,
+    "score_id": 4813317877
+}

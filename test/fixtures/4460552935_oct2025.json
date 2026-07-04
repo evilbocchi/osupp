@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4921872,
+        "beatmap": "Tim Follin - Title Screen (Mekadon) [The Game of Video Quick Draw]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 2789907,
+        "accuracy": 97.56521739130434,
+        "combo": 207,
+        "statistics": {
+            "great": 557,
+            "ok": 12,
+            "meh": 0,
+            "miss": 6,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1198.4038116315983,
+        "speed": 244.21388091412697,
+        "accuracy": 96.93317177126657,
+        "flashlight": 0,
+        "effective_miss_count": 6,
+        "speed_deviation": 6.881427885784767,
+        "combo_based_estimated_miss_count": 3.519806763285024,
+        "score_based_estimated_miss_count": 5.050269104270912,
+        "aim_estimated_slider_breaks": 1.0746070815775979,
+        "speed_estimated_slider_breaks": 1.5854349813786166,
+        "pp": 1657.25499870429
+    },
+    "difficulty_attributes": {
+        "star_rating": 13.173618088164075,
+        "max_combo": 745,
+        "aim_difficulty": 7.538347543691245,
+        "aim_difficult_slider_count": 50.78197587381803,
+        "speed_difficulty": 4.467546650424131,
+        "speed_note_count": 483.65044898257213,
+        "slider_factor": 0.9971259667445338,
+        "aim_top_weighted_slider_factor": 0.1896876763266191,
+        "speed_top_weighted_slider_factor": 0.2966046548696368,
+        "aim_difficult_strain_count": 114.8802136736633,
+        "speed_difficult_strain_count": 202.1328401870553,
+        "nested_score_per_object": 17.42608695652174,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 13068540,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1657.26,
+    "user_id": 7562902,
+    "score_id": 4460552935
+}

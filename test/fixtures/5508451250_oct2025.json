@@ -1,0 +1,71 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 24287660,
+        "accuracy": 99.80787704130644,
+        "combo": 938,
+        "statistics": {
+            "great": 692,
+            "ok": 2,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 274.1532752085403,
+        "speed": 285.330944046475,
+        "accuracy": 147.91053773082643,
+        "flashlight": 296.1535008660181,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.678231254459336,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1011.7566284050267
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.512081844442923,
+        "max_combo": 938,
+        "aim_difficulty": 4.013380786617357,
+        "aim_difficult_slider_count": 22.67565281693156,
+        "speed_difficulty": 4.073059507275752,
+        "speed_note_count": 321.2152707457399,
+        "flashlight_difficulty": 3.4434765214685,
+        "slider_factor": 0.9983649097137398,
+        "aim_top_weighted_slider_factor": 0.030532770609476043,
+        "speed_top_weighted_slider_factor": 0.022961181997427037,
+        "aim_difficult_strain_count": 141.53823566535948,
+        "speed_difficult_strain_count": 156.53154722697107,
+        "nested_score_per_object": 24.582132564841498,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 20337300,
+        "circle_size": 5.8500000000000005,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1011.76,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}

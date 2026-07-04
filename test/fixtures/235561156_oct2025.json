@@ -1,0 +1,67 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 550235,
+        "beatmap": "Our Stolen Theory - United (L.A.O.S Remix) (Asphyxia) [Infinity]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 127472559,
+        "accuracy": 99.3932499051953,
+        "combo": 2274,
+        "statistics": {
+            "great": 1742,
+            "ok": 16,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 186.93612438222587,
+        "speed": 133.92213044544678,
+        "accuracy": 169.5849046211661,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 9.088448915137336,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 506.43339314237
+    },
+    "difficulty_attributes": {
+        "star_rating": 6.53580801510654,
+        "max_combo": 2275,
+        "aim_difficulty": 3.342461450922584,
+        "aim_difficult_slider_count": 256.45846109763505,
+        "speed_difficulty": 3.0120528171052494,
+        "speed_note_count": 786.079550560334,
+        "slider_factor": 0.9923431589815562,
+        "aim_top_weighted_slider_factor": 0.1900433871259238,
+        "speed_top_weighted_slider_factor": 0.16624521223691274,
+        "aim_difficult_strain_count": 302.2078075133156,
+        "speed_difficult_strain_count": 170.6402305391409,
+        "nested_score_per_object": 34.69283276450512,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 120441840,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 506.433,
+    "user_id": 352328,
+    "score_id": 235561156
+}

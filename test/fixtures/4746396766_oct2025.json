@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5047712,
+        "beatmap": "Various Artists - Songs Compilation VI (Sotarks) [Collab Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 89731914,
+        "accuracy": 99.21074727120067,
+        "combo": 1829,
+        "statistics": {
+            "great": 1962,
+            "ok": 22,
+            "meh": 0,
+            "miss": 1,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1191.6446649834902,
+        "speed": 295.83408038228134,
+        "accuracy": 216.13970815316347,
+        "flashlight": 0,
+        "effective_miss_count": 2.9491945725177926,
+        "speed_deviation": 6.380736870356164,
+        "combo_based_estimated_miss_count": 1.5412793876435211,
+        "score_based_estimated_miss_count": 2.9491945725177926,
+        "aim_estimated_slider_breaks": 1.1274007262209251,
+        "speed_estimated_slider_breaks": 1.2213327666984015,
+        "pp": 1807.2613813563642
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.635592351856832,
+        "max_combo": 2905,
+        "aim_difficulty": 6.590301113390218,
+        "aim_difficult_slider_count": 333.22671719793397,
+        "speed_difficulty": 4.1572395729189004,
+        "speed_note_count": 1012.8994963950448,
+        "slider_factor": 0.9932960200953531,
+        "aim_top_weighted_slider_factor": 0.6296679432324203,
+        "speed_top_weighted_slider_factor": 0.6878475448801298,
+        "aim_difficult_strain_count": 177.70270813382174,
+        "speed_difficult_strain_count": 306.7815821075518,
+        "nested_score_per_object": 34.005037783375315,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 174482280,
+        "circle_size": 3.6,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1807.26,
+    "user_id": 7562902,
+    "score_id": 4746396766
+}

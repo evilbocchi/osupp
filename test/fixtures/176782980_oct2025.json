@@ -1,0 +1,64 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 129891,
+        "beatmap": "xi - FREEDOM DiVE (Nakagawa-Kanon) [FOUR DIMENSIONS]",
+        "mods": [
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 115717546,
+        "accuracy": 98.55437888720793,
+        "combo": 2383,
+        "statistics": {
+            "great": 1941,
+            "ok": 40,
+            "meh": 0,
+            "miss": 2,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 191.71293099108348,
+        "speed": 227.9283368247749,
+        "accuracy": 61.35214215293208,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "speed_deviation": 15.469485802121444,
+        "combo_based_estimated_miss_count": 2,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0.001538488422053066,
+        "speed_estimated_slider_breaks": 0.00081875691072823,
+        "pp": 501.83785146600235
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.422971525389748,
+        "max_combo": 2385,
+        "aim_difficulty": 3.490219017156987,
+        "aim_difficult_slider_count": 139.8544221924269,
+        "speed_difficulty": 3.7395706992536946,
+        "speed_note_count": 1308.228321084575,
+        "slider_factor": 0.996544880813258,
+        "aim_top_weighted_slider_factor": 0.10724432364126514,
+        "speed_top_weighted_slider_factor": 0.05693136865752216,
+        "aim_difficult_strain_count": 339.963742446001,
+        "speed_difficult_strain_count": 608.1957507610983,
+        "nested_score_per_object": 20.630358043368634,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 117510000,
+        "circle_size": 4,
+        "approach_rate": 9,
+        "overall_difficulty": 8
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 501.838,
+    "user_id": 352328,
+    "score_id": 176782980
+}

@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5246964,
+        "beatmap": "Alex C. feat. Yasmin K. - Angel Of Darkness (Video Mix) (Nightcore Mix) (239hachiman) [Ultra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 17585574,
+        "accuracy": 95.37323701410388,
+        "combo": 713,
+        "statistics": {
+            "great": 904,
+            "ok": 60,
+            "meh": 1,
+            "miss": 4,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 450.34365865896535,
+        "speed": 751.4197922132756,
+        "accuracy": 61.65664051919717,
+        "flashlight": 0,
+        "effective_miss_count": 4,
+        "speed_deviation": 10.582296657171982,
+        "combo_based_estimated_miss_count": 1.7050490883590463,
+        "score_based_estimated_miss_count": 2.1347026981115387,
+        "aim_estimated_slider_breaks": 0.5466480930888551,
+        "speed_estimated_slider_breaks": 0.11211081895245864,
+        "pp": 1338.0958647733235
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.92294140272094,
+        "max_combo": 1239,
+        "aim_difficulty": 5.131745010683977,
+        "aim_difficult_slider_count": 141.08868558669352,
+        "speed_difficulty": 6.349274878052918,
+        "speed_note_count": 323.56828324033035,
+        "slider_factor": 0.9970493184244943,
+        "aim_top_weighted_slider_factor": 0.17027393131869162,
+        "speed_top_weighted_slider_factor": 0.034607144552343407,
+        "aim_difficult_strain_count": 249.89056815412192,
+        "speed_difficult_strain_count": 81.14651382639516,
+        "nested_score_per_object": 28.782249742002065,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 36957360,
+        "circle_size": 3.8,
+        "approach_rate": 10.8,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1338.1,
+    "user_id": 7562902,
+    "score_id": 5460844152
+}

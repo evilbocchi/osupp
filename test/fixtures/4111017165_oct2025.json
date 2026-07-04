@@ -1,0 +1,76 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4791385,
+        "beatmap": "toby fox - Song That Might Play When You Fight Sans (Smoke) [browiec's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "NF"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 1029141,
+        "accuracy": 93.69658119658119,
+        "combo": 286,
+        "statistics": {
+            "great": 283,
+            "ok": 27,
+            "meh": 2,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 717.1115165183373,
+        "speed": 236.01136372688055,
+        "accuracy": 18.731524857060894,
+        "flashlight": 0,
+        "effective_miss_count": 1.248650474919346,
+        "speed_deviation": 11.166027731928823,
+        "combo_based_estimated_miss_count": 1.445104895104895,
+        "score_based_estimated_miss_count": 1.248650474919346,
+        "aim_estimated_slider_breaks": 0.026934672062526737,
+        "speed_estimated_slider_breaks": 0.03595523075457752,
+        "pp": 1020.7349830596797
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.891129951109631,
+        "max_combo": 423,
+        "aim_difficulty": 6.025833739080731,
+        "aim_difficult_slider_count": 30.600208814740455,
+        "speed_difficulty": 4.255153760036316,
+        "speed_note_count": 201.97235282897446,
+        "slider_factor": 0.9949655787626567,
+        "aim_top_weighted_slider_factor": 0.290748605663187,
+        "speed_top_weighted_slider_factor": 0.3899006260392564,
+        "aim_difficult_strain_count": 67.43308298413469,
+        "speed_difficult_strain_count": 103.53714987980474,
+        "nested_score_per_object": 50.96153846153846,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 2944272,
+        "circle_size": 3.9000000000000004,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "id": 1,
+        "code": "live",
+        "version": 18,
+        "last_updated": "2025-11-11 10:25"
+    },
+    "live_pp": 1020.73,
+    "user_id": 10077431,
+    "score_id": 4111017165
+}
