@@ -1,0 +1,53 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 129891,
+        "beatmap": "xi - FREEDOM DiVE (Nakagawa-Kanon) [FOUR DIMENSIONS]",
+        "mods": [
+            {
+                "acronym": "CL",
+                "settings": {}
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 98.55437888720793,
+        "combo": 2383,
+        "statistics": {
+            "great": 1941,
+            "ok": 40,
+            "meh": 0,
+            "miss": 2,
+            "slider_tail_miss": 0
+        }
+    },
+    "pp": 546.9126935769505,
+    "performance_attributes": {
+        "aim": 204.2761942400122,
+        "speed": 266.87516986507256,
+        "accuracy": 61.35214215293208,
+        "flashlight": 0,
+        "od": 8,
+        "ar": 9,
+        "max_combo": 2385,
+        "pp": 546.9126935769505
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.519303642924295,
+        "max_combo": 2385,
+        "aim_strain": 3.4522674726242832,
+        "speed_strain": 3.7718237000039756,
+        "slider_factor": 0.9954493248500754,
+        "approach_rate": 9,
+        "overall_difficulty": 8,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-04-07 20:14"
+    },
+    "live_pp": 471.628,
+    "user_id": 352328,
+    "score_id": 176782980
+}

@@ -1,0 +1,57 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 164020,
+        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 98.32985386221294,
+        "combo": 651,
+        "statistics": {
+            "great": 467,
+            "ok": 12,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 296.03102374904853,
+        "speed": 150.21432261347886,
+        "accuracy": 101.42199044300355,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 560.5856357845718
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.69518764105734,
+        "max_combo": 652,
+        "aim_difficulty": 4.0614801408047105,
+        "speed_difficulty": 3.2059348597005495,
+        "aim_difficult_strain_count": 45.09982959930292,
+        "speed_difficult_strain_count": 61.66661999721638,
+        "approach_rate": 10.333333333333332,
+        "overall_difficulty": 10.444444444444445,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 89,
+        "code": "pp_jan2021",
+        "version": 2,
+        "last_updated": "2025-01-24 11:01"
+    },
+    "live_pp": 578.256,
+    "user_id": 352328,
+    "score_id": 244720292
+}

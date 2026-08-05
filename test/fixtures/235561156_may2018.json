@@ -1,0 +1,54 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 550235,
+        "beatmap": "Our Stolen Theory - United (L.A.O.S Remix) (Asphyxia) [Infinity]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.3932499051953,
+        "combo": 2274,
+        "statistics": {
+            "great": 1742,
+            "ok": 16,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 144.16122629114227,
+        "speed": 133.4376226839539,
+        "accuracy": 169.58495721989942,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 453.47287767778914
+    },
+    "difficulty_attributes": {
+        "star_rating": 6.055587844939167,
+        "max_combo": 2275,
+        "aim_difficulty": 3.046826011576168,
+        "speed_difficulty": 2.9706976551498308,
+        "aim_difficult_strain_count": 198.56981782339392,
+        "speed_difficult_strain_count": 146.80688762593968,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 103,
+        "code": "pp_may2018",
+        "version": 3,
+        "last_updated": "2025-03-27 12:23"
+    },
+    "live_pp": 494.485,
+    "user_id": 352328,
+    "score_id": 235561156
+}

@@ -1,0 +1,61 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 144029,
+        "beatmap": "Mutsuhiko Izumi - Red Goose (nold_1702) [Superable]",
+        "mods": [
+            {
+                "acronym": "HR",
+                "settings": {}
+            },
+            {
+                "acronym": "HD",
+                "settings": {}
+            },
+            {
+                "acronym": "CL",
+                "settings": {}
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 99.31473323543808,
+        "combo": 988,
+        "statistics": {
+            "great": 674,
+            "ok": 7,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "pp": 507.12881063476357,
+    "performance_attributes": {
+        "aim": 175.48680998144638,
+        "speed": 192.62930202558013,
+        "accuracy": 131.62441221000205,
+        "flashlight": 0,
+        "od": 10,
+        "ar": 10,
+        "max_combo": 990,
+        "pp": 507.12881063476357
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.0450773421012824,
+        "max_combo": 990,
+        "aim_strain": 3.369479825653388,
+        "speed_strain": 3.4140824824187965,
+        "slider_factor": 0.9928044725286748,
+        "approach_rate": 10,
+        "overall_difficulty": 10,
+        "circle_size": 5.2
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-04-07 20:14"
+    },
+    "live_pp": 520.961,
+    "user_id": 352328,
+    "score_id": 110536233
+}

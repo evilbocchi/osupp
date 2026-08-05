@@ -1,0 +1,61 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5047712,
+        "beatmap": "Various Artists - Songs Compilation VI (Sotarks) [Collab Extra]",
+        "mods": [
+            {
+                "acronym": "DT",
+                "settings": {}
+            },
+            {
+                "acronym": "HD",
+                "settings": {}
+            },
+            {
+                "acronym": "CL",
+                "settings": {}
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 99.21074727120067,
+        "combo": 1829,
+        "statistics": {
+            "great": 1962,
+            "ok": 22,
+            "meh": 0,
+            "miss": 1,
+            "slider_tail_miss": 0
+        }
+    },
+    "pp": 1675.9294805335094,
+    "performance_attributes": {
+        "aim": 1088.3438525956988,
+        "speed": 299.2383514696904,
+        "accuracy": 226.3309665434836,
+        "flashlight": 0,
+        "od": 10.977777904934355,
+        "ar": 10.866666793823242,
+        "max_combo": 2905,
+        "pp": 1675.9294805335094
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.073575014213528,
+        "max_combo": 2905,
+        "aim_strain": 6.179976978457341,
+        "speed_strain": 3.9408921816966362,
+        "slider_factor": 0.9944277157342015,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.97777777777778,
+        "circle_size": 3.6
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-04-07 20:14"
+    },
+    "live_pp": 1563.23,
+    "user_id": 7562902,
+    "score_id": 4746396766
+}

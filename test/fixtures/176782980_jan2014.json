@@ -1,0 +1,62 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 129891,
+        "beatmap": "xi - FREEDOM DiVE (Nakagawa-Kanon) [FOUR DIMENSIONS]",
+        "mods": [
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 115717546,
+        "accuracy": 98.55437888720793,
+        "combo": 2383,
+        "statistics": {
+            "great": 1941,
+            "ok": 40,
+            "meh": 0,
+            "miss": 2,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 175.20803894868058,
+        "speed": 231.5922685245637,
+        "accuracy": 61.35215495238143,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "speed_deviation": null,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 479.9255868465018
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.067838596178996,
+        "max_combo": 2385,
+        "aim_difficulty": 3.296873419033341,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.6129345911082167,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 288.0982182122319,
+        "speed_difficult_strain_count": 498.9043953765332,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "circle_size": 4,
+        "approach_rate": 9,
+        "overall_difficulty": 8
+    },
+    "rework_data": {
+        "id": 137,
+        "code": "pp_jan2014",
+        "version": 1,
+        "last_updated": "2025-06-05 07:36"
+    },
+    "live_pp": 471.628,
+    "user_id": 352328,
+    "score_id": 176782980
+}

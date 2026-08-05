@@ -1,0 +1,13 @@
+{
+    "statistics": {
+        "great": 467,
+        "ok": 12,
+        "meh": 0,
+        "miss": 0,
+        "slider_tail_miss": 0
+    },
+    "mods": [{ "acronym": "DT" }, { "acronym": "HD" }, { "acronym": "CL" }],
+    "accuracy": 0.9832985386221294,
+    "max_combo": 651,
+    "legacy_total_score": 10520461
+}

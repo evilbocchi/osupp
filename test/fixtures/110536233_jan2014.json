@@ -1,0 +1,68 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 144029,
+        "beatmap": "Mutsuhiko Izumi - Red Goose (nold_1702) [Superable]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 16939293,
+        "accuracy": 99.31473323543808,
+        "combo": 988,
+        "statistics": {
+            "great": 674,
+            "ok": 7,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 172.9078638625228,
+        "speed": 128.9425564675225,
+        "accuracy": 124.31197768103317,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": null,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 432.4344558584333
+    },
+    "difficulty_attributes": {
+        "star_rating": 6.437185872413969,
+        "max_combo": 990,
+        "aim_difficulty": 3.2519557016432694,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.1185046398981293,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 79.0087614110063,
+        "speed_difficult_strain_count": 127.5498454159294,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "id": 137,
+        "code": "pp_jan2014",
+        "version": 1,
+        "last_updated": "2025-06-05 07:36"
+    },
+    "live_pp": 520.961,
+    "user_id": 352328,
+    "score_id": 110536233
+}

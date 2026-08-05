@@ -1,0 +1,57 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4921872,
+        "beatmap": "Tim Follin - Title Screen (Mekadon) [The Game of Video Quick Draw]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 97.56521739130434,
+        "combo": 207,
+        "statistics": {
+            "great": 557,
+            "ok": 12,
+            "meh": 0,
+            "miss": 6,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 487.6010889611076,
+        "speed": 146.8226730851434,
+        "accuracy": 97.43329888001139,
+        "flashlight": 0,
+        "effective_miss_count": 6,
+        "pp": 759.3957848124717
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.192095490318362,
+        "max_combo": 745,
+        "aim_difficulty": 6.591061879624179,
+        "speed_difficulty": 4.611005341764188,
+        "aim_difficult_strain_count": 82.79798095818688,
+        "speed_difficult_strain_count": 149.85624975987471,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 10.97777777777778
+    },
+    "rework_data": {
+        "id": 103,
+        "code": "pp_may2018",
+        "version": 3,
+        "last_updated": "2025-03-27 12:23"
+    },
+    "live_pp": 1581.41,
+    "user_id": 7562902,
+    "score_id": 4460552935
+}

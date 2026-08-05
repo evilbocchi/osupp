@@ -1,0 +1,68 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 164020,
+        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 10520461,
+        "accuracy": 98.32985386221294,
+        "combo": 651,
+        "statistics": {
+            "great": 467,
+            "ok": 12,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 317.88043655549296,
+        "speed": 130.01589729914758,
+        "accuracy": 95.78746178391857,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": null,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 558.607828521465
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.490990260501977,
+        "max_combo": 652,
+        "aim_difficulty": 3.9382933365252253,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.1671005114282793,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 34.10215248422631,
+        "speed_difficult_strain_count": 69.42713562118847,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "circle_size": 4,
+        "approach_rate": 10.333333333333332,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "id": 137,
+        "code": "pp_jan2014",
+        "version": 1,
+        "last_updated": "2025-06-05 07:36"
+    },
+    "live_pp": 578.256,
+    "user_id": 352328,
+    "score_id": 244720292
+}
