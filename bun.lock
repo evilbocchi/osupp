@@ -15,16 +15,6 @@
         "typescript": "^5",
       },
     },
-    "examples/basic": {
-      "name": "osupp-basic-example",
-      "dependencies": {
-        "osupp": "file:../..",
-      },
-      "devDependencies": {
-        "@types/bun": "latest",
-        "typescript": "^5",
-      },
-    },
   },
   "packages": {
     "@types/bun": ["@types/bun@1.3.14", "", { "dependencies": { "bun-types": "1.3.14" } }, "sha512-h1hFqFVcvAvD9j9K7ZW7vd82aSA+rTdznZa+5bwvCwqSB1jmmfLcbIWhOLx1/+boy/xmjgCs/OMUL8hRJSmnPw=="],
@@ -56,10 +46,6 @@
     "lefthook-windows-x64": ["lefthook-windows-x64@2.1.9", "", { "os": "win32", "cpu": "x64" }, "sha512-2qlUtkJHZ3MyUxgV5XTEmcrIoNZA07iwaquoswAcqv/1MeBFXlD+O+koFRfrzWng2O5WYEbpJnd8tvaYnV8fTA=="],
 
     "osu-api-extended": ["osu-api-extended@3.2.1", "", {}, "sha512-gPwf/HPWZOnYXpw5uDAfBeIv7GUKCum85eEFxKV/+UGITHLa109HMuwWIMtVx5YoGPnBpAsgFu5WVM9QbrJC+g=="],
-
-    "osupp": ["osupp@root:", {}],
-
-    "osupp-basic-example": ["osupp-basic-example@workspace:examples/basic"],
 
     "prettier": ["prettier@3.9.4", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg=="],
 
