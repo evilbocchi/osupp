@@ -26,6 +26,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .eslintcache
 .cache
 *.tsbuildinfo
+osu_*/
+actual_osu/
 
 # IntelliJ based IDEs
 .idea
