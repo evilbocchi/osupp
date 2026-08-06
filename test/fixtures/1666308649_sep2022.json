@@ -1,0 +1,74 @@
+{
+    "score": {
+        "id": 1666308649,
+        "user_id": 10077431,
+        "ruleset_id": 0,
+        "beatmap_id": 1911308,
+        "beatmap": "Koda Kumi - Guess Who Is Back (TV Size) (Sotarks) [Fiery's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1282345,
+        "legacy_total_score": 7116229,
+        "accuracy": 97.7998,
+        "max_combo": 547,
+        "combo": 547,
+        "statistics": {
+            "ok": 10,
+            "great": 293
+        },
+        "ended_at": "2023-01-07T15:48:10Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 633.1022651610587,
+        "speed": 133.6097620744797,
+        "accuracy": 67.9402038709016,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 894.6434484428815
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.953047807902362,
+        "aim_difficulty": 5.0314374571907425,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 2.964269180225493,
+        "flashlight_difficulty": 3.2616470862025757,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9811531697175024,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.2,
+        "overall_difficulty": 9.4,
+        "circle_size": 4.2,
+        "drain_rate": 7,
+        "hit_circle_count": 161,
+        "slider_count": 141,
+        "spinner_count": 1,
+        "max_combo": 549,
+        "speed_note_count": 171.57543155413424
+    },
+    "live_pp": 909.288,
+    "user_id": 10077431,
+    "score_id": 1666308649
+}

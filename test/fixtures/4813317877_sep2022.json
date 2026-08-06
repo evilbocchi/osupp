@@ -1,0 +1,68 @@
+{
+    "score": {
+        "id": 4813317877,
+        "user_id": 1719471,
+        "ruleset_id": 0,
+        "beatmap_id": 2870806,
+        "beatmap": "Noah - Deadly force - Put an end (Keqing) [The end.]",
+        "mods": [
+            {
+                "acronym": "HT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 453833,
+        "legacy_total_score": 32667442,
+        "accuracy": 99.3042,
+        "max_combo": 1986,
+        "combo": 1986,
+        "statistics": {
+            "ok": 27,
+            "great": 2560
+        },
+        "ended_at": "2025-05-09T00:59:32Z",
+        "rank": "S",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 223.337934650757,
+        "speed": 201.42999519662996,
+        "accuracy": 108.15718016532543,
+        "flashlight": 0,
+        "effective_miss_count": 1.6373615307150051,
+        "pp": 552.1179658741592
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.178955824710753,
+        "aim_difficulty": 3.9870892251208625,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.839067462910984,
+        "flashlight_difficulty": 6.002876290920973,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9998245923941795,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 10,
+        "overall_difficulty": 10,
+        "circle_size": 4,
+        "drain_rate": 3,
+        "hit_circle_count": 1905,
+        "slider_count": 682,
+        "spinner_count": 0,
+        "max_combo": 3320,
+        "speed_note_count": 905.2907862952543
+    },
+    "live_pp": 720.284,
+    "user_id": 1719471,
+    "score_id": 4813317877
+}

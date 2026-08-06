@@ -1,0 +1,72 @@
+{
+    "score": {
+        "id": 1773742642,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 2240526,
+        "beatmap": "TUYU - Anoyo-iki no Bus ni Notte Saraba. (SnowNiNo_) [Yandere]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1027556,
+        "legacy_total_score": 28807374,
+        "accuracy": 96.2025,
+        "max_combo": 1022,
+        "combo": 1022,
+        "statistics": {
+            "ok": 45,
+            "miss": 6,
+            "great": 897
+        },
+        "ended_at": "2023-10-01T10:25:58Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 924.17393225878,
+        "speed": 296.39515656665014,
+        "accuracy": 71.98795341042927,
+        "flashlight": 0,
+        "effective_miss_count": 6,
+        "pp": 1380.8427082868445
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.173404014961912,
+        "aim_difficulty": 6.112369491571689,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.1801542400250495,
+        "flashlight_difficulty": 5.75040701527411,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9899627347920852,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.5,
+        "circle_size": 4,
+        "drain_rate": 5.5,
+        "hit_circle_count": 704,
+        "slider_count": 244,
+        "spinner_count": 0,
+        "max_combo": 1230,
+        "speed_note_count": 366.05358878817344
+    },
+    "live_pp": 1131.3,
+    "user_id": 7562902,
+    "score_id": 1773742642
+}

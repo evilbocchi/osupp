@@ -1,0 +1,73 @@
+{
+    "score": {
+        "id": 5460844152,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 5246964,
+        "beatmap": "Alex C. feat. Yasmin K. - Angel Of Darkness (Video Mix) (Nightcore Mix) (239hachiman) [Ultra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 865107,
+        "legacy_total_score": 17585574,
+        "accuracy": 95.3732,
+        "max_combo": 713,
+        "combo": 713,
+        "statistics": {
+            "ok": 60,
+            "meh": 1,
+            "miss": 4,
+            "great": 904
+        },
+        "ended_at": "2025-09-15T21:51:03Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 317.687667128368,
+        "speed": 746.0877639293694,
+        "accuracy": 64.94555273586163,
+        "flashlight": 0,
+        "effective_miss_count": 4,
+        "pp": 1199.1595028513098
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.625768917289172,
+        "aim_difficulty": 4.6584783357764366,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 6.217572914773089,
+        "flashlight_difficulty": 5.099311389958432,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9950925684531553,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.7,
+        "overall_difficulty": 10,
+        "circle_size": 3.8,
+        "drain_rate": 5.5,
+        "hit_circle_count": 733,
+        "slider_count": 233,
+        "spinner_count": 3,
+        "max_combo": 1239,
+        "speed_note_count": 329.3281435002417
+    },
+    "live_pp": 1023.31,
+    "user_id": 7562902,
+    "score_id": 5460844152
+}

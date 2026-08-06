@@ -1,0 +1,74 @@
+{
+    "score": {
+        "id": 1069222342,
+        "user_id": 1473890,
+        "ruleset_id": 0,
+        "beatmap_id": 1620144,
+        "beatmap": "Tanaka Hirokazu - C-TYPE (Arf) [Bonsai's BasS-TYPE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1454147,
+        "legacy_total_score": 1046176,
+        "accuracy": 97.1193,
+        "max_combo": 162,
+        "combo": 162,
+        "statistics": {
+            "ok": 7,
+            "great": 155
+        },
+        "ended_at": "2020-11-26T14:28:16Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": true,
+        "legacy_perfect": true
+    },
+    "performance_attributes": {
+        "aim": 783.5944308867903,
+        "speed": 77.4728651336309,
+        "accuracy": 87.94980119466892,
+        "flashlight": 158.5556092975156,
+        "effective_miss_count": 0,
+        "pp": 1166.459560622895
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.240683119447038,
+        "aim_difficulty": 5.526931306723891,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 2.53781807816069,
+        "flashlight_difficulty": 2.8291584543064565,
+        "reading_difficulty": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9,
+        "overall_difficulty": 9,
+        "circle_size": 6.2,
+        "drain_rate": 8.399999618530273,
+        "hit_circle_count": 162,
+        "slider_count": 0,
+        "spinner_count": 0,
+        "max_combo": 162,
+        "speed_note_count": 143.9312586707915
+    },
+    "live_pp": 1306.47,
+    "user_id": 1473890,
+    "score_id": 1069222342
+}

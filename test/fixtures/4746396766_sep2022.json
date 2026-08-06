@@ -1,0 +1,72 @@
+{
+    "score": {
+        "id": 4746396766,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 5047712,
+        "beatmap": "Various Artists - Songs Compilation VI (Sotarks) [Collab Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 984825,
+        "legacy_total_score": 89731914,
+        "accuracy": 99.2107,
+        "max_combo": 1829,
+        "combo": 1829,
+        "statistics": {
+            "ok": 22,
+            "miss": 1,
+            "great": 1962
+        },
+        "ended_at": "2025-04-26T15:54:03Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 1093.7639211537673,
+        "speed": 296.7415118479744,
+        "accuracy": 226.3309665434836,
+        "flashlight": 0,
+        "effective_miss_count": 1.5412793876435211,
+        "pp": 1709.4209512730718
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.163398830240867,
+        "aim_difficulty": 6.196475627399765,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.9408921816966362,
+        "flashlight_difficulty": 9.228959481700244,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9946968521669776,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.8,
+        "circle_size": 3.6,
+        "drain_rate": 5,
+        "hit_circle_count": 1121,
+        "slider_count": 860,
+        "spinner_count": 4,
+        "max_combo": 2905,
+        "speed_note_count": 1115.0310047959892
+    },
+    "live_pp": 1563.23,
+    "user_id": 7562902,
+    "score_id": 4746396766
+}

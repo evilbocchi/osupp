@@ -1,0 +1,73 @@
+{
+    "score": {
+        "id": 6133830008,
+        "user_id": 10077431,
+        "ruleset_id": 0,
+        "beatmap_id": 5416765,
+        "beatmap": "Altermis & takehirotei & Violet Delta - Christmas Slop (Sotarks) [Nymphe's Ultra+]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1008735,
+        "legacy_total_score": 2081046,
+        "accuracy": 100,
+        "max_combo": 392,
+        "combo": 392,
+        "statistics": {
+            "great": 280
+        },
+        "ended_at": "2026-01-29T16:25:49Z",
+        "rank": "XH",
+        "passed": true,
+        "is_perfect_combo": true,
+        "legacy_perfect": true
+    },
+    "performance_attributes": {
+        "aim": 916.1360528569942,
+        "speed": 272.36959931193144,
+        "accuracy": 43.37230916595091,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1324.0791955144757
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.49519685503163,
+        "aim_difficulty": 5.766975589814512,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.8624658518791413,
+        "flashlight_difficulty": 3.2436978298476533,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9974173086756247,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.3,
+        "circle_size": 4,
+        "drain_rate": 2.5,
+        "hit_circle_count": 180,
+        "slider_count": 99,
+        "spinner_count": 1,
+        "max_combo": 392,
+        "speed_note_count": 209.91731905940372
+    },
+    "live_pp": 1284.44,
+    "user_id": 10077431,
+    "score_id": 6133830008
+}

@@ -1,0 +1,71 @@
+{
+    "score": {
+        "id": 6591717443,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 4874327,
+        "beatmap": "Jeff Williams feat. Casey Lee Williams - Time to Say Goodbye (TV Size) (My Angel Ram) [No Return]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 1213752,
+        "legacy_total_score": 0,
+        "accuracy": 98.2441,
+        "max_combo": 261,
+        "combo": 261,
+        "statistics": {
+            "ok": 6,
+            "great": 191,
+            "ignore_hit": 61,
+            "large_tick_hit": 3,
+            "slider_tail_hit": 61
+        },
+        "ended_at": "2026-04-25T19:49:02Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": true,
+        "legacy_perfect": true
+    },
+    "performance_attributes": {
+        "aim": 1296.5475447230249,
+        "speed": 301.2016843388843,
+        "accuracy": 80.0399523656668,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1807.1685550173627
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.554253738910012,
+        "aim_difficulty": 6.465260397462261,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.9225478187976863,
+        "flashlight_difficulty": 3.9493698524282324,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9927552372064012,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.7,
+        "circle_size": 4,
+        "drain_rate": 5.5,
+        "hit_circle_count": 136,
+        "slider_count": 61,
+        "spinner_count": 0,
+        "max_combo": 200,
+        "speed_note_count": 165.46821785761796
+    },
+    "live_pp": 1499.82,
+    "user_id": 7562902,
+    "score_id": 6591717443
+}

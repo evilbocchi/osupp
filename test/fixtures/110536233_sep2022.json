@@ -1,0 +1,71 @@
+{
+    "score": {
+        "id": 110536233,
+        "user_id": 352328,
+        "ruleset_id": 0,
+        "beatmap_id": 144029,
+        "beatmap": "Mutsuhiko Izumi - Red Goose (nold_1702) [Superable]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1093624,
+        "legacy_total_score": 16939293,
+        "accuracy": 99.3147,
+        "max_combo": 988,
+        "combo": 988,
+        "statistics": {
+            "ok": 7,
+            "great": 674
+        },
+        "ended_at": "2013-05-27T16:08:04Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 177.1141063388976,
+        "speed": 191.05459504731215,
+        "accuracy": 131.62441221000205,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 516.2253781466942
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.097124199437023,
+        "aim_difficulty": 3.3795335440534395,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.4140824824187965,
+        "flashlight_difficulty": 3.2867953486436936,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9935254587566253,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9,
+        "overall_difficulty": 8,
+        "circle_size": 4,
+        "drain_rate": 8.399999618530273,
+        "hit_circle_count": 498,
+        "slider_count": 182,
+        "spinner_count": 1,
+        "max_combo": 990,
+        "speed_note_count": 331.3101852414014
+    },
+    "live_pp": 520.961,
+    "user_id": 352328,
+    "score_id": 110536233
+}

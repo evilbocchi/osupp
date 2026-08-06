@@ -1,0 +1,71 @@
+{
+    "score": {
+        "id": 5508451250,
+        "user_id": 6567297,
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1280978,
+        "legacy_total_score": 24287660,
+        "accuracy": 99.8079,
+        "max_combo": 938,
+        "combo": 938,
+        "statistics": {
+            "ok": 2,
+            "great": 692
+        },
+        "ended_at": "2025-09-25T21:59:32Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": true,
+        "legacy_perfect": true
+    },
+    "performance_attributes": {
+        "aim": 282.72383131066215,
+        "speed": 334.4378381237955,
+        "accuracy": 147.91053773082643,
+        "flashlight": 296.87731022579345,
+        "effective_miss_count": 0,
+        "pp": 1071.4101580171161
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.76663630449512,
+        "aim_difficulty": 4.02789914101608,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.180022422970167,
+        "flashlight_difficulty": 3.413713606839518,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9981862394663485,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.7,
+        "overall_difficulty": 10,
+        "circle_size": 4.5,
+        "drain_rate": 5.599999904632568,
+        "hit_circle_count": 515,
+        "slider_count": 178,
+        "spinner_count": 1,
+        "max_combo": 938,
+        "speed_note_count": 318.5334945922346
+    },
+    "live_pp": 1027.01,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}

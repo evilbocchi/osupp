@@ -1,0 +1,68 @@
+{
+    "score": {
+        "id": 1797109840,
+        "user_id": 1719471,
+        "ruleset_id": 0,
+        "beatmap_id": 2654458,
+        "beatmap": "UNDEAD CORPORATION - Frozen (Daycore) [Everything Will Freeze]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1024507,
+        "legacy_total_score": 56787063,
+        "accuracy": 98.5108,
+        "max_combo": 1682,
+        "combo": 1682,
+        "statistics": {
+            "ok": 30,
+            "great": 1313
+        },
+        "ended_at": "2023-12-04T23:16:31Z",
+        "rank": "S",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 351.26048252775433,
+        "speed": 310.09770270105383,
+        "accuracy": 120.44369251247113,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 813.2335616989502
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.575175512580874,
+        "aim_difficulty": 4.19471172033573,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.00910463356467,
+        "flashlight_difficulty": 4.2399063370004555,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9885932651886391,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.8,
+        "overall_difficulty": 10,
+        "circle_size": 4,
+        "drain_rate": 5.599999904632568,
+        "hit_circle_count": 1050,
+        "slider_count": 293,
+        "spinner_count": 0,
+        "max_combo": 1687,
+        "speed_note_count": 468.0653934805476
+    },
+    "live_pp": 811.584,
+    "user_id": 1719471,
+    "score_id": 1797109840
+}

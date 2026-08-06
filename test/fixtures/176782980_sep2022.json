@@ -1,0 +1,66 @@
+{
+    "score": {
+        "id": 176782980,
+        "user_id": 352328,
+        "ruleset_id": 0,
+        "beatmap_id": 129891,
+        "beatmap": "xi - FREEDOM DiVE (Nakagawa-Kanon) [FOUR DIMENSIONS]",
+        "mods": [
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 942686,
+        "legacy_total_score": 115717546,
+        "accuracy": 98.5544,
+        "max_combo": 2383,
+        "combo": 2383,
+        "statistics": {
+            "ok": 40,
+            "miss": 2,
+            "great": 1941
+        },
+        "ended_at": "2014-05-12T14:59:16Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 208.04557397900007,
+        "speed": 263.20172635323934,
+        "accuracy": 61.35214215293208,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "pp": 556.6815871331929
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.583250795228543,
+        "aim_difficulty": 3.4729920067055544,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.7718237000039756,
+        "flashlight_difficulty": 4.193198928341907,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9958314945252719,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9,
+        "overall_difficulty": 8,
+        "circle_size": 4,
+        "drain_rate": 6,
+        "hit_circle_count": 1646,
+        "slider_count": 335,
+        "spinner_count": 2,
+        "max_combo": 2385,
+        "speed_note_count": 1254.8545937036595
+    },
+    "live_pp": 471.628,
+    "user_id": 352328,
+    "score_id": 176782980
+}

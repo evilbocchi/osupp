@@ -1,0 +1,78 @@
+{
+    "score": {
+        "id": 4111017165,
+        "user_id": 10077431,
+        "ruleset_id": 0,
+        "beatmap_id": 4791385,
+        "beatmap": "toby fox - Song That Might Play When You Fight Sans (Smoke) [browiec's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "NF"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 475661,
+        "legacy_total_score": 1029141,
+        "accuracy": 93.69659999999999,
+        "max_combo": 286,
+        "combo": 286,
+        "statistics": {
+            "ok": 27,
+            "meh": 2,
+            "great": 283
+        },
+        "ended_at": "2025-01-01T22:47:52Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 603.6557056783814,
+        "speed": 213.55697393280644,
+        "accuracy": 19.93570356568699,
+        "flashlight": 0,
+        "effective_miss_count": 1.445104895104895,
+        "pp": 873.3646588049558
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.43628855804033,
+        "aim_difficulty": 5.657993057940027,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.022241980189261,
+        "flashlight_difficulty": 3.2920031575379456,
+        "reading_difficulty": 0,
+        "slider_factor": 0.9958505658511781,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 0,
+        "speed_difficult_strain_count": 0,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
+        "approach_rate": 9.6,
+        "overall_difficulty": 9.6,
+        "circle_size": 3,
+        "drain_rate": 7,
+        "hit_circle_count": 213,
+        "slider_count": 97,
+        "spinner_count": 2,
+        "max_combo": 423,
+        "speed_note_count": 206.65326680152
+    },
+    "live_pp": 917.945,
+    "user_id": 10077431,
+    "score_id": 4111017165
+}
