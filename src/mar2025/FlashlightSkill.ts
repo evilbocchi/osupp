@@ -15,6 +15,17 @@ function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
 }
 
+function end_position(current: OsuDifficultyHitObject): {
+    x: number;
+    y: number;
+} {
+    const base_object = current.base_object;
+    return {
+        x: base_object.tail_x ?? base_object.end_x ?? base_object.x,
+        y: base_object.tail_y ?? base_object.end_y ?? base_object.y,
+    };
+}
+
 function distance(a: { x: number; y: number }, b: { x: number; y: number }) {
     const dx = a.x - b.x;
     const dy = a.y - b.y;
@@ -52,7 +63,9 @@ function evaluate_flashlight_difficulty(
                     x: current.base_object.stacked_x,
                     y: current.base_object.stacked_y,
                 },
-                previous.end_position,
+                rework === "sep2022"
+                    ? end_position(previous)
+                    : previous.end_position,
             );
 
             if (i === 0) small_dist_nerf = Math.min(1, jump_distance / 75);

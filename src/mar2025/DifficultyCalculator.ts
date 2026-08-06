@@ -839,10 +839,7 @@ export function prepare_hit_objects_for_difficulty(
     rework: OsuRework,
 ): HitObject[] {
     const hard_rock = mods.includes("HR");
-    const obj_scale = circle_scale_for_rework(
-        circle_size,
-        rework,
-    );
+    const obj_scale = circle_scale_for_rework(circle_size, rework);
 
     const hit_objects = beatmap.hit_objects.map((hit_object) => {
         const prepared: HitObject = { ...hit_object };

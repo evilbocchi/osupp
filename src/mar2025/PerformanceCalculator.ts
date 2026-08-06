@@ -1248,8 +1248,7 @@ function calculate_miss_penalty(
     if (rework === "sep2022") {
         return (
             0.97 *
-            (1 - (miss_count / total_hits) ** 0.775) **
-                (miss_exponent ?? 1)
+            (1 - (miss_count / total_hits) ** 0.775) ** (miss_exponent ?? 1)
         );
     }
 
