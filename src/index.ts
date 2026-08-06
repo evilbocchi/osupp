@@ -13,8 +13,10 @@ import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
 import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
 import Oct2025PpCalculator from "./oct2025/Oct2025PpCalculator";
+import Sep2022PpCalculator from "./sep2022/Sep2022PpCalculator";
 
-export type SupportedRework = "jul2026" | "oct2025" | "mar2025" | "oct2024";
+export type SupportedRework =
+    "jul2026" | "oct2025" | "mar2025" | "oct2024" | "sep2022";
 
 export interface CreatePpCalculatorOptions {
     /** PP rework implementation to use. Defaults to mar2025. */
@@ -37,6 +39,7 @@ export const reworks = {
     oct2025: "oct2025",
     mar2025: "mar2025",
     oct2024: "oct2024",
+    sep2022: "sep2022",
 } as const satisfies Record<SupportedRework, SupportedRework>;
 
 export function parseBeatmap(content: string): BeatmapData {
@@ -59,6 +62,8 @@ export function createPpCalculator(
             return new Mar2025PpCalculator(calculator_options);
         case reworks.oct2024:
             return new Oct2024PpCalculator(calculator_options);
+        case reworks.sep2022:
+            return new Sep2022PpCalculator(calculator_options);
     }
 }
 

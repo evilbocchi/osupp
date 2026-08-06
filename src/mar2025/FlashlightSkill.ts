@@ -1,6 +1,8 @@
+import type { OsuRework } from "./AimSkill";
 import type { OsuDifficultyHitObject } from "./OsuDifficultyHitObject";
 
 const SKILL_MULTIPLIER = 0.05512;
+const SEP2022_SKILL_MULTIPLIER = 0.052;
 const STRAIN_DECAY_BASE = 0.15;
 const SECTION_LENGTH = 400;
 const MAX_OPACITY_BONUS = 0.4;
@@ -100,6 +102,7 @@ function evaluate_flashlight_difficulty(
 export function calculate_flashlight_skill(
     objects: OsuDifficultyHitObject[],
     hidden: boolean,
+    rework: OsuRework = "mar2025",
 ): { difficulty_value: number; flashlight_rating: number } {
     const strain_peaks: number[] = [];
     let current_strain = 0;
@@ -126,7 +129,10 @@ export function calculate_flashlight_skill(
 
         current_strain *= strain_decay(current.delta_time);
         current_strain +=
-            evaluate_flashlight_difficulty(current, hidden) * SKILL_MULTIPLIER;
+            evaluate_flashlight_difficulty(current, hidden) *
+            (rework === "sep2022"
+                ? SEP2022_SKILL_MULTIPLIER
+                : SKILL_MULTIPLIER);
         current_section_peak = Math.max(current_strain, current_section_peak);
     }
 

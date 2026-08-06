@@ -11,6 +11,7 @@ import {
     calculate_profile_pp,
     type PpCalculatorResult,
 } from "../src/PpCalculator";
+import Sep2022PpCalculator from "../src/sep2022/Sep2022PpCalculator";
 
 const fixture_path = (...segments: string[]) =>
     join(import.meta.dir, "fixtures", ...segments);
@@ -104,6 +105,7 @@ for (const [rework_slug, calculator_class] of [
     ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],
     ["oct2025", Oct2025PpCalculator],
+    ["sep2022", Sep2022PpCalculator],
 ] as const) {
     test.each(
         readdirSync(fixture_path())

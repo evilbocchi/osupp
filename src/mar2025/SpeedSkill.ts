@@ -31,6 +31,43 @@ function evaluate_speed_difficulty(
     if (current.base_object.is_spinner) return 0;
 
     const previous = current.index > 0 ? current.previous(0) : undefined;
+
+    if (rework === "sep2022") {
+        const great_window_full = current.hit_window_great;
+        const current_delta_time = Math.max(1, current.delta_time);
+        const next_delta_time = Math.max(
+            1,
+            current.next(0)?.delta_time ?? current_delta_time,
+        );
+        const delta_difference = Math.abs(next_delta_time - current_delta_time);
+        const speed_ratio =
+            current_delta_time / Math.max(current_delta_time, delta_difference);
+        const window_ratio =
+            Math.min(1, current_delta_time / great_window_full) ** 2;
+        const doubletapness = speed_ratio ** (1 - window_ratio);
+        let strain_time = current.strain_time;
+
+        strain_time /= clamp(strain_time / great_window_full / 0.93, 0.92, 1);
+
+        const speed_bonus =
+            strain_time < 75
+                ? 1 + 0.75 * ((75 - strain_time) / SPEED_BALANCING_FACTOR) ** 2
+                : 1;
+        const travel_distance = previous?.travel_distance ?? 0;
+        const distance = Math.min(
+            travel_distance + current.minimum_jump_distance,
+            SINGLE_SPACING_THRESHOLD,
+        );
+        const distance_bonus = (distance / SINGLE_SPACING_THRESHOLD) ** 3.5;
+
+        return (
+            ((speed_bonus + speed_bonus * distance_bonus) *
+                doubletapness *
+                1000) /
+            strain_time
+        );
+    }
+
     let strain_time = current.strain_time;
     const doubletapness = 1 - current.get_doubletapness(current.next(0));
 
@@ -105,6 +142,100 @@ function evaluate_rhythm_difficulty(
     rework: OsuRework,
 ): number {
     if (current.base_object.is_spinner) return 0;
+
+    if (rework === "sep2022") {
+        let previous_island_size = 0;
+        let rhythm_complexity_sum = 0;
+        let island_size = 1;
+        let start_ratio = 0;
+        let first_delta_switch = false;
+        const historical_note_count = Math.min(current.index, 32);
+        let rhythm_start = 0;
+
+        while (
+            rhythm_start < historical_note_count - 2 &&
+            current.start_time - current.previous(rhythm_start)!.start_time <
+                HISTORY_TIME_MAX
+        ) {
+            rhythm_start++;
+        }
+
+        for (let i = rhythm_start; i > 0; i--) {
+            const curr_obj = current.previous(i - 1)!;
+            const prev_obj = current.previous(i)!;
+            const last_obj = current.previous(i + 1)!;
+            const curr_historical_decay = Math.min(
+                (historical_note_count - i) / historical_note_count,
+                (HISTORY_TIME_MAX -
+                    (current.start_time - curr_obj.start_time)) /
+                    HISTORY_TIME_MAX,
+            );
+            const curr_delta = curr_obj.strain_time;
+            const prev_delta = prev_obj.strain_time;
+            const last_delta = last_obj.strain_time;
+            const curr_ratio =
+                1 +
+                6 *
+                    Math.min(
+                        0.5,
+                        Math.sin(
+                            Math.PI /
+                                (Math.min(curr_delta, prev_delta) /
+                                    Math.max(curr_delta, prev_delta)),
+                        ) ** 2,
+                    );
+            let effective_ratio =
+                Math.min(
+                    1,
+                    Math.max(
+                        0,
+                        Math.abs(prev_delta - curr_delta) -
+                            current.hit_window_great * 0.3,
+                    ) /
+                        (current.hit_window_great * 0.3),
+                ) * curr_ratio;
+
+            if (first_delta_switch) {
+                if (!(
+                    prev_delta > 1.25 * curr_delta ||
+                    prev_delta * 1.25 < curr_delta
+                )) {
+                    if (island_size < 7) island_size++;
+                } else {
+                    if (curr_obj.base_object.is_slider)
+                        effective_ratio *= 0.125;
+                    if (prev_obj.base_object.is_slider) effective_ratio *= 0.25;
+                    if (previous_island_size === island_size)
+                        effective_ratio *= 0.25;
+                    if (previous_island_size % 2 === island_size % 2)
+                        effective_ratio *= 0.5;
+                    if (
+                        last_delta > prev_delta + 10 &&
+                        prev_delta > curr_delta + 10
+                    )
+                        effective_ratio *= 0.125;
+
+                    rhythm_complexity_sum +=
+                        Math.sqrt(effective_ratio * start_ratio) *
+                        curr_historical_decay *
+                        (Math.sqrt(4 + island_size) / 2) *
+                        (Math.sqrt(4 + previous_island_size) / 2);
+                    start_ratio = effective_ratio;
+                    previous_island_size = island_size;
+
+                    if (prev_delta * 1.25 < curr_delta)
+                        first_delta_switch = false;
+                    island_size = 1;
+                }
+            } else if (prev_delta > 1.25 * curr_delta) {
+                first_delta_switch = true;
+                start_ratio = effective_ratio;
+                island_size = 1;
+            }
+        }
+
+        return Math.sqrt(4 + rhythm_complexity_sum * 0.75) / 2;
+    }
 
     let rhythm_complexity_sum = 0;
     const delta_difference_epsilon = current.hit_window_great * 0.3;
@@ -342,7 +473,13 @@ export function calculate_speed_skill(
         current_strain *= strain_decay(current.strain_time);
         current_strain +=
             evaluate_speed_difficulty(current, mods, rework) *
-            (rework === "oct2024" ? 1.43 : rework === "oct2025" ? 1.47 : 1.46);
+            (rework === "sep2022"
+                ? 1.375
+                : rework === "oct2024"
+                  ? 1.43
+                  : rework === "oct2025"
+                    ? 1.47
+                    : 1.46);
         current_rhythm = evaluate_rhythm_difficulty(current, rework);
 
         const total_strain = current_strain * current_rhythm;

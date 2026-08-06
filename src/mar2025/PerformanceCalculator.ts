@@ -48,6 +48,7 @@ export interface ScoreParams {
 
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const PERFORMANCE_BASE_MULTIPLIER = 1.15;
+const SEP2022_PERFORMANCE_BASE_MULTIPLIER = 1.14;
 const OCT2025_PERFORMANCE_BASE_MULTIPLIER = 1.14;
 const JUL2026_PERFORMANCE_BASE_MULTIPLIER = 1.12;
 
@@ -133,7 +134,9 @@ export function calculate_performance(
             ? JUL2026_PERFORMANCE_BASE_MULTIPLIER
             : rework === "oct2025"
               ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
-              : PERFORMANCE_BASE_MULTIPLIER;
+              : rework === "sep2022"
+                ? SEP2022_PERFORMANCE_BASE_MULTIPLIER
+                : PERFORMANCE_BASE_MULTIPLIER;
     if (mods.includes("NF")) {
         multiplier *= Math.max(0.9, 1 - 0.02 * effective_miss_count);
     }
@@ -278,6 +281,20 @@ function calculate_combo_based_estimated_miss_count(
     rework: OsuRework,
 ): number {
     if (difficulty.slider_count <= 0) return count_miss;
+
+    if (rework === "sep2022") {
+        const full_combo_threshold =
+            difficulty.max_combo - 0.1 * difficulty.slider_count;
+        const combo_based_miss_count =
+            score_max_combo < full_combo_threshold
+                ? full_combo_threshold / Math.max(1, score_max_combo)
+                : 0;
+
+        return Math.max(
+            count_miss,
+            Math.min(combo_based_miss_count, total_imperfect_hits),
+        );
+    }
 
     let miss_count = count_miss;
 

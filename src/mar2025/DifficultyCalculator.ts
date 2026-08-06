@@ -74,6 +74,7 @@ export interface DifficultyAttributes {
 
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const PERFORMANCE_BASE_MULTIPLIER = 1.15;
+const SEP2022_PERFORMANCE_BASE_MULTIPLIER = 1.14;
 const OCT2025_PERFORMANCE_BASE_MULTIPLIER = 1.14;
 const JUL2026_PERFORMANCE_BASE_MULTIPLIER = 1.12;
 const STAR_RATING_MULTIPLIER = 0.027;
@@ -192,7 +193,9 @@ function calculate_star_rating(
             ? JUL2026_PERFORMANCE_BASE_MULTIPLIER
             : rework === "oct2025"
               ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
-              : PERFORMANCE_BASE_MULTIPLIER;
+              : rework === "sep2022"
+                ? SEP2022_PERFORMANCE_BASE_MULTIPLIER
+                : PERFORMANCE_BASE_MULTIPLIER;
     const star_rating_multiplier =
         rework === "oct2025"
             ? OCT2025_STAR_RATING_MULTIPLIER
@@ -285,7 +288,9 @@ function compute_speed_rating(
 ): number {
     if (mods.includes("RX")) return 0;
 
-    let speed_rating = calculate_difficulty_rating(difficulty_value);
+    let speed_rating = calculate_difficulty_rating(
+        difficulty_value * (rework === "sep2022" ? 1.04 : 1),
+    );
     if (mods.includes("AP")) speed_rating *= 0.5;
 
     if (rework === "oct2025") {
@@ -584,7 +589,11 @@ export function calculate_difficulty(
     const flashlight_result = mods.includes("FL")
         ? rework === "jul2026"
             ? calculate_jul2026_flashlight_skill(all_objects, mods)
-            : calculate_flashlight_skill(all_objects, mods.includes("HD"))
+            : calculate_flashlight_skill(
+                  all_objects,
+                  mods.includes("HD"),
+                  rework,
+              )
         : null;
 
     const aim_difficulty_value = aim_result.difficulty_value;
@@ -748,14 +757,18 @@ export function calculate_difficulty(
         max_combo: beatmap.max_combo,
         aim_difficulty: aim_rating,
         aim_difficult_slider_count:
-            rework === "oct2024" ? 0 : aim_difficult_slider_count,
+            rework === "oct2024" || rework === "sep2022"
+                ? 0
+                : aim_difficult_slider_count,
         speed_difficulty: speed_rating,
         speed_note_count: speed_note_count,
         flashlight_difficulty: flashlight_rating,
         reading_difficulty: reading_rating,
         slider_factor: slider_factor,
-        aim_difficult_strain_count: aim_difficult_strain_count,
-        speed_difficult_strain_count: speed_difficult_strain_count,
+        aim_difficult_strain_count:
+            rework === "sep2022" ? 0 : aim_difficult_strain_count,
+        speed_difficult_strain_count:
+            rework === "sep2022" ? 0 : speed_difficult_strain_count,
         reading_difficult_note_count:
             reading_result?.reading_difficult_note_count ?? 0,
         aim_top_weighted_slider_factor: aim_top_weighted_slider_factor,

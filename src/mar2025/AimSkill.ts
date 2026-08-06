@@ -17,7 +17,8 @@ const VELOCITY_CHANGE_MULTIPLIER = 0.75;
 const WIGGLE_MULTIPLIER = 1.02;
 const STRAIN_DECAY_BASE = 0.15;
 
-export type OsuRework = "mar2025" | "oct2024" | "oct2025" | "jul2026";
+export type OsuRework =
+    "mar2025" | "oct2024" | "oct2025" | "jul2026" | "sep2022";
 
 function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
@@ -98,7 +99,68 @@ function evaluate_aim_difficulty(
 
     let aim_strain = curr_velocity;
 
+    if (rework === "sep2022") {
+        if (
+            Math.max(current.strain_time, osu_last_obj.strain_time) <
+                1.25 *
+                    Math.min(current.strain_time, osu_last_obj.strain_time) &&
+            current.angle != null &&
+            osu_last_obj.angle != null &&
+            osu_last_last_obj.angle != null
+        ) {
+            const curr_angle = current.angle;
+            const last_angle = osu_last_obj.angle;
+            const last_last_angle = osu_last_last_obj.angle;
+            const angle_bonus = Math.min(curr_velocity, prev_velocity);
+
+            wide_angle_bonus = calc_oct2024_wide_angle_bonus(curr_angle);
+            acute_angle_bonus = calc_oct2024_acute_angle_bonus(curr_angle);
+
+            if (current.strain_time > 100) {
+                acute_angle_bonus = 0;
+            } else {
+                acute_angle_bonus *=
+                    calc_oct2024_acute_angle_bonus(last_angle) *
+                    Math.min(angle_bonus, 125 / current.strain_time) *
+                    Math.sin(
+                        (Math.PI / 2) *
+                            Math.min(1, (100 - current.strain_time) / 25),
+                    ) **
+                        2 *
+                    Math.sin(
+                        (Math.PI / 2) *
+                            ((clamp(
+                                current.lazy_jump_distance,
+                                NORMALIZED_RADIUS,
+                                NORMALIZED_DIAMETER,
+                            ) -
+                                NORMALIZED_RADIUS) /
+                                NORMALIZED_RADIUS),
+                    ) **
+                        2;
+            }
+
+            wide_angle_bonus *=
+                angle_bonus *
+                (1 -
+                    Math.min(
+                        wide_angle_bonus,
+                        calc_oct2024_wide_angle_bonus(last_angle) ** 3,
+                    ));
+            acute_angle_bonus *=
+                0.5 +
+                0.5 *
+                    (1 -
+                        Math.min(
+                            acute_angle_bonus,
+                            calc_oct2024_acute_angle_bonus(last_last_angle) **
+                                3,
+                        ));
+        }
+    }
+
     if (
+        rework !== "sep2022" &&
         rework === "oct2025" &&
         current.angle != null &&
         osu_last_obj.angle != null
@@ -193,7 +255,7 @@ function evaluate_aim_difficulty(
         }
     }
 
-    const use_legacy_angle_gate = rework !== "oct2025";
+    const use_legacy_angle_gate = rework !== "oct2025" && rework !== "sep2022";
 
     if (
         use_legacy_angle_gate &&
@@ -385,7 +447,8 @@ function evaluate_aim_difficulty(
         if (rework === "mar2025")
             aim_strain += wiggle_bonus * WIGGLE_MULTIPLIER;
         aim_strain += Math.max(
-            acute_angle_bonus * (rework === "oct2024" ? 1.95 : 2.6),
+            acute_angle_bonus *
+                (rework === "oct2024" || rework === "sep2022" ? 1.95 : 2.6),
             wide_angle_bonus * WIDE_ANGLE_MULTIPLIER +
                 velocity_change_bonus * VELOCITY_CHANGE_MULTIPLIER,
         );
@@ -455,7 +518,13 @@ export function calculate_aim_skill(
         current_strain *= strain_decay(current.delta_time);
         current_strain +=
             evaluate_aim_difficulty(current, with_sliders, rework) *
-            (rework === "oct2024" ? 25.18 : rework === "oct2025" ? 26 : 25.6);
+            (rework === "sep2022"
+                ? 23.55
+                : rework === "oct2024"
+                  ? 25.18
+                  : rework === "oct2025"
+                    ? 26
+                    : 25.6);
 
         if (current.base_object.is_slider) slider_strains.push(current_strain);
 
@@ -514,7 +583,7 @@ export function calculate_aim_skill(
             : 0;
 
     return {
-        difficulty_value,
+        difficulty_value: difficulty_value * (rework === "sep2022" ? 1.06 : 1),
         aim_difficult_strain_count,
         difficult_slider_count,
         slider_strains,
