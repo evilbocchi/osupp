@@ -24,6 +24,7 @@ function distance(a: { x: number; y: number }, b: { x: number; y: number }) {
 function evaluate_flashlight_difficulty(
     current: OsuDifficultyHitObject,
     hidden: boolean,
+    rework: OsuRework,
 ): number {
     if (current.base_object.is_spinner) return 0;
 
@@ -38,9 +39,14 @@ function evaluate_flashlight_difficulty(
         const previous = current.previous(i);
         if (!previous) break;
 
-        cumulative_strain_time += last_obj.strain_time;
+        if (rework !== "sep2022") {
+            cumulative_strain_time += last_obj.strain_time;
+        }
 
         if (!previous.base_object.is_spinner) {
+            if (rework === "sep2022") {
+                cumulative_strain_time += last_obj.strain_time;
+            }
             const jump_distance = distance(
                 {
                     x: current.base_object.stacked_x,
@@ -82,7 +88,10 @@ function evaluate_flashlight_difficulty(
 
     let slider_bonus = 0;
     if (current.base_object.is_slider) {
-        const pixel_travel_distance = current.travel_distance / scaling_factor;
+        const pixel_travel_distance =
+            (rework === "sep2022"
+                ? (current.base_object.lazy_travel_distance ?? 0)
+                : current.travel_distance) / scaling_factor;
         slider_bonus =
             Math.max(
                 0,
@@ -129,7 +138,7 @@ export function calculate_flashlight_skill(
 
         current_strain *= strain_decay(current.delta_time);
         current_strain +=
-            evaluate_flashlight_difficulty(current, hidden) *
+            evaluate_flashlight_difficulty(current, hidden, rework) *
             (rework === "sep2022"
                 ? SEP2022_SKILL_MULTIPLIER
                 : SKILL_MULTIPLIER);
@@ -140,10 +149,12 @@ export function calculate_flashlight_skill(
         (sum, strain) => sum + strain,
         0,
     );
+    const scaled_difficulty_value =
+        difficulty_value * (rework === "sep2022" ? 1.06 : 1);
 
     return {
-        difficulty_value,
-        flashlight_rating: Math.sqrt(difficulty_value) * 0.0675,
+        difficulty_value: scaled_difficulty_value,
+        flashlight_rating: Math.sqrt(scaled_difficulty_value) * 0.0675,
     };
 }
 

@@ -17,7 +17,10 @@ function circle_scale_for_rework(
 ): number {
     return rework === "jul2026"
         ? osu_circle_scale(circle_size)
-        : Math.fround(((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041);
+        : Math.fround(
+              ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) *
+                  (rework === "sep2022" ? 1 : 1.00041),
+          );
 }
 
 export class OsuDifficultyHitObject {

@@ -82,16 +82,20 @@ const OCT2025_STAR_RATING_MULTIPLIER = 0.0265;
 
 function circle_scale_for_rework(
     circle_size: number,
-    jul2026: boolean,
+    rework: OsuRework,
 ): number {
-    return jul2026
+    return rework === "jul2026"
         ? osu_circle_scale(circle_size)
-        : Math.fround(((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041);
+        : Math.fround(
+              ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) *
+                  (rework === "sep2022" ? 1 : 1.00041),
+          );
 }
 
 export function apply_mods_to_difficulty(
     beatmap: BeatmapData,
     mods: string[],
+    rework: OsuRework = "mar2025",
 ): {
     clock_rate: number;
     ar: number;
@@ -345,7 +349,7 @@ function compute_flashlight_rating(
     overall_difficulty: number,
     rework: OsuRework,
 ): number {
-    if (!mods.includes("FL")) return 0;
+    if (!mods.includes("FL") && rework !== "sep2022") return 0;
 
     let flashlight_rating = calculate_difficulty_rating(difficulty_value);
     if (mods.includes("TD")) flashlight_rating = flashlight_rating ** 0.8;
@@ -524,6 +528,7 @@ export function calculate_difficulty(
     const { clock_rate, ar, od, cs, hp } = apply_mods_to_difficulty(
         beatmap,
         mods,
+        rework,
     );
     const hit_objects = prepare_hit_objects_for_difficulty(
         beatmap,
@@ -586,15 +591,16 @@ export function calculate_difficulty(
         rework === "jul2026"
             ? calculate_jul2026_reading_skill(all_objects, mods)
             : null;
-    const flashlight_result = mods.includes("FL")
-        ? rework === "jul2026"
-            ? calculate_jul2026_flashlight_skill(all_objects, mods)
-            : calculate_flashlight_skill(
-                  all_objects,
-                  mods.includes("HD"),
-                  rework,
-              )
-        : null;
+    const flashlight_result =
+        mods.includes("FL") || rework === "sep2022"
+            ? rework === "jul2026"
+                ? calculate_jul2026_flashlight_skill(all_objects, mods)
+                : calculate_flashlight_skill(
+                      all_objects,
+                      mods.includes("HD"),
+                      rework,
+                  )
+            : null;
 
     const aim_difficulty_value = aim_result.difficulty_value;
     const aim_difficult_slider_count = aim_result.difficult_slider_count;
@@ -754,7 +760,10 @@ export function calculate_difficulty(
 
     return {
         star_rating: star_rating,
-        max_combo: beatmap.max_combo,
+        max_combo:
+            rework === "sep2022" && !mods.includes("CL")
+                ? beatmap.max_combo - beatmap.num_sliders
+                : beatmap.max_combo,
         aim_difficulty: aim_rating,
         aim_difficult_slider_count:
             rework === "oct2024" || rework === "sep2022"
@@ -771,11 +780,13 @@ export function calculate_difficulty(
             rework === "sep2022" ? 0 : speed_difficult_strain_count,
         reading_difficult_note_count:
             reading_result?.reading_difficult_note_count ?? 0,
-        aim_top_weighted_slider_factor: aim_top_weighted_slider_factor,
-        speed_top_weighted_slider_factor: speed_top_weighted_slider_factor,
+        aim_top_weighted_slider_factor:
+            rework === "sep2022" ? 0 : aim_top_weighted_slider_factor,
+        speed_top_weighted_slider_factor:
+            rework === "sep2022" ? 0 : speed_top_weighted_slider_factor,
         approach_rate: beatmap.ar,
         overall_difficulty: beatmap.od,
-        circle_size: cs,
+        circle_size: rework === "sep2022" ? beatmap.cs : cs,
         hit_circle_count: beatmap.num_hit_circles,
         slider_count: beatmap.num_sliders,
         spinner_count: beatmap.num_spinners,
@@ -795,19 +806,28 @@ export function calculate_difficulty(
                 ? osu_hit_window(od, 200, 150, 100) / clock_rate
                 : (200 - 10 * od) / clock_rate,
         drain_rate: hp,
-        nested_score_per_object: calculate_nested_score_per_object(beatmap),
-        legacy_score_base_multiplier: calculate_difficulty_peppy_stars(
-            beatmap,
-            rework === "jul2026" ? beatmap.hp : hp,
-            rework === "jul2026" ? beatmap.od : od,
-            rework === "jul2026" ? beatmap.cs : cs,
-        ),
-        maximum_legacy_combo_score: calculate_maximum_legacy_combo_score(
-            beatmap,
-            beatmap.hp,
-            beatmap.od,
-            beatmap.cs,
-        ),
+        nested_score_per_object:
+            rework === "sep2022"
+                ? 0
+                : calculate_nested_score_per_object(beatmap),
+        legacy_score_base_multiplier:
+            rework === "sep2022"
+                ? 0
+                : calculate_difficulty_peppy_stars(
+                      beatmap,
+                      rework === "jul2026" ? beatmap.hp : hp,
+                      rework === "jul2026" ? beatmap.od : od,
+                      rework === "jul2026" ? beatmap.cs : cs,
+                  ),
+        maximum_legacy_combo_score:
+            rework === "sep2022"
+                ? 0
+                : calculate_maximum_legacy_combo_score(
+                      beatmap,
+                      beatmap.hp,
+                      beatmap.od,
+                      beatmap.cs,
+                  ),
     };
 }
 
@@ -821,7 +841,7 @@ export function prepare_hit_objects_for_difficulty(
     const hard_rock = mods.includes("HR");
     const obj_scale = circle_scale_for_rework(
         circle_size,
-        rework === "jul2026",
+        rework,
     );
 
     const hit_objects = beatmap.hit_objects.map((hit_object) => {
@@ -864,6 +884,7 @@ export function prepare_hit_objects_for_difficulty(
                 prepared.slider_nested_events,
                 circle_size,
                 false,
+                rework,
             );
             prepared.lazy_end_x = lazy.lazy_end_x;
             prepared.lazy_end_y = lazy.lazy_end_y;
@@ -914,6 +935,7 @@ export function prepare_hit_objects_for_difficulty(
                 prepared.slider_nested_events,
                 circle_size,
                 true,
+                rework,
             );
             prepared.lazy_end_x = lazy.lazy_end_x;
             prepared.lazy_end_y = lazy.lazy_end_y;
@@ -942,9 +964,14 @@ function compute_lazy_slider_position(
     nested_events: SliderNestedEvent[] | undefined,
     circle_size: number,
     official_jul2026 = false,
+    rework: OsuRework = "mar2025",
 ) {
     const radius = Math.fround(
-        64 * circle_scale_for_rework(circle_size, official_jul2026),
+        64 *
+            circle_scale_for_rework(
+                circle_size,
+                official_jul2026 ? "jul2026" : rework,
+            ),
     );
     const scaling_factor = 50 / radius;
     const span_duration = duration / span_count;

@@ -40,8 +40,14 @@ export default class Mar2025PpCalculator extends PpCalculator {
             ),
             difficulty: {
                 ...difficulty,
-                approach_rate: difficulty.effective_ar,
-                overall_difficulty: difficulty.effective_od,
+                approach_rate:
+                    this.rework === "sep2022"
+                        ? beatmap.ar
+                        : difficulty.effective_ar,
+                overall_difficulty:
+                    this.rework === "sep2022"
+                        ? beatmap.od
+                        : difficulty.effective_od,
             },
         };
     }

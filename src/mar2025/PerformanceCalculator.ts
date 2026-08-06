@@ -78,9 +78,8 @@ export function calculate_performance(
     const total_hits = count_great + count_ok + count_meh + count_miss;
     const total_successful_hits = count_great + count_ok + count_meh;
     const total_imperfect_hits = count_ok + count_meh + count_miss;
-    const using_classic_slider_accuracy = Boolean(
-        score.classic || mods.includes("CL"),
-    );
+    const using_classic_slider_accuracy =
+        rework !== "sep2022" && Boolean(score.classic || mods.includes("CL"));
 
     const overall_difficulty = difficulty.effective_od;
     const approach_rate = difficulty.effective_ar;
@@ -617,8 +616,14 @@ function compute_aim_value(
         aim_value *= calculate_miss_penalty(
             relevant_miss_count,
             difficulty.aim_difficult_strain_count,
+            total_hits,
             rework,
+            rework === "sep2022" ? effective_miss_count : undefined,
         );
+    }
+
+    if (rework === "sep2022") {
+        aim_value *= combo_scaling_factor(difficulty, score.combo);
     }
 
     if (rework !== "oct2025" && rework !== "jul2026") {
@@ -659,7 +664,10 @@ function compute_aim_value(
         aim_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
     }
 
-    if (rework === "oct2024" && difficulty.slider_count > 0) {
+    if (
+        (rework === "oct2024" || rework === "sep2022") &&
+        difficulty.slider_count > 0
+    ) {
         const estimate_difficult_sliders = difficulty.slider_count * 0.15;
         const estimate_improperly_followed_difficult_sliders =
             using_classic_slider_accuracy
@@ -671,11 +679,20 @@ function compute_aim_value(
                       0,
                       estimate_difficult_sliders,
                   )
-                : clamp(
-                      count_slider_ends_dropped + count_slider_tick_miss,
-                      0,
-                      estimate_difficult_sliders,
-                  );
+                : rework === "sep2022"
+                  ? clamp(
+                        Math.min(
+                            total_imperfect_hits,
+                            difficulty.max_combo - score.combo,
+                        ),
+                        0,
+                        estimate_difficult_sliders,
+                    )
+                  : clamp(
+                        count_slider_ends_dropped + count_slider_tick_miss,
+                        0,
+                        estimate_difficult_sliders,
+                    );
 
         const slider_nerf_factor =
             (1 - difficulty.slider_factor) *
@@ -732,7 +749,9 @@ function compute_speed_value(
     const mods = score.mods;
     if (
         mods.includes("RX") ||
-        (rework !== "oct2024" && speed_deviation == null)
+        (rework !== "oct2024" &&
+            rework !== "sep2022" &&
+            speed_deviation == null)
     )
         return { value: 0, estimated_slider_breaks: 0 };
 
@@ -771,8 +790,14 @@ function compute_speed_value(
         speed_value *= calculate_miss_penalty(
             relevant_miss_count,
             difficulty.speed_difficult_strain_count,
+            total_hits,
             rework,
+            rework === "sep2022" ? effective_miss_count ** 0.875 : undefined,
         );
+    }
+
+    if (rework === "sep2022") {
+        speed_value *= combo_scaling_factor(difficulty, score.combo);
     }
 
     if (rework !== "oct2025" && rework !== "jul2026") {
@@ -799,7 +824,11 @@ function compute_speed_value(
         speed_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
     }
 
-    if (rework !== "oct2024" && speed_deviation != null) {
+    if (
+        rework !== "oct2024" &&
+        rework !== "sep2022" &&
+        speed_deviation != null
+    ) {
         speed_value *= calculate_speed_high_deviation_nerf(
             difficulty,
             speed_deviation,
@@ -825,7 +854,7 @@ function compute_speed_value(
         );
     }
 
-    if (rework === "oct2024") {
+    if (rework === "oct2024" || rework === "sep2022") {
         speed_value *=
             0.99 **
             (count_meh < total_hits / 500 ? 0 : count_meh - total_hits / 500);
@@ -910,7 +939,7 @@ function compute_accuracy_value(
     if (mods.includes("RX")) return 0;
 
     let amount_hit_objects_with_accuracy = difficulty.hit_circle_count;
-    if (!using_classic_slider_accuracy)
+    if (rework !== "sep2022" && !using_classic_slider_accuracy)
         amount_hit_objects_with_accuracy += difficulty.slider_count;
 
     const better_accuracy_percentage =
@@ -1019,6 +1048,7 @@ function compute_reading_value(
     if (effective_miss_count > 0) {
         reading_value *= calculate_miss_penalty(
             effective_miss_count + aim_estimated_slider_breaks,
+            difficulty.reading_difficult_note_count,
             difficulty.reading_difficult_note_count,
             rework,
         );
@@ -1211,8 +1241,18 @@ function calculate_visibility_bonus(
 function calculate_miss_penalty(
     miss_count: number,
     difficult_strain_count: number,
+    total_hits = difficult_strain_count,
     rework?: OsuRework,
+    miss_exponent?: number,
 ): number {
+    if (rework === "sep2022") {
+        return (
+            0.97 *
+            (1 - (miss_count / total_hits) ** 0.775) **
+                (miss_exponent ?? 1)
+        );
+    }
+
     if (rework === "jul2026") {
         return 0.93 / (miss_count / (4 * Math.log(difficult_strain_count)) + 1);
     }
@@ -1220,4 +1260,13 @@ function calculate_miss_penalty(
     return (
         0.96 / (miss_count / (4 * Math.log(difficult_strain_count) ** 0.94) + 1)
     );
+}
+
+function combo_scaling_factor(
+    difficulty: DifficultyAttributes,
+    score_max_combo: number,
+): number {
+    return difficulty.max_combo <= 0
+        ? 1
+        : Math.min(score_max_combo ** 0.8 / difficulty.max_combo ** 0.8, 1);
 }
