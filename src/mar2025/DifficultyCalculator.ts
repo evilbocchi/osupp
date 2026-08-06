@@ -1,5 +1,22 @@
-import type { BeatmapData, HitObject } from "../BeatmapData";
-import { apply_osu_stacking, point_at_slider_path } from "../BeatmapData";
+import type {
+    BeatmapData,
+    HitObject,
+    SliderNestedEvent,
+    SliderPathPoint,
+} from "../BeatmapData";
+import {
+    apply_osu_stacking,
+    osu_circle_scale,
+    point_at_slider_path,
+} from "../BeatmapData";
+import {
+    calculate_jul2026_aim_skill,
+    calculate_jul2026_flashlight_skill,
+    calculate_jul2026_reading_skill,
+    calculate_jul2026_speed_skill,
+    count_jul2026_top_weighted_sliders,
+    harmonic_difficulty_to_performance,
+} from "../jul2026/Jul2026Skills";
 import {
     clamp,
     difficulty_range,
@@ -30,9 +47,11 @@ export interface DifficultyAttributes {
     speed_difficulty: number;
     speed_note_count: number;
     flashlight_difficulty: number;
+    reading_difficulty: number;
     slider_factor: number;
     aim_difficult_strain_count: number;
     speed_difficult_strain_count: number;
+    reading_difficult_note_count: number;
     aim_top_weighted_slider_factor: number;
     speed_top_weighted_slider_factor: number;
     approach_rate: number;
@@ -56,8 +75,18 @@ export interface DifficultyAttributes {
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const PERFORMANCE_BASE_MULTIPLIER = 1.15;
 const OCT2025_PERFORMANCE_BASE_MULTIPLIER = 1.14;
+const JUL2026_PERFORMANCE_BASE_MULTIPLIER = 1.12;
 const STAR_RATING_MULTIPLIER = 0.027;
 const OCT2025_STAR_RATING_MULTIPLIER = 0.0265;
+
+function circle_scale_for_rework(
+    circle_size: number,
+    jul2026: boolean,
+): number {
+    return jul2026
+        ? osu_circle_scale(circle_size)
+        : Math.fround(((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041);
+}
 
 export function apply_mods_to_difficulty(
     beatmap: BeatmapData,
@@ -103,13 +132,14 @@ export function calculate_effective_arod(
     rework: OsuRework = "mar2025",
 ): { effective_ar: number; effective_od: number } {
     const great_hit_window =
-        (rework === "oct2025" ? osu_hit_window(od, 80, 50, 20) : 80 - 6 * od) /
-        clock_rate;
+        (rework === "oct2025" || rework === "jul2026"
+            ? osu_hit_window(od, 80, 50, 20)
+            : 80 - 6 * od) / clock_rate;
     const preempt = difficulty_range(ar, 1800, 1200, 450) / clock_rate;
 
     return {
         effective_od:
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? (79.5 - great_hit_window) / 6
                 : (80 - great_hit_window) / 6,
         effective_ar:
@@ -125,8 +155,32 @@ function difficulty_to_performance(difficulty: number): number {
     );
 }
 
+function jul2026_aim_difficulty_to_performance(difficulty: number): number {
+    return 4 * difficulty ** 3;
+}
+
 function calculate_difficulty_rating(difficulty_value: number): number {
     return Math.sqrt(difficulty_value) * DIFFICULTY_MULTIPLIER;
+}
+
+function calculate_jul2026_aim_difficulty_rating(
+    difficulty_value: number,
+): number {
+    return difficulty_value ** 0.63 * 0.02275;
+}
+
+export function sum_jul2026_cognition_difficulty(
+    reading: number,
+    flashlight: number,
+): number {
+    if (reading <= 0) return flashlight;
+    if (flashlight <= 0) return reading;
+
+    return (
+        (reading ** 1.1 +
+            (flashlight * clamp(flashlight / reading, 0.25, 1)) ** 1.1) **
+        (1 / 1.1)
+    );
 }
 
 function calculate_star_rating(
@@ -134,13 +188,19 @@ function calculate_star_rating(
     rework: OsuRework,
 ): number {
     const performance_base_multiplier =
-        rework === "oct2025"
-            ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
-            : PERFORMANCE_BASE_MULTIPLIER;
+        rework === "jul2026"
+            ? JUL2026_PERFORMANCE_BASE_MULTIPLIER
+            : rework === "oct2025"
+              ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
+              : PERFORMANCE_BASE_MULTIPLIER;
     const star_rating_multiplier =
         rework === "oct2025"
             ? OCT2025_STAR_RATING_MULTIPLIER
             : STAR_RATING_MULTIPLIER;
+
+    if (rework === "jul2026") {
+        return Math.cbrt(base_performance * performance_base_multiplier);
+    }
 
     return base_performance > 0.00001
         ? Math.cbrt(performance_base_multiplier) *
@@ -465,6 +525,7 @@ export function calculate_difficulty(
         mods,
         cs,
         ar,
+        rework,
     );
     const { effective_ar, effective_od } = calculate_effective_arod(
         ar,
@@ -479,7 +540,7 @@ export function calculate_difficulty(
         const current = hit_objects[i]!;
         const last = hit_objects[i - 1]!;
         const last_last =
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? i > 2
                     ? hit_objects[i - 2]!
                     : null
@@ -497,21 +558,33 @@ export function calculate_difficulty(
                 od,
                 ar,
                 rework,
+                mods.includes("HD"),
                 all_objects,
                 all_objects.length,
             ),
         );
     }
 
-    const aim_result = calculate_aim_skill(all_objects, true, rework);
-    const aim_without_sliders_result = calculate_aim_skill(
-        all_objects,
-        false,
-        rework,
-    );
-    const speed_result = calculate_speed_skill(all_objects, mods, rework);
+    const aim_result =
+        rework === "jul2026"
+            ? calculate_jul2026_aim_skill(all_objects, true, mods)
+            : calculate_aim_skill(all_objects, true, rework);
+    const aim_without_sliders_result =
+        rework === "jul2026"
+            ? calculate_jul2026_aim_skill(all_objects, false, mods)
+            : calculate_aim_skill(all_objects, false, rework);
+    const speed_result =
+        rework === "jul2026"
+            ? calculate_jul2026_speed_skill(all_objects, mods)
+            : calculate_speed_skill(all_objects, mods, rework);
+    const reading_result =
+        rework === "jul2026"
+            ? calculate_jul2026_reading_skill(all_objects, mods)
+            : null;
     const flashlight_result = mods.includes("FL")
-        ? calculate_flashlight_skill(all_objects, mods.includes("HD"))
+        ? rework === "jul2026"
+            ? calculate_jul2026_flashlight_skill(all_objects, mods)
+            : calculate_flashlight_skill(all_objects, mods.includes("HD"))
         : null;
 
     const aim_difficulty_value = aim_result.difficulty_value;
@@ -520,8 +593,13 @@ export function calculate_difficulty(
         aim_without_sliders_result.difficulty_value;
     const slider_factor =
         aim_difficulty_value > 0
-            ? calculate_difficulty_rating(aim_no_sliders_difficulty_value) /
-              calculate_difficulty_rating(aim_difficulty_value)
+            ? rework === "jul2026"
+                ? calculate_jul2026_aim_difficulty_rating(
+                      aim_no_sliders_difficulty_value,
+                  ) /
+                  calculate_jul2026_aim_difficulty_rating(aim_difficulty_value)
+                : calculate_difficulty_rating(aim_no_sliders_difficulty_value) /
+                  calculate_difficulty_rating(aim_difficulty_value)
             : 1;
 
     const speed_difficulty_value = speed_result.difficulty_value;
@@ -532,10 +610,15 @@ export function calculate_difficulty(
         speed_result.speed_difficult_strain_count;
 
     const aim_no_sliders_top_weighted_slider_count =
-        count_aim_top_weighted_sliders(
-            aim_without_sliders_result.slider_strains,
-            aim_without_sliders_result.difficulty_value,
-        );
+        rework === "jul2026"
+            ? count_jul2026_top_weighted_sliders(
+                  aim_without_sliders_result.slider_strains,
+                  aim_without_sliders_result.difficulty_value,
+              )
+            : count_aim_top_weighted_sliders(
+                  aim_without_sliders_result.slider_strains,
+                  aim_without_sliders_result.difficulty_value,
+              );
     const aim_no_sliders_difficult_strain_count =
         aim_without_sliders_result.aim_difficult_strain_count;
 
@@ -547,10 +630,24 @@ export function calculate_difficulty(
                 aim_no_sliders_top_weighted_slider_count,
         );
 
-    const speed_top_weighted_slider_count = count_speed_top_weighted_sliders(
-        speed_result.slider_strains,
-        speed_result.difficulty_value,
-    );
+    const speed_top_weighted_slider_count =
+        rework === "jul2026"
+            ? count_jul2026_top_weighted_sliders(
+                  speed_result.slider_strains,
+                  speed_result.difficulty_value,
+                  typeof (speed_result as { object_weight_sum?: unknown })
+                      .object_weight_sum === "number"
+                      ? (
+                            speed_result as unknown as {
+                                object_weight_sum: number;
+                            }
+                        ).object_weight_sum
+                      : 10,
+              )
+            : count_speed_top_weighted_sliders(
+                  speed_result.slider_strains,
+                  speed_result.difficulty_value,
+              );
     const speed_top_weighted_slider_factor =
         speed_top_weighted_slider_count /
         Math.max(
@@ -567,48 +664,81 @@ export function calculate_difficulty(
             calculate_difficulty_rating(speed_difficulty_value),
         ) **
             1.1;
-    const mechanical_difficulty_rating = calculate_star_rating(
-        mechanical_base_performance ** (1 / 1.1),
-        rework,
-    );
+    const mechanical_difficulty_rating =
+        rework === "jul2026"
+            ? 0
+            : calculate_star_rating(
+                  mechanical_base_performance ** (1 / 1.1),
+                  rework,
+              );
 
-    const aim_rating = compute_aim_rating(
-        aim_difficulty_value,
-        mods,
-        beatmap.hit_objects.length,
-        effective_ar,
-        effective_od,
-        mechanical_difficulty_rating,
-        slider_factor,
-        rework,
-    );
-    const speed_rating = compute_speed_rating(
-        speed_difficulty_value,
-        mods,
-        beatmap.hit_objects.length,
-        effective_ar,
-        effective_od,
-        mechanical_difficulty_rating,
-        rework,
-    );
-    const flashlight_rating = compute_flashlight_rating(
-        flashlight_result?.difficulty_value ?? 0,
-        mods,
-        beatmap.hit_objects.length,
-        effective_od,
-        rework,
-    );
+    const aim_rating =
+        rework === "jul2026"
+            ? calculate_jul2026_aim_difficulty_rating(aim_difficulty_value)
+            : compute_aim_rating(
+                  aim_difficulty_value,
+                  mods,
+                  beatmap.hit_objects.length,
+                  effective_ar,
+                  effective_od,
+                  mechanical_difficulty_rating,
+                  slider_factor,
+                  rework,
+              );
+    const speed_rating =
+        rework === "jul2026"
+            ? calculate_difficulty_rating(speed_difficulty_value)
+            : compute_speed_rating(
+                  speed_difficulty_value,
+                  mods,
+                  beatmap.hit_objects.length,
+                  effective_ar,
+                  effective_od,
+                  mechanical_difficulty_rating,
+                  rework,
+              );
+    const flashlight_rating =
+        rework === "jul2026"
+            ? (flashlight_result?.flashlight_rating ?? 0)
+            : compute_flashlight_rating(
+                  flashlight_result?.difficulty_value ?? 0,
+                  mods,
+                  beatmap.hit_objects.length,
+                  effective_od,
+                  rework,
+              );
 
-    const base_aim_performance = difficulty_to_performance(aim_rating);
-    const base_speed_performance = difficulty_to_performance(speed_rating);
+    const reading_rating =
+        rework === "jul2026"
+            ? calculate_difficulty_rating(reading_result?.difficulty_value ?? 0)
+            : 0;
+    const base_aim_performance =
+        rework === "jul2026"
+            ? jul2026_aim_difficulty_to_performance(aim_rating)
+            : difficulty_to_performance(aim_rating);
+    const base_speed_performance =
+        rework === "jul2026"
+            ? harmonic_difficulty_to_performance(speed_rating)
+            : difficulty_to_performance(speed_rating);
     const base_flashlight_performance = mods.includes("FL")
         ? flashlight_difficulty_to_performance(flashlight_rating)
         : 0;
+    const base_reading_performance =
+        rework === "jul2026"
+            ? harmonic_difficulty_to_performance(reading_rating)
+            : 0;
+    const base_cognition_performance =
+        rework === "jul2026"
+            ? sum_jul2026_cognition_difficulty(
+                  base_reading_performance,
+                  base_flashlight_performance,
+              )
+            : base_flashlight_performance;
 
     const base_performance =
         (base_aim_performance ** 1.1 +
             base_speed_performance ** 1.1 +
-            base_flashlight_performance ** 1.1) **
+            base_cognition_performance ** 1.1) **
         (1 / 1.1);
 
     const star_rating = calculate_star_rating(base_performance, rework);
@@ -622,9 +752,12 @@ export function calculate_difficulty(
         speed_difficulty: speed_rating,
         speed_note_count: speed_note_count,
         flashlight_difficulty: flashlight_rating,
+        reading_difficulty: reading_rating,
         slider_factor: slider_factor,
         aim_difficult_strain_count: aim_difficult_strain_count,
         speed_difficult_strain_count: speed_difficult_strain_count,
+        reading_difficult_note_count:
+            reading_result?.reading_difficult_note_count ?? 0,
         aim_top_weighted_slider_factor: aim_top_weighted_slider_factor,
         speed_top_weighted_slider_factor: speed_top_weighted_slider_factor,
         approach_rate: beatmap.ar,
@@ -637,24 +770,24 @@ export function calculate_difficulty(
         effective_ar: effective_ar,
         effective_od: effective_od,
         hit_window_great:
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? osu_hit_window(od, 80, 50, 20) / clock_rate
                 : (80 - 6 * od) / clock_rate,
         hit_window_ok:
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? osu_hit_window(od, 140, 100, 60) / clock_rate
                 : (140 - 8 * od) / clock_rate,
         hit_window_meh:
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? osu_hit_window(od, 200, 150, 100) / clock_rate
                 : (200 - 10 * od) / clock_rate,
         drain_rate: hp,
         nested_score_per_object: calculate_nested_score_per_object(beatmap),
         legacy_score_base_multiplier: calculate_difficulty_peppy_stars(
             beatmap,
-            hp,
-            od,
-            cs,
+            rework === "jul2026" ? beatmap.hp : hp,
+            rework === "jul2026" ? beatmap.od : od,
+            rework === "jul2026" ? beatmap.cs : cs,
         ),
         maximum_legacy_combo_score: calculate_maximum_legacy_combo_score(
             beatmap,
@@ -665,15 +798,17 @@ export function calculate_difficulty(
     };
 }
 
-function prepare_hit_objects_for_difficulty(
+export function prepare_hit_objects_for_difficulty(
     beatmap: BeatmapData,
     mods: string[],
     circle_size: number,
     approach_rate: number,
+    rework: OsuRework,
 ): HitObject[] {
     const hard_rock = mods.includes("HR");
-    const obj_scale = Math.fround(
-        ((1 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041,
+    const obj_scale = circle_scale_for_rework(
+        circle_size,
+        rework === "jul2026",
     );
 
     const hit_objects = beatmap.hit_objects.map((hit_object) => {
@@ -697,6 +832,7 @@ function prepare_hit_objects_for_difficulty(
         }
 
         if (
+            rework !== "jul2026" &&
             prepared.is_slider &&
             prepared.slider_path &&
             prepared.slider_span_count != null &&
@@ -712,7 +848,9 @@ function prepare_hit_objects_for_difficulty(
                 hit_object.time,
                 prepared.slider_duration,
                 prepared.slider_nested_times,
+                prepared.slider_nested_events,
                 circle_size,
+                false,
             );
             prepared.lazy_end_x = lazy.lazy_end_x;
             prepared.lazy_end_y = lazy.lazy_end_y;
@@ -730,12 +868,47 @@ function prepare_hit_objects_for_difficulty(
         approach_rate,
         beatmap.stack_leniency,
         beatmap.format_version,
+        rework === "jul2026",
     );
 
     for (const hit_object of hit_objects) {
         const offset = Math.fround(hit_object.stack_height * obj_scale * -6.4);
         hit_object.stacked_x = Math.fround(hit_object.x + offset);
         hit_object.stacked_y = Math.fround(hit_object.y + offset);
+    }
+
+    if (rework === "jul2026") {
+        for (const prepared of hit_objects) {
+            if (
+                !prepared.is_slider ||
+                !prepared.slider_path ||
+                prepared.slider_span_count == null ||
+                prepared.slider_pixel_length == null ||
+                prepared.slider_duration == null ||
+                !prepared.slider_nested_times
+            ) {
+                continue;
+            }
+
+            const lazy = compute_lazy_slider_position(
+                { x: prepared.stacked_x, y: prepared.stacked_y },
+                prepared.slider_path,
+                prepared.slider_span_count,
+                prepared.slider_pixel_length,
+                prepared.time,
+                prepared.slider_duration,
+                prepared.slider_nested_times,
+                prepared.slider_nested_events,
+                circle_size,
+                true,
+            );
+            prepared.lazy_end_x = lazy.lazy_end_x;
+            prepared.lazy_end_y = lazy.lazy_end_y;
+            prepared.lazy_travel_distance = lazy.lazy_travel_distance;
+            prepared.lazy_travel_time = lazy.lazy_travel_time;
+            prepared.tail_x = lazy.tail_x;
+            prepared.tail_y = lazy.tail_y;
+        }
     }
 
     return hit_objects;
@@ -747,16 +920,18 @@ function reflect_y(y: number): number {
 
 function compute_lazy_slider_position(
     start: { x: number; y: number },
-    path: { x: number; y: number }[],
+    path: SliderPathPoint[],
     span_count: number,
     pixel_length: number,
     start_time: number,
     duration: number,
     nested_times: number[],
+    nested_events: SliderNestedEvent[] | undefined,
     circle_size: number,
+    official_jul2026 = false,
 ) {
     const radius = Math.fround(
-        64 * Math.fround(((1 - (0.7 * (circle_size - 5)) / 5) / 2) * 1.00041),
+        64 * circle_scale_for_rework(circle_size, official_jul2026),
     );
     const scaling_factor = 50 / radius;
     const span_duration = duration / span_count;
@@ -766,6 +941,168 @@ function compute_lazy_slider_position(
         start_time + duration + tail_leniency,
         start_time + duration / 2,
     );
+
+    const point_at_official_slider_path = (target_distance: number) => {
+        if (path.length === 0) return { x: 0, y: 0 };
+
+        const first = path[0]!;
+        const total_distance = path[path.length - 1]!.path_distance;
+        const as_vector = (point: { x: number; y: number }) => ({
+            x: Math.fround(point.x),
+            y: Math.fround(point.y),
+        });
+
+        if (total_distance == null) return as_vector(path[path.length - 1]!);
+
+        const target = Math.max(0, target_distance);
+        if (target <= 0) return as_vector(first);
+        if (target >= total_distance) return as_vector(path[path.length - 1]!);
+
+        let low = 1;
+        let high = path.length - 1;
+        while (low < high) {
+            const mid = Math.floor((low + high) / 2);
+            if ((path[mid]!.path_distance ?? 0) < target) low = mid + 1;
+            else high = mid;
+        }
+
+        const end = path[low]!;
+        const begin = path[low - 1]!;
+        const begin_distance = begin.path_distance ?? 0;
+        const end_distance = end.path_distance ?? begin_distance;
+        const segment_length = end_distance - begin_distance;
+        if (segment_length <= 0) return as_vector(end);
+
+        const progress = Math.fround(
+            (target - begin_distance) / segment_length,
+        );
+        const begin_x = Math.fround(begin.x);
+        const begin_y = Math.fround(begin.y);
+        const delta_x = Math.fround(Math.fround(end.x) - begin_x);
+        const delta_y = Math.fround(Math.fround(end.y) - begin_y);
+
+        return {
+            x: Math.fround(begin_x + Math.fround(delta_x * progress)),
+            y: Math.fround(begin_y + Math.fround(delta_y * progress)),
+        };
+    };
+
+    const vector_length = (x: number, y: number) =>
+        Math.fround(
+            Math.sqrt(Math.fround(Math.fround(x * x) + Math.fround(y * y))),
+        );
+
+    const position_at_progress = (progress: number) => {
+        const span_progress = (progress * span_count) % 1;
+        const span = Math.floor(progress * span_count);
+        const path_progress =
+            span % 2 === 1 ? 1 - span_progress : span_progress;
+        const point = point_at_slider_path(path, path_progress * pixel_length);
+        return { x: start.x + point.x, y: start.y + point.y };
+    };
+
+    const position_at_event = (event: SliderNestedEvent) => {
+        const point = point_at_official_slider_path(
+            event.path_progress * pixel_length,
+        );
+        return {
+            x: Math.fround(start.x + point.x),
+            y: Math.fround(start.y + point.y),
+        };
+    };
+
+    let lazy_end: { x: number; y: number };
+    let cursor_position = {
+        x: Math.fround(start.x),
+        y: Math.fround(start.y),
+    };
+    let lazy_travel_distance = 0;
+
+    if (official_jul2026 && nested_events && nested_events.length > 1) {
+        let ordered_events = [...nested_events];
+        const last_real_tick = [...nested_events]
+            .reverse()
+            .find((event) => event.type === "tick");
+
+        if (last_real_tick && last_real_tick.time > tracking_end_time) {
+            tracking_end_time = last_real_tick.time;
+            ordered_events = ordered_events.filter(
+                (event) => event !== last_real_tick,
+            );
+            ordered_events.push(last_real_tick);
+        }
+
+        const lazy_travel_time = tracking_end_time - start_time;
+        let end_time_min = lazy_travel_time / span_duration;
+        if (end_time_min % 2 >= 1) end_time_min = 1 - (end_time_min % 1);
+        else end_time_min %= 1;
+
+        const end_point = point_at_official_slider_path(
+            end_time_min * pixel_length,
+        );
+        lazy_end = {
+            x: Math.fround(start.x + end_point.x),
+            y: Math.fround(start.y + end_point.y),
+        };
+
+        for (let i = 1; i < ordered_events.length; i++) {
+            const current_event = ordered_events[i]!;
+            const current_position = position_at_event(current_event);
+            let movement = {
+                x: Math.fround(current_position.x - cursor_position.x),
+                y: Math.fround(current_position.y - cursor_position.y),
+            };
+            let movement_length =
+                scaling_factor * vector_length(movement.x, movement.y);
+            let required_movement =
+                current_event.type === "repeat" ? 50 : 50 * 1.8;
+
+            if (i === ordered_events.length - 1) {
+                const lazy_movement = {
+                    x: Math.fround(lazy_end.x - cursor_position.x),
+                    y: Math.fround(lazy_end.y - cursor_position.y),
+                };
+                if (
+                    vector_length(lazy_movement.x, lazy_movement.y) <
+                    vector_length(movement.x, movement.y)
+                ) {
+                    movement = lazy_movement;
+                    movement_length =
+                        scaling_factor * vector_length(movement.x, movement.y);
+                }
+            }
+
+            if (movement_length > required_movement) {
+                const movement_ratio =
+                    (movement_length - required_movement) / movement_length;
+                const movement_factor = Math.fround(movement_ratio);
+                cursor_position = {
+                    x: Math.fround(
+                        cursor_position.x +
+                            Math.fround(movement.x * movement_factor),
+                    ),
+                    y: Math.fround(
+                        cursor_position.y +
+                            Math.fround(movement.y * movement_factor),
+                    ),
+                };
+                lazy_travel_distance += movement_length - required_movement;
+            }
+
+            if (i === ordered_events.length - 1) lazy_end = cursor_position;
+        }
+
+        return {
+            lazy_end_x: lazy_end.x,
+            lazy_end_y: lazy_end.y,
+            lazy_travel_distance,
+            lazy_travel_time,
+            tail_x: position_at_event(nested_events[nested_events.length - 1]!)
+                .x,
+            tail_y: position_at_event(nested_events[nested_events.length - 1]!)
+                .y,
+        };
+    }
 
     const is_repeat_time = (time: number) => {
         for (let repeat = 1; repeat < span_count; repeat++) {
@@ -804,20 +1141,10 @@ function compute_lazy_slider_position(
     if (end_time_min % 2 >= 1) end_time_min = 1 - (end_time_min % 1);
     else end_time_min %= 1;
 
-    let lazy_end = {
-        x: start.x + point_at_slider_path(path, end_time_min * pixel_length).x,
-        y: start.y + point_at_slider_path(path, end_time_min * pixel_length).y,
-    };
-    let cursor_position = { ...start };
-    let lazy_travel_distance = 0;
-
-    const position_at_progress = (progress: number) => {
-        const span_progress = (progress * span_count) % 1;
-        const span = Math.floor(progress * span_count);
-        const path_progress =
-            span % 2 === 1 ? 1 - span_progress : span_progress;
-        const point = point_at_slider_path(path, path_progress * pixel_length);
-        return { x: start.x + point.x, y: start.y + point.y };
+    const end_point = point_at_slider_path(path, end_time_min * pixel_length);
+    lazy_end = {
+        x: start.x + end_point.x,
+        y: start.y + end_point.y,
     };
 
     for (let i = 1; i < ordered_nested_times.length; i++) {
@@ -867,7 +1194,9 @@ function compute_lazy_slider_position(
         if (i === ordered_nested_times.length - 1) lazy_end = cursor_position;
     }
 
-    lazy_travel_distance *= (1 + (span_count - 1) / 2.5) ** (1 / 2.5);
+    if (!official_jul2026) {
+        lazy_travel_distance *= (1 + (span_count - 1) / 2.5) ** (1 / 2.5);
+    }
 
     const tail = position_at_progress(1);
 

@@ -41,6 +41,7 @@ export default class Mar2025PpCalculator extends PpCalculator {
             difficulty: {
                 ...difficulty,
                 approach_rate: difficulty.effective_ar,
+                overall_difficulty: difficulty.effective_od,
             },
         };
     }

@@ -9,11 +9,12 @@ import PpCalculator, {
     type ProfilePpBreakdown,
     type RulesetId,
 } from "./PpCalculator";
+import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
 import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
 import Oct2025PpCalculator from "./oct2025/Oct2025PpCalculator";
 
-export type SupportedRework = "oct2025" | "mar2025" | "oct2024";
+export type SupportedRework = "jul2026" | "oct2025" | "mar2025" | "oct2024";
 
 export interface CreatePpCalculatorOptions {
     /** PP rework implementation to use. Defaults to mar2025. */
@@ -32,6 +33,7 @@ export interface CalculateScoreOptions extends CreatePpCalculatorOptions {
 export const rulesets = RULESET_IDS;
 
 export const reworks = {
+    jul2026: "jul2026",
     oct2025: "oct2025",
     mar2025: "mar2025",
     oct2024: "oct2024",
@@ -49,6 +51,8 @@ export function createPpCalculator(
     };
 
     switch (options.rework ?? reworks.mar2025) {
+        case reworks.jul2026:
+            return new Jul2026PpCalculator(calculator_options);
         case reworks.oct2025:
             return new Oct2025PpCalculator(calculator_options);
         case reworks.mar2025:
@@ -74,6 +78,7 @@ export function calculateScore({
 export {
     calculate_bonus_pp as calculateBonusPp,
     calculate_profile_pp as calculateProfilePp,
+    Jul2026PpCalculator,
     Mar2025PpCalculator,
     Oct2024PpCalculator,
     Oct2025PpCalculator,

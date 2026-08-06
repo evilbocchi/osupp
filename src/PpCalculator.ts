@@ -65,10 +65,14 @@ export interface PpCalculatorResult {
         speed_note_count?: number;
         /** Flashlight Difficulty of this beatmap */
         flashlight_difficulty?: number;
+        /** Reading Difficulty of this beatmap */
+        reading_difficulty?: number;
         /** Aim Difficulty Strain Count of this beatmap */
         aim_difficult_strain_count?: number;
         /** Speed Difficulty Strain Count of this beatmap */
         speed_difficult_strain_count?: number;
+        /** Number of difficult readable notes weighted by reading difficulty */
+        reading_difficult_note_count?: number;
         /** Ratio of aim difficulty contributed by hitcircles vs sliders */
         slider_factor?: number;
         /** Ratio of top weighted aim strain contributed by sliders */

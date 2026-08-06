@@ -1,3 +1,4 @@
+import { harmonic_difficulty_to_performance } from "../jul2026/Jul2026Skills";
 import {
     clamp,
     erf,
@@ -8,7 +9,10 @@ import {
     smoothstep,
 } from "../utils";
 import type { OsuRework } from "./AimSkill";
-import type { DifficultyAttributes } from "./DifficultyCalculator";
+import {
+    sum_jul2026_cognition_difficulty,
+    type DifficultyAttributes,
+} from "./DifficultyCalculator";
 import { flashlight_difficulty_to_performance } from "./FlashlightSkill";
 
 export interface PerformanceAttributes {
@@ -16,6 +20,7 @@ export interface PerformanceAttributes {
     speed: number;
     accuracy: number;
     flashlight: number;
+    reading?: number;
     effective_miss_count: number;
     speed_deviation?: number;
     combo_based_estimated_miss_count: number;
@@ -44,6 +49,7 @@ export interface ScoreParams {
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const PERFORMANCE_BASE_MULTIPLIER = 1.15;
 const OCT2025_PERFORMANCE_BASE_MULTIPLIER = 1.14;
+const JUL2026_PERFORMANCE_BASE_MULTIPLIER = 1.12;
 
 function difficulty_to_performance(difficulty: number): number {
     return (
@@ -78,15 +84,15 @@ export function calculate_performance(
     const overall_difficulty = difficulty.effective_od;
     const approach_rate = difficulty.effective_ar;
     const great_hit_window =
-        rework === "oct2025"
+        rework === "oct2025" || rework === "jul2026"
             ? difficulty.hit_window_great
             : 80 - 6 * overall_difficulty;
     const ok_hit_window =
-        rework === "oct2025"
+        rework === "oct2025" || rework === "jul2026"
             ? difficulty.hit_window_ok
             : 140 - 8 * overall_difficulty;
     const meh_hit_window =
-        rework === "oct2025"
+        rework === "oct2025" || rework === "jul2026"
             ? difficulty.hit_window_meh
             : 200 - 10 * overall_difficulty;
 
@@ -102,7 +108,7 @@ export function calculate_performance(
             rework,
         );
     const score_based_estimated_miss_count =
-        rework === "oct2025" &&
+        (rework === "oct2025" || rework === "jul2026") &&
         using_classic_slider_accuracy &&
         score.legacy_total_score != null &&
         score.legacy_total_score > 0
@@ -113,6 +119,7 @@ export function calculate_performance(
                   count_ok,
                   count_meh,
                   count_miss,
+                  rework,
               )
             : null;
     let effective_miss_count =
@@ -122,9 +129,11 @@ export function calculate_performance(
     effective_miss_count = Math.min(total_hits, effective_miss_count);
 
     let multiplier =
-        rework === "oct2025"
-            ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
-            : PERFORMANCE_BASE_MULTIPLIER;
+        rework === "jul2026"
+            ? JUL2026_PERFORMANCE_BASE_MULTIPLIER
+            : rework === "oct2025"
+              ? OCT2025_PERFORMANCE_BASE_MULTIPLIER
+              : PERFORMANCE_BASE_MULTIPLIER;
     if (mods.includes("NF")) {
         multiplier *= Math.max(0.9, 1 - 0.02 * effective_miss_count);
     }
@@ -179,6 +188,7 @@ export function calculate_performance(
         effective_miss_count,
         total_hits,
         count_ok,
+        count_meh,
         total_imperfect_hits,
         count_slider_tick_miss,
         count_slider_ends_dropped,
@@ -220,12 +230,23 @@ export function calculate_performance(
         accuracy,
         rework,
     );
+    const reading_value = compute_reading_value(
+        difficulty,
+        effective_miss_count,
+        accuracy,
+        rework,
+        aim_value.estimated_slider_breaks,
+    );
+    const cognition_value =
+        rework === "jul2026"
+            ? sum_jul2026_cognition_difficulty(reading_value, flashlight_value)
+            : flashlight_value;
 
     const pp =
         (aim_value.value ** 1.1 +
             speed_value.value ** 1.1 +
             accuracy_value ** 1.1 +
-            flashlight_value ** 1.1) **
+            cognition_value ** 1.1) **
             (1 / 1.1) *
         multiplier;
 
@@ -234,6 +255,7 @@ export function calculate_performance(
         speed: speed_value.value,
         accuracy: accuracy_value,
         flashlight: flashlight_value,
+        reading: rework === "jul2026" ? reading_value : undefined,
         effective_miss_count: effective_miss_count,
         speed_deviation: speed_deviation ?? undefined,
         combo_based_estimated_miss_count: combo_based_estimated_miss_count,
@@ -261,13 +283,27 @@ function calculate_combo_based_estimated_miss_count(
 
     if (using_classic_slider_accuracy) {
         const full_combo_threshold =
-            difficulty.max_combo - 0.1 * difficulty.slider_count;
+            rework === "jul2026"
+                ? difficulty.max_combo -
+                  Math.min(
+                      4 +
+                          (0.04 +
+                              0.06 *
+                                  Math.min(
+                                      difficulty.aim_top_weighted_slider_factor,
+                                      1,
+                                  ) **
+                                      2) *
+                              difficulty.slider_count,
+                      difficulty.slider_count,
+                  )
+                : difficulty.max_combo - 0.1 * difficulty.slider_count;
         if (score_max_combo < full_combo_threshold) {
             miss_count = full_combo_threshold / Math.max(1, score_max_combo);
         }
         miss_count = Math.min(miss_count, total_imperfect_hits);
 
-        if (rework === "oct2025") {
+        if (rework === "oct2025" || rework === "jul2026") {
             const max_possible_slider_breaks = Math.min(
                 difficulty.slider_count,
                 (difficulty.max_combo - score_max_combo) / 2,
@@ -297,6 +333,7 @@ function calculate_score_based_estimated_miss_count(
     count_ok: number,
     count_meh: number,
     count_miss: number,
+    rework: OsuRework,
 ): number {
     if (difficulty.max_combo === 0 || score.legacy_total_score == null)
         return 0;
@@ -311,6 +348,7 @@ function calculate_score_based_estimated_miss_count(
         score.combo,
         count_miss,
         count_ok + count_meh + count_miss,
+        rework,
     );
     const score_obtained_during_max_combo = calculate_score_at_combo(
         score.combo,
@@ -354,12 +392,27 @@ function calculate_maximum_combo_based_miss_count(
     score_max_combo: number,
     count_miss: number,
     total_imperfect_hits: number,
+    rework: OsuRework,
 ): number {
     if (difficulty.slider_count <= 0) return count_miss;
 
     let miss_count = 0;
     const full_combo_threshold =
-        difficulty.max_combo - 0.1 * difficulty.slider_count;
+        rework === "jul2026"
+            ? difficulty.max_combo -
+              Math.min(
+                  4 +
+                      (0.04 +
+                          0.06 *
+                              Math.min(
+                                  difficulty.aim_top_weighted_slider_factor,
+                                  1,
+                              ) **
+                                  2) *
+                          difficulty.slider_count,
+                  difficulty.slider_count,
+              )
+            : difficulty.max_combo - 0.1 * difficulty.slider_count;
 
     if (score_max_combo < full_combo_threshold) {
         miss_count =
@@ -467,6 +520,7 @@ function compute_aim_value(
     effective_miss_count: number,
     total_hits: number,
     count_ok: number,
+    count_meh: number,
     total_imperfect_hits: number,
     count_slider_tick_miss: number,
     count_slider_ends_dropped: number,
@@ -511,27 +565,32 @@ function compute_aim_value(
         aim_difficulty *= slider_nerf_factor;
     }
 
-    let aim_value = difficulty_to_performance(aim_difficulty);
+    let aim_value =
+        rework === "jul2026"
+            ? harmonic_difficulty_to_performance(aim_difficulty)
+            : difficulty_to_performance(aim_difficulty);
     const length_bonus =
         0.95 +
-        0.4 * Math.min(1, total_hits / 2000) +
+        (rework === "jul2026" ? 0.35 : 0.4) * Math.min(1, total_hits / 2000) +
         (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
     aim_value *= length_bonus;
 
     if (effective_miss_count > 0) {
         const estimated_slider_breaks =
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? calculate_estimated_slider_breaks(
                       difficulty.aim_top_weighted_slider_factor,
                       difficulty,
                       score,
                       effective_miss_count,
                       count_ok,
+                      rework === "jul2026" ? count_meh : 0,
                       using_classic_slider_accuracy,
+                      rework,
                   )
                 : 0;
         const relevant_miss_count =
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? Math.min(
                       effective_miss_count + estimated_slider_breaks,
                       total_imperfect_hits + count_slider_tick_miss,
@@ -541,10 +600,11 @@ function compute_aim_value(
         aim_value *= calculate_miss_penalty(
             relevant_miss_count,
             difficulty.aim_difficult_strain_count,
+            rework,
         );
     }
 
-    if (rework !== "oct2025") {
+    if (rework !== "oct2025" && rework !== "jul2026") {
         let approach_rate_factor = 0;
         if (difficulty.effective_ar > 10.33)
             approach_rate_factor = 0.3 * (difficulty.effective_ar - 10.33);
@@ -562,7 +622,10 @@ function compute_aim_value(
                 (0.0016 / (1 + 2 * effective_miss_count)) *
                 accuracy ** 16 *
                 (1 - 0.003 * difficulty.drain_rate ** 2);
-    } else if (rework === "oct2025" && mods.includes("TC")) {
+    } else if (
+        (rework === "oct2025" || rework === "jul2026") &&
+        mods.includes("TC")
+    ) {
         aim_value *=
             1 +
             calculate_visibility_bonus(
@@ -573,6 +636,7 @@ function compute_aim_value(
             );
     } else if (
         rework !== "oct2025" &&
+        rework !== "jul2026" &&
         (mods.includes("HD") || mods.includes("TC"))
     ) {
         aim_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
@@ -607,7 +671,7 @@ function compute_aim_value(
     }
 
     aim_value *= accuracy;
-    if (rework !== "oct2025") {
+    if (rework !== "oct2025" && rework !== "jul2026") {
         aim_value *=
             0.98 +
             (rework === "oct2024"
@@ -619,14 +683,17 @@ function compute_aim_value(
     return {
         value: aim_value,
         estimated_slider_breaks:
-            rework === "oct2025" && effective_miss_count > 0
+            (rework === "oct2025" || rework === "jul2026") &&
+            effective_miss_count > 0
                 ? calculate_estimated_slider_breaks(
                       difficulty.aim_top_weighted_slider_factor,
                       difficulty,
                       score,
                       effective_miss_count,
                       count_ok,
+                      rework === "jul2026" ? count_meh : 0,
                       using_classic_slider_accuracy,
+                      rework,
                   )
                 : 0,
     };
@@ -652,27 +719,32 @@ function compute_speed_value(
     )
         return { value: 0, estimated_slider_breaks: 0 };
 
-    let speed_value = difficulty_to_performance(difficulty.speed_difficulty);
+    let speed_value =
+        rework === "jul2026"
+            ? harmonic_difficulty_to_performance(difficulty.speed_difficulty)
+            : difficulty_to_performance(difficulty.speed_difficulty);
     const length_bonus =
         0.95 +
         0.4 * Math.min(1, total_hits / 2000) +
         (total_hits > 2000 ? Math.log10(total_hits / 2000) * 0.5 : 0);
-    speed_value *= length_bonus;
+    if (rework !== "jul2026") speed_value *= length_bonus;
 
     if (effective_miss_count > 0) {
         const estimated_slider_breaks =
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? calculate_estimated_slider_breaks(
                       difficulty.speed_top_weighted_slider_factor,
                       difficulty,
                       score,
                       effective_miss_count,
                       count_ok,
+                      rework === "jul2026" ? count_meh : 0,
                       mods.includes("CL") || Boolean(score.classic),
+                      rework,
                   )
                 : 0;
         const relevant_miss_count =
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? Math.min(
                       effective_miss_count + estimated_slider_breaks,
                       count_ok + count_meh + score.statistics.miss,
@@ -682,10 +754,11 @@ function compute_speed_value(
         speed_value *= calculate_miss_penalty(
             relevant_miss_count,
             difficulty.speed_difficult_strain_count,
+            rework,
         );
     }
 
-    if (rework !== "oct2025") {
+    if (rework !== "oct2025" && rework !== "jul2026") {
         let approach_rate_factor = 0;
         if (difficulty.effective_ar > 10.33)
             approach_rate_factor = 0.3 * (difficulty.effective_ar - 10.33);
@@ -695,11 +768,15 @@ function compute_speed_value(
     }
 
     if (mods.includes("BL")) speed_value *= 1.12;
-    else if (rework === "oct2025" && mods.includes("TC")) {
+    else if (
+        (rework === "oct2025" || rework === "jul2026") &&
+        mods.includes("TC")
+    ) {
         speed_value *=
             1 + calculate_visibility_bonus(mods, difficulty.effective_ar);
     } else if (
         rework !== "oct2025" &&
+        rework !== "jul2026" &&
         (mods.includes("HD") || mods.includes("TC"))
     ) {
         speed_value *= 1 + 0.04 * (12 - difficulty.effective_ar);
@@ -709,19 +786,27 @@ function compute_speed_value(
         speed_value *= calculate_speed_high_deviation_nerf(
             difficulty,
             speed_deviation,
+            rework,
         );
     }
-    speed_value = apply_speed_accuracy_scaling(
-        speed_value,
-        difficulty,
-        total_hits,
-        count_great,
-        count_ok,
-        count_meh,
-        accuracy,
-        overall_difficulty,
-        rework,
-    );
+    if (rework === "jul2026" && speed_deviation != null) {
+        const effective_hit_window =
+            20 * (4 / difficulty.speed_difficulty) ** 0.35;
+        const effective_accuracy = erf(effective_hit_window / speed_deviation);
+        speed_value *= effective_accuracy ** 2;
+    } else if (rework !== "jul2026") {
+        speed_value = apply_speed_accuracy_scaling(
+            speed_value,
+            difficulty,
+            total_hits,
+            count_great,
+            count_ok,
+            count_meh,
+            accuracy,
+            overall_difficulty,
+            rework,
+        );
+    }
 
     if (rework === "oct2024") {
         speed_value *=
@@ -732,14 +817,17 @@ function compute_speed_value(
     return {
         value: speed_value,
         estimated_slider_breaks:
-            rework === "oct2025" && effective_miss_count > 0
+            (rework === "oct2025" || rework === "jul2026") &&
+            effective_miss_count > 0
                 ? calculate_estimated_slider_breaks(
                       difficulty.speed_top_weighted_slider_factor,
                       difficulty,
                       score,
                       effective_miss_count,
                       count_ok,
+                      rework === "jul2026" ? count_meh : 0,
                       mods.includes("CL") || Boolean(score.classic),
+                      rework,
                   )
                 : 0,
     };
@@ -828,19 +916,25 @@ function compute_accuracy_value(
 
     let accuracy_value =
         1.52163 ** overall_difficulty * better_accuracy_percentage ** 24 * 2.83;
-    accuracy_value *= Math.min(
-        1.15,
-        (amount_hit_objects_with_accuracy / 1000) ** 0.3,
-    );
+    accuracy_value *=
+        rework === "jul2026" && amount_hit_objects_with_accuracy >= 1000
+            ? (amount_hit_objects_with_accuracy / 1000) ** 0.1
+            : Math.min(
+                  rework === "jul2026" ? Number.POSITIVE_INFINITY : 1.15,
+                  (amount_hit_objects_with_accuracy / 1000) ** 0.3,
+              );
 
     if (mods.includes("BL")) accuracy_value *= 1.14;
-    else if (mods.includes("HD") || mods.includes("TC")) {
+    else if (
+        mods.includes("TC") ||
+        (rework !== "jul2026" && mods.includes("HD"))
+    ) {
         accuracy_value *=
-            rework === "oct2025"
+            rework === "oct2025" || rework === "jul2026"
                 ? 1 + 0.08 * reverse_lerp(difficulty.effective_ar, 11.5, 10)
                 : 1.08;
     }
-    if (mods.includes("FL")) accuracy_value *= 1.02;
+    if (mods.includes("FL") && rework !== "jul2026") accuracy_value *= 1.02;
 
     return accuracy_value;
 }
@@ -871,7 +965,7 @@ function compute_flashlight_value(
         difficulty.max_combo <= 0
             ? 1
             : Math.min(score_max_combo ** 0.8 / difficulty.max_combo ** 0.8, 1);
-    if (rework !== "oct2025") {
+    if (rework !== "oct2025" && rework !== "jul2026") {
         flashlight_value *=
             0.7 +
             0.1 * Math.min(1, total_hits / 200) +
@@ -880,7 +974,7 @@ function compute_flashlight_value(
                 : 0);
     }
     flashlight_value *= 0.5 + accuracy / 2;
-    if (rework !== "oct2025") {
+    if (rework !== "oct2025" && rework !== "jul2026") {
         flashlight_value *=
             0.98 +
             (rework === "oct2024"
@@ -890,6 +984,32 @@ function compute_flashlight_value(
     }
 
     return flashlight_value;
+}
+
+function compute_reading_value(
+    difficulty: DifficultyAttributes,
+    effective_miss_count: number,
+    accuracy: number,
+    rework: OsuRework,
+    aim_estimated_slider_breaks: number,
+): number {
+    if (rework !== "jul2026") return 0;
+
+    let reading_value = harmonic_difficulty_to_performance(
+        difficulty.reading_difficulty,
+    );
+
+    if (effective_miss_count > 0) {
+        reading_value *= calculate_miss_penalty(
+            effective_miss_count + aim_estimated_slider_breaks,
+            difficulty.reading_difficult_note_count,
+            rework,
+        );
+    }
+
+    reading_value *= accuracy ** 3;
+
+    return reading_value;
 }
 
 function calculate_speed_deviation(
@@ -986,8 +1106,12 @@ function calculate_deviation(
 function calculate_speed_high_deviation_nerf(
     difficulty: DifficultyAttributes,
     speed_deviation: number,
+    rework: OsuRework,
 ): number {
-    const speed_value = difficulty_to_performance(difficulty.speed_difficulty);
+    const speed_value =
+        rework === "jul2026"
+            ? harmonic_difficulty_to_performance(difficulty.speed_difficulty)
+            : difficulty_to_performance(difficulty.speed_difficulty);
     const excess_speed_difficulty_cutoff =
         100 + 220 * (22 / speed_deviation) ** 6.5;
 
@@ -1010,16 +1134,24 @@ function calculate_estimated_slider_breaks(
     score: ScoreParams,
     effective_miss_count: number,
     count_ok: number,
+    count_meh: number,
     using_classic_slider_accuracy: boolean,
+    rework: OsuRework,
 ): number {
-    if (!using_classic_slider_accuracy || count_ok === 0) return 0;
+    const non_miss_mistakes =
+        rework === "jul2026" ? count_ok + count_meh : count_ok;
+    if (!using_classic_slider_accuracy || non_miss_mistakes === 0) return 0;
 
     const missed_combo_percent = 1 - score.combo / difficulty.max_combo;
     let estimated_slider_breaks = Math.min(
-        count_ok,
+        non_miss_mistakes,
         effective_miss_count * top_weighted_slider_factor,
     );
-    const ok_adjustment = (count_ok - estimated_slider_breaks + 0.5) / count_ok;
+    const ok_adjustment =
+        rework === "jul2026"
+            ? (non_miss_mistakes - estimated_slider_breaks + 4.5) /
+              (non_miss_mistakes + 4)
+            : (count_ok - estimated_slider_breaks + 0.5) / count_ok;
 
     estimated_slider_breaks *= smoothstep(effective_miss_count, 1, 2);
 
@@ -1062,7 +1194,12 @@ function calculate_visibility_bonus(
 function calculate_miss_penalty(
     miss_count: number,
     difficult_strain_count: number,
+    rework?: OsuRework,
 ): number {
+    if (rework === "jul2026") {
+        return 0.93 / (miss_count / (4 * Math.log(difficult_strain_count)) + 1);
+    }
+
     return (
         0.96 / (miss_count / (4 * Math.log(difficult_strain_count) ** 0.94) + 1)
     );

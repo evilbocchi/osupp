@@ -6,6 +6,14 @@ export interface SliderPathPoint {
     path_distance?: number;
 }
 
+export type SliderNestedEventType = "head" | "tick" | "repeat" | "tail";
+
+export interface SliderNestedEvent {
+    time: number;
+    path_progress: number;
+    type: SliderNestedEventType;
+}
+
 export interface HitObject {
     x: number;
     y: number;
@@ -22,6 +30,7 @@ export interface HitObject {
     slider_pixel_length?: number;
     slider_duration?: number;
     slider_nested_times?: number[];
+    slider_nested_events?: SliderNestedEvent[];
     stack_height: number;
     stacked_x: number;
     stacked_y: number;
@@ -31,6 +40,14 @@ export interface HitObject {
     tail_y?: number;
 }
 
+export function osu_circle_scale(circle_size: number): number {
+    const f = Math.fround;
+    const cs = f(circle_size);
+    const term = f(f(0.7) * f(cs - f(5)));
+    const normalised = f(f(1) - f(term / f(5)));
+    const half = f(normalised / f(2));
+    return f(half * f(1.00041));
+}
 export interface BreakPeriod {
     start_time: number;
     end_time: number;
@@ -151,6 +168,7 @@ export function apply_osu_stacking(
     approach_rate: number,
     stack_leniency: number,
     format_version: number,
+    jul2026 = false,
 ): void {
     const STACK_DISTANCE = 3;
     const time_preempt =
@@ -159,7 +177,8 @@ export function apply_osu_stacking(
             : approach_rate < 5
               ? 1200 - ((1200 - 1800) * (5 - approach_rate)) / 5
               : 1200;
-    const stack_threshold = time_preempt * stack_leniency;
+    const stack_threshold =
+        (jul2026 ? Math.trunc(time_preempt) : time_preempt) * stack_leniency;
 
     for (const hit_object of hit_objects) hit_object.stack_height = 0;
 
@@ -212,7 +231,13 @@ export function apply_osu_stacking(
             while (--n >= 0) {
                 const object_n = hit_objects[n]!;
                 if (object_n.is_spinner) continue;
-                if (object_i.time - object_n.end_time > stack_threshold) break;
+                if (
+                    (jul2026
+                        ? Math.trunc(object_i.time) -
+                          Math.trunc(object_n.end_time)
+                        : object_i.time - object_n.end_time) > stack_threshold
+                )
+                    break;
                 if (n < extended_start_index) {
                     object_n.stack_height = 0;
                     extended_start_index = n;
@@ -658,19 +683,20 @@ export function parse_osu_content(content: string): BeatmapData {
         const duration = span_duration * span_count;
         const slider_end_time = time + duration;
 
-        // ── Generate nested hit object times (head, ticks, repeats, tail) ──
-        // matching may2018 slider.NestedHitObjects
-        const nested_times: number[] = [];
-
-        // Head (progress = 0)
-        nested_times.push(time);
+        // Keep the official NestedHitObjects order and path progress. The
+        // difficulty calculator uses both, because sorting by time loses the
+        // distinction between ticks and repeats and can change the final-tick
+        // reordering used by the July 2026 lazy cursor algorithm.
+        const nested_events: SliderNestedEvent[] = [
+            { time, path_progress: 0, type: "head" },
+        ];
 
         const tick_distance = (velocity * beat_length) / slider_tick_rate;
         const min_distance_from_end = velocity * 10;
         for (let span = 0; span < span_count; span++) {
             const span_start_time = time + span * span_duration;
             const reversed = span % 2 === 1;
-            const ticks: number[] = [];
+            const ticks: SliderNestedEvent[] = [];
 
             for (
                 let distance = tick_distance;
@@ -683,23 +709,34 @@ export function parse_osu_content(content: string): BeatmapData {
                 const time_progress = reversed
                     ? 1 - path_progress
                     : path_progress;
-                ticks.push(span_start_time + time_progress * span_duration);
+                ticks.push({
+                    time: span_start_time + time_progress * span_duration,
+                    path_progress,
+                    type: "tick",
+                });
             }
 
             if (reversed) ticks.reverse();
-            nested_times.push(...ticks);
+            nested_events.push(...ticks);
+
+            if (span < span_count - 1) {
+                nested_events.push({
+                    time: span_start_time + span_duration,
+                    path_progress: (span + 1) % 2,
+                    type: "repeat",
+                });
+            }
         }
 
-        // Repeat points at span boundaries
-        const time_per_span = span_duration;
-        for (let repeat = 1; repeat < span_count; repeat++) {
-            nested_times.push(time + repeat * time_per_span);
-        }
+        nested_events.push({
+            time: slider_end_time,
+            path_progress: span_count % 2,
+            type: "tail",
+        });
 
-        // Tail (progress = 1)
-        nested_times.push(slider_end_time);
-
-        nested_times.sort((a, b) => a - b);
+        const nested_times = nested_events
+            .map((event) => event.time)
+            .sort((a, b) => a - b);
 
         const position_at_progress = (progress: number) => {
             const span_progress = (progress * span_count) % 1;
@@ -735,6 +772,7 @@ export function parse_osu_content(content: string): BeatmapData {
             slider_end_time,
             duration,
             nested_times,
+            nested_events,
             path,
         };
     };
@@ -925,6 +963,7 @@ export function parse_osu_content(content: string): BeatmapData {
                     hit_object.slider_pixel_length = length;
                     hit_object.slider_duration = lazy.duration;
                     hit_object.slider_nested_times = lazy.nested_times;
+                    hit_object.slider_nested_events = lazy.nested_events;
 
                     const end_path_progress = slides % 2 === 0 ? 0 : 1;
                     const end_pt = point_at_slider_path(

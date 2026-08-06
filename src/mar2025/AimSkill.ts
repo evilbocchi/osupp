@@ -17,7 +17,7 @@ const VELOCITY_CHANGE_MULTIPLIER = 0.75;
 const WIGGLE_MULTIPLIER = 1.02;
 const STRAIN_DECAY_BASE = 0.15;
 
-export type OsuRework = "mar2025" | "oct2024" | "oct2025";
+export type OsuRework = "mar2025" | "oct2024" | "oct2025" | "jul2026";
 
 function strain_decay(ms: number): number {
     return STRAIN_DECAY_BASE ** (ms / 1000);
