@@ -102,7 +102,7 @@ describe("calculate_profile_pp", () => {
     });
 });
 
-for (const [rework_slug, calculator_class] of [
+describe.each([
     ["dec2017", Dec2017PpCalculator],
     ["jul2026", Jul2026PpCalculator],
     ["oct2024", Oct2024PpCalculator],
@@ -110,7 +110,7 @@ for (const [rework_slug, calculator_class] of [
     ["oct2025", Oct2025PpCalculator],
     ["sep2022", Sep2022PpCalculator],
     ["may2018", May2018PpCalculator],
-] as const) {
+] as const)("%s", (rework_slug, calculator_class) => {
     test.each(
         readdirSync(fixture_path())
             .filter((filename) => filename.endsWith(`_${rework_slug}.json`))
@@ -179,4 +179,4 @@ for (const [rework_slug, calculator_class] of [
             );
         }
     });
-}
+});
