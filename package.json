@@ -26,7 +26,7 @@
     ],
     "scripts": {
         "format": "prettier --write .",
-        "build": "bun build ./src/index.ts --outdir ./dist --production && tsc -p tsconfig.build.json",
+        "build": "bun build ./src/index.ts --outdir ./dist --production && tsc",
         "test": "bun test",
         "test:watch": "bun test --watch"
     },
