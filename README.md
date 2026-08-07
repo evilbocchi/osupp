@@ -8,6 +8,30 @@ A pure-JavaScript osu pp calculator.
 bun install osu-pp
 ```
 
+## Usage
+
+```ts
+import { readFile } from "node:fs/promises";
+import { calculateScore } from "osu-pp";
+
+const beatmap = await readFile("./beatmap.osu", "utf8");
+
+const result = calculateScore({
+    beatmap,
+    score: {
+        ruleset_id: 0,
+        beatmap_id: 123456,
+        mods: [{ acronym: "" }],
+        total_score: 1_000_000,
+        legacy_total_score: 1_000_000,
+        accuracy: 98.5,
+        max_combo: 850,
+    },
+});
+
+console.log(result.performance_attributes.pp);
+```
+
 ## Development
 
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
