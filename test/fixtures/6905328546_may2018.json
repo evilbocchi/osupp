@@ -1,0 +1,69 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5577996,
+        "beatmap": "Ariabl'eyeS - Souzou no Idea (Maaadbot) [Eternity]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 11481568,
+        "accuracy": 96.69669669669669,
+        "combo": 428,
+        "statistics": {
+            "great": 1483,
+            "ok": 59,
+            "meh": 0,
+            "miss": 12,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 331.16770420435296,
+        "speed": 84.5946663491575,
+        "accuracy": 66.60420901022275,
+        "flashlight": 0,
+        "effective_miss_count": 12,
+        "speed_deviation": 8.2263649443993,
+        "combo_based_estimated_miss_count": 5.457943925233645,
+        "score_based_estimated_miss_count": 8.683340951993442,
+        "aim_estimated_slider_breaks": 5.883374454349201,
+        "speed_estimated_slider_breaks": 6.557362479369304,
+        "pp": 501.7216482739165
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.019660308218732,
+        "max_combo": 2405,
+        "aim_difficulty": 6.563261163248433,
+        "aim_difficult_slider_count": 193.52245315473493,
+        "speed_difficulty": 4.349537126692162,
+        "speed_note_count": 604.4823084254618,
+        "slider_factor": 0.9908987472704854,
+        "aim_top_weighted_slider_factor": 0.5467547725754835,
+        "speed_top_weighted_slider_factor": 0.6196248554554156,
+        "aim_difficult_strain_count": 161.05123370813874,
+        "speed_difficult_strain_count": 204.23224480799152,
+        "nested_score_per_object": 28.55212355212355,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 90480288,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1497.32,
+    "user_id": 7562902,
+    "score_id": 6905328546
+}

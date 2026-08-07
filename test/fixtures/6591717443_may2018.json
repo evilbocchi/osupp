@@ -1,0 +1,68 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4874327,
+        "beatmap": "Jeff Williams feat. Casey Lee Williams - Time to Say Goodbye (TV Size) (My Angel Ram) [No Return]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 98.24407374890255,
+        "combo": 261,
+        "statistics": {
+            "great": 191,
+            "ok": 6,
+            "meh": 0,
+            "miss": 0,
+            "large_tick_miss": 0,
+            "slider_tail_hit": 61,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1178.0134176819581,
+        "speed": 312.9097230768256,
+        "accuracy": 87.52530990832011,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 7.949450606449981,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1662.971893981885
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.256257337135898,
+        "max_combo": 261,
+        "aim_difficulty": 6.148104544143635,
+        "aim_difficult_slider_count": 28.413980260712258,
+        "speed_difficulty": 4.068201041840891,
+        "speed_note_count": 165.96532625440608,
+        "slider_factor": 0.9921180018547624,
+        "aim_top_weighted_slider_factor": 0.3586936391333579,
+        "speed_top_weighted_slider_factor": 0.43891117328340423,
+        "aim_difficult_strain_count": 51.406525248843415,
+        "speed_difficult_strain_count": 79.54553685442103,
+        "nested_score_per_object": 18.83248730964467,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 1552980,
+        "circle_size": 4,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.911111111111111
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1745.85,
+    "user_id": 7562902,
+    "score_id": 6591717443
+}

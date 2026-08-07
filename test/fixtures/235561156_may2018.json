@@ -12,7 +12,7 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 0,
+        "legacy_total_score": 127472559,
         "accuracy": 99.3932499051953,
         "combo": 2274,
         "statistics": {
@@ -29,25 +29,38 @@
         "accuracy": 169.5849046211661,
         "flashlight": 0,
         "effective_miss_count": 0,
+        "speed_deviation": 9.088448915137336,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
         "pp": 452.6967327069033
     },
     "difficulty_attributes": {
         "star_rating": 6.047009403688014,
         "max_combo": 2275,
         "aim_difficulty": 3.040894348112962,
+        "aim_difficult_slider_count": 256.45846109763505,
         "speed_difficulty": 2.9713357630371418,
-        "aim_difficult_strain_count": 198.56981782339392,
-        "speed_difficult_strain_count": 146.80688762593968,
+        "speed_note_count": 786.079550560334,
+        "slider_factor": 0.9923431589815562,
+        "aim_top_weighted_slider_factor": 0.1900433871259238,
+        "speed_top_weighted_slider_factor": 0.16624521223691274,
+        "aim_difficult_strain_count": 302.2078075133156,
+        "speed_difficult_strain_count": 170.6402305391409,
+        "nested_score_per_object": 34.69283276450512,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 120441840,
         "circle_size": 5.2,
         "approach_rate": 10,
         "overall_difficulty": 10
     },
     "rework_data": {
-        "code": "oppai-ng-1.1.52",
+        "code": "may2018",
         "source": "Francesco149/oppai-ng",
         "version": "1.1.52"
     },
-    "live_pp": 494.485,
+    "live_pp": 506.433,
     "user_id": 352328,
     "score_id": 235561156
 }

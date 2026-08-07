@@ -1,0 +1,72 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5416765,
+        "beatmap": "Altermis & takehirotei & Violet Delta - Christmas Slop (Sotarks) [Nymphe's Ultra+]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 2081046,
+        "accuracy": 100,
+        "combo": 392,
+        "statistics": {
+            "great": 280,
+            "ok": 0,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 631.6023843026561,
+        "speed": 321.48675360601993,
+        "accuracy": 40.67715148223718,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 15.258270199622139,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 1038.001297752705
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.932129014804435,
+        "max_combo": 392,
+        "aim_difficulty": 5.253250832724995,
+        "aim_difficult_slider_count": 50.769401481211865,
+        "speed_difficulty": 4.104505531433886,
+        "speed_note_count": 208.9959229946365,
+        "slider_factor": 0.996858390732504,
+        "aim_top_weighted_slider_factor": 0.3671842998730825,
+        "speed_top_weighted_slider_factor": 0.40704561043218973,
+        "aim_difficult_strain_count": 82.80790135541895,
+        "speed_difficult_strain_count": 98.06517071200896,
+        "nested_score_per_object": 61.107142857142854,
+        "legacy_score_base_multiplier": 3,
+        "maximum_legacy_combo_score": 3328140,
+        "circle_size": 2,
+        "approach_rate": 7.613333333333333,
+        "overall_difficulty": 7.544444444444445
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1184.37,
+    "user_id": 10077431,
+    "score_id": 6133830008
+}

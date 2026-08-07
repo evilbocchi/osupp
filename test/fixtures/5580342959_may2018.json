@@ -1,0 +1,66 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5329312,
+        "beatmap": "Manticora - Humiliation Supreme (Urition) [Dignity]",
+        "mods": [
+            {
+                "acronym": "FL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 0,
+        "accuracy": 99.59313758730589,
+        "combo": 1696,
+        "statistics": {
+            "great": 1374,
+            "ok": 9,
+            "meh": 0,
+            "miss": 0,
+            "large_tick_miss": 0,
+            "slider_tail_hit": 151,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 340.89678101616227,
+        "speed": 295.9391040572835,
+        "accuracy": 149.32889324330569,
+        "flashlight": 406.57674871928725,
+        "effective_miss_count": 0,
+        "speed_deviation": 9.631361401401797,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": null,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 800.995596020598
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.611711531426688,
+        "max_combo": 1696,
+        "aim_difficulty": 3.4133146090287823,
+        "aim_difficult_slider_count": 55.23009181708254,
+        "speed_difficulty": 3.9367028179415313,
+        "speed_note_count": 933.2761248261394,
+        "flashlight_difficulty": 4.036857880686081,
+        "slider_factor": 0.9995191598859101,
+        "aim_top_weighted_slider_factor": 0.02777815481474859,
+        "speed_top_weighted_slider_factor": 0.035997087912617735,
+        "aim_difficult_strain_count": 311.45464735269337,
+        "speed_difficult_strain_count": 341.02203577337025,
+        "nested_score_per_object": 20.911062906724514,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 68662020,
+        "circle_size": 4,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.5
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1019.36,
+    "user_id": 6567297,
+    "score_id": 5580342959
+}

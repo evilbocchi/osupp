@@ -1,0 +1,66 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2496721,
+        "beatmap": "Fleshgod Apocalypse - The Violation (Mazzerin) [pishi's Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 74609857,
+        "accuracy": 94.69619823489477,
+        "combo": 2018,
+        "statistics": {
+            "great": 1809,
+            "ok": 150,
+            "meh": 5,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 296.52462010242857,
+        "speed": 272.34578699250426,
+        "accuracy": 29.6424301871519,
+        "flashlight": 0,
+        "effective_miss_count": 2.1923779614291594,
+        "speed_deviation": 13.671641002159578,
+        "combo_based_estimated_miss_count": 1.667145688800793,
+        "score_based_estimated_miss_count": 2.1923779614291594,
+        "aim_estimated_slider_breaks": 1.2325208284357763,
+        "speed_estimated_slider_breaks": 0.728254656584806,
+        "pp": 620.8403772878551
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.565167029746338,
+        "max_combo": 3436,
+        "aim_difficulty": 4.223652203909178,
+        "aim_difficult_slider_count": 219.7652561428586,
+        "speed_difficulty": 4.3022272851944985,
+        "speed_note_count": 815.1659741617212,
+        "slider_factor": 0.9964527120484615,
+        "aim_top_weighted_slider_factor": 0.7301754755749937,
+        "speed_top_weighted_slider_factor": 0.4295344834806396,
+        "aim_difficult_strain_count": 169.31415627218237,
+        "speed_difficult_strain_count": 216.81840279938197,
+        "nested_score_per_object": 33.294297352342156,
+        "legacy_score_base_multiplier": 4,
+        "maximum_legacy_combo_score": 165532128,
+        "circle_size": 2,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.444444444444445
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1869.24,
+    "user_id": 15406985,
+    "score_id": 4632894976
+}

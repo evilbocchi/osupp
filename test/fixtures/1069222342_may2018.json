@@ -1,0 +1,73 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1620144,
+        "beatmap": "Tanaka Hirokazu - C-TYPE (Arf) [Bonsai's BasS-TYPE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 1046176,
+        "accuracy": 97.11934156378601,
+        "combo": 162,
+        "statistics": {
+            "great": 155,
+            "ok": 7,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 662.5183669422166,
+        "speed": 84.90826367012649,
+        "accuracy": 86.93019694212641,
+        "flashlight": 158.29208348193825,
+        "effective_miss_count": 0,
+        "speed_deviation": 8.09116501191925,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 883.3836835859482
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.164551726924982,
+        "max_combo": 162,
+        "aim_difficulty": 4.505907121215136,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 2.8113820902045554,
+        "speed_note_count": 143.44954192494285,
+        "flashlight_difficulty": 2.5346031560052746,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "aim_difficult_strain_count": 70.37288852885398,
+        "speed_difficult_strain_count": 97.74379177799054,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 6,
+        "maximum_legacy_combo_score": 772800,
+        "circle_size": 8.06,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1312.15,
+    "user_id": 1473890,
+    "score_id": 1069222342
+}

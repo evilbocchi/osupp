@@ -1,0 +1,69 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2240526,
+        "beatmap": "TUYU - Anoyo-iki no Bus ni Notte Saraba. (SnowNiNo_) [Yandere]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 28807374,
+        "accuracy": 96.20253164556962,
+        "combo": 1022,
+        "statistics": {
+            "great": 897,
+            "ok": 45,
+            "meh": 0,
+            "miss": 6,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 828.1795886092426,
+        "speed": 270.2996005392344,
+        "accuracy": 67.20043782409368,
+        "flashlight": 0,
+        "effective_miss_count": 6,
+        "speed_deviation": 10.268444552942869,
+        "combo_based_estimated_miss_count": 1.1796477495107631,
+        "score_based_estimated_miss_count": 1,
+        "aim_estimated_slider_breaks": 0.13357971710319697,
+        "speed_estimated_slider_breaks": 0.24264198150437855,
+        "pp": 1222.547604214296
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.847599290710347,
+        "max_combo": 1230,
+        "aim_difficulty": 5.850547999843265,
+        "aim_difficult_slider_count": 49.55288693358225,
+        "speed_difficulty": 4.143554581890899,
+        "speed_note_count": 378.4999239736361,
+        "slider_factor": 0.9900890451984082,
+        "aim_top_weighted_slider_factor": 0.27821917458626966,
+        "speed_top_weighted_slider_factor": 0.5228863351457417,
+        "aim_difficult_strain_count": 83.13216572702488,
+        "speed_difficult_strain_count": 116.5857316613634,
+        "nested_score_per_object": 16.0126582278481,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 34358820,
+        "circle_size": 4,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.777777777777779
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 1221.17,
+    "user_id": 7562902,
+    "score_id": 1773742642
+}

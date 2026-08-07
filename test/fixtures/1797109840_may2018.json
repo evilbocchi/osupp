@@ -1,0 +1,66 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2654458,
+        "beatmap": "UNDEAD CORPORATION - Frozen (Daycore) [Everything Will Freeze]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 56787063,
+        "accuracy": 98.51079672375279,
+        "combo": 1682,
+        "statistics": {
+            "great": 1313,
+            "ok": 30,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 336.2091043497284,
+        "speed": 359.88251216797886,
+        "accuracy": 120.44369251247113,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "speed_deviation": 11.069557425398553,
+        "combo_based_estimated_miss_count": 0,
+        "score_based_estimated_miss_count": 0,
+        "aim_estimated_slider_breaks": 0,
+        "speed_estimated_slider_breaks": 0,
+        "pp": 834.9113240932181
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.379435151415105,
+        "max_combo": 1687,
+        "aim_difficulty": 4.119764210460661,
+        "aim_difficult_slider_count": 140.10432220538178,
+        "speed_difficulty": 4.213035364123183,
+        "speed_note_count": 490.92421092169405,
+        "slider_factor": 0.9856287736394004,
+        "aim_top_weighted_slider_factor": 0.20716333876142504,
+        "speed_top_weighted_slider_factor": 0.13863667697517484,
+        "aim_difficult_strain_count": 160.74607322852663,
+        "speed_difficult_strain_count": 182.84833268316555,
+        "nested_score_per_object": 14.050632911392405,
+        "legacy_score_base_multiplier": 5,
+        "maximum_legacy_combo_score": 54365664,
+        "circle_size": 5.2,
+        "approach_rate": 10,
+        "overall_difficulty": 10
+    },
+    "rework_data": {
+        "code": "may2018",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
+    },
+    "live_pp": 804.771,
+    "user_id": 1719471,
+    "score_id": 1797109840
+}
