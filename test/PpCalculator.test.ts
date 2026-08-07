@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { parse_osu_content } from "../src/BeatmapData";
 import Jul2026PpCalculator from "../src/jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "../src/mar2025/Mar2025PpCalculator";
+import May2018PpCalculator from "../src/may2018/May2018PpCalculator";
 import Oct2024PpCalculator from "../src/oct2024/Oct2024PpCalculator";
 import Oct2025PpCalculator from "../src/oct2025/Oct2025PpCalculator";
 import {
@@ -106,6 +107,7 @@ for (const [rework_slug, calculator_class] of [
     ["mar2025", Mar2025PpCalculator],
     ["oct2025", Oct2025PpCalculator],
     ["sep2022", Sep2022PpCalculator],
+    ["may2018", May2018PpCalculator],
 ] as const) {
     test.each(
         readdirSync(fixture_path())
