@@ -18,6 +18,7 @@
         "aim": 870.7265091243156,
         "speed": 120.36836745711632,
         "accuracy": 63.42187297218938,
+        "effective_miss_count": 0,
         "pp": 1124.3697736006156
     },
     "difficulty_attributes": {
