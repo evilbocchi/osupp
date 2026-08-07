@@ -132,10 +132,23 @@ function format_ruleset_id(ruleset_id: number | null): string {
     return `${ruleset_names.get(ruleset_id) ?? "unknown"} (${ruleset_id})`;
 }
 
+/**
+ * Calculates the bonus PP for a profile based on the number of unique beatmaps played.
+ * @param unique_score_count The number of unique beatmaps played by the profile.
+ * @returns The bonus PP for the profile.
+ */
 export function calculate_bonus_pp(unique_score_count: number): number {
     return (417 - 1 / 3) * (1 - 0.995 ** Math.min(1000, unique_score_count));
 }
 
+/**
+ * Calculates the profile PP breakdown based on the provided score results.
+ *
+ * Please use `calculateScore` to calculate the PpCalculatorResult for each score before passing them to this function.
+ *
+ * @param results An array of PpCalculatorResult objects representing the scores to be considered for the profile.
+ * @returns A ProfilePpBreakdown object containing the score count, weighted PP, bonus PP, and total PP for the profile.
+ */
 export function calculate_profile_pp(
     results: PpCalculatorResult[],
 ): ProfilePpBreakdown {

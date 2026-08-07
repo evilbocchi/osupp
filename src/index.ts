@@ -46,6 +46,10 @@ export function parseBeatmap(content: string): BeatmapData {
     return parse_osu_content(content);
 }
 
+/**
+ * Creates a new PpCalculator instance based on the specified options.
+ * @returns A PpCalculator instance corresponding to the specified PP rework and ruleset.
+ */
 export function createPpCalculator(
     options: CreatePpCalculatorOptions = {},
 ): PpCalculator {
@@ -67,6 +71,10 @@ export function createPpCalculator(
     }
 }
 
+/**
+ * Calculates the score for a given beatmap and score data using the specified PP rework and ruleset.
+ * @returns The calculated PpCalculatorResult for the score.
+ */
 export function calculateScore({
     score,
     beatmap,
