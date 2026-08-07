@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/osu-pp)](https://www.npmjs.com/package/osu-pp)
 
-A pure-JavaScript osu pp calculator.
+A pure-JavaScript osu pp calculator that supports different eras of the game.
 
 ```sh
 bun install osu-pp
@@ -18,6 +18,7 @@ const beatmap = await readFile("./beatmap.osu", "utf8");
 
 const result = calculateScore({
     beatmap,
+    rework: "sep2022",
     score: {
         ruleset_id: 0,
         beatmap_id: 123456,
