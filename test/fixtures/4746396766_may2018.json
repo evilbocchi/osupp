@@ -27,18 +27,18 @@
         }
     },
     "performance_attributes": {
-        "aim": 872.5103082783975,
-        "speed": 294.54093483439345,
-        "accuracy": 215.76044216902494,
+        "aim": 868.9904587925121,
+        "speed": 294.18607723602315,
+        "accuracy": 213.25909524089613,
         "flashlight": 0,
         "effective_miss_count": 1,
-        "pp": 1428.0718501055858
+        "pp": 1421.5882773979847
     },
     "difficulty_attributes": {
-        "star_rating": 10.643596467056982,
+        "star_rating": 10.636471063330008,
         "max_combo": 2905,
-        "aim_difficulty": 5.727667024617209,
-        "speed_difficulty": 4.10419186026234,
+        "aim_difficulty": 5.723352399301905,
+        "speed_difficulty": 4.1028849287543,
         "aim_difficult_strain_count": 131.10665375812627,
         "speed_difficult_strain_count": 269.7095045685837,
         "circle_size": 3.6,
@@ -46,10 +46,9 @@
         "overall_difficulty": 10.97777777777778
     },
     "rework_data": {
-        "id": 103,
-        "code": "pp_may2018",
-        "version": 3,
-        "last_updated": "2025-03-27 12:23"
+        "code": "oppai-ng-1.1.52",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.52"
     },
     "live_pp": 1563.23,
     "user_id": 7562902,
