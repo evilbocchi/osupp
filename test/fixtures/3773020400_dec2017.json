@@ -1,0 +1,34 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2844649,
+        "beatmap": "t+pazolite - Oshama Scramble! (IOException Edit) (IOException) [Special]",
+        "mods": [{ "acronym": "DT" }, { "acronym": "HD" }],
+        "total_score": 0,
+        "accuracy": 95.66801619433198,
+        "combo": 353,
+        "statistics": { "great": 711, "ok": 37, "meh": 1, "miss": 5 }
+    },
+    "performance_attributes": {
+        "aim": 184.72496522824517,
+        "speed": 92.41262189994976,
+        "accuracy": 11.448199053634724,
+        "pp": 301.5936618872965
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.159088484956888,
+        "max_combo": 1322,
+        "aim_difficulty": 4.720399843526869,
+        "speed_difficulty": 4.1569774393331675,
+        "approach_rate": 10.6667,
+        "overall_difficulty": 10.4167,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "code": "pp_dec2017",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.30"
+    },
+    "user_id": 7562902,
+    "score_id": 3773020400
+}

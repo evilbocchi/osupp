@@ -1,0 +1,34 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 646428,
+        "beatmap": "Go Ichinose - Encounter! Psychic (baraatje123) [Irre's Extra]",
+        "mods": [{ "acronym": "DT" }, { "acronym": "HD" }, { "acronym": "CL" }],
+        "total_score": 0,
+        "accuracy": 96.17486338797814,
+        "combo": 212,
+        "statistics": { "great": 115, "ok": 7, "meh": 0, "miss": 0 }
+    },
+    "performance_attributes": {
+        "aim": 173.20445539964211,
+        "speed": 103.35363108171462,
+        "accuracy": 4.581208449914929,
+        "pp": 294.8777061866205
+    },
+    "difficulty_attributes": {
+        "star_rating": 6.64680314827102,
+        "max_combo": 218,
+        "aim_difficulty": 3.4157759207533847,
+        "speed_difficulty": 3.046278534281885,
+        "approach_rate": 10.3333,
+        "overall_difficulty": 9.41667,
+        "circle_size": 7
+    },
+    "rework_data": {
+        "code": "pp_dec2017",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.30"
+    },
+    "user_id": 6600930,
+    "score_id": 1679573718
+}

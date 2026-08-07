@@ -1,0 +1,39 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 3746239,
+        "beatmap": "Wire - Brazil (Apo11o) [Kuki's Extra]",
+        "mods": [
+            { "acronym": "DT" },
+            { "acronym": "HR" },
+            { "acronym": "HD" },
+            { "acronym": "CL" }
+        ],
+        "total_score": 0,
+        "accuracy": 97.9381443298969,
+        "combo": 262,
+        "statistics": { "great": 188, "ok": 6, "meh": 0, "miss": 0 }
+    },
+    "performance_attributes": {
+        "aim": 755.5840404429018,
+        "speed": 163.0633780940497,
+        "accuracy": 74.31221964985265,
+        "pp": 1046.4648610143367
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.245927834501202,
+        "max_combo": 265,
+        "aim_difficulty": 5.004065342056899,
+        "speed_difficulty": 3.479659642831707,
+        "approach_rate": 11,
+        "overall_difficulty": 11.0833,
+        "circle_size": 4.94
+    },
+    "rework_data": {
+        "code": "pp_dec2017",
+        "source": "Francesco149/oppai-ng",
+        "version": "1.1.30"
+    },
+    "user_id": 10077431,
+    "score_id": 1758785497
+}
