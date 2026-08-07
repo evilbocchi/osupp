@@ -30,8 +30,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      
       - name: Create release
+        id: create_release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -40,3 +46,17 @@ jobs:
             --target "$GITHUB_SHA" \
             --title "Release $tag" \
             --generate-notes
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Upload binaries to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.create_release.outputs.tag }}
+        run: |
+          shopt -s nullglob
+          assets=(dist/*)
+          if ((${#assets[@]})); then
+            gh release upload "$TAG" "${assets[@]}"
+          else
+            echo "No build artifacts found in dist/ to upload"
+          fi
