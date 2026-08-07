@@ -1,19 +1,19 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { parse_osu_content } from "../src/BeatmapData";
-import Dec2017PpCalculator from "../src/dec2017/Dec2017PpCalculator";
-import Jul2026PpCalculator from "../src/jul2026/Jul2026PpCalculator";
-import Mar2025PpCalculator from "../src/mar2025/Mar2025PpCalculator";
-import May2018PpCalculator from "../src/may2018/May2018PpCalculator";
-import Oct2024PpCalculator from "../src/oct2024/Oct2024PpCalculator";
-import Oct2025PpCalculator from "../src/oct2025/Oct2025PpCalculator";
 import {
-    calculate_bonus_pp,
-    calculate_profile_pp,
+    Dec2017PpCalculator,
+    Jul2026PpCalculator,
+    Mar2025PpCalculator,
+    May2018PpCalculator,
+    Oct2024PpCalculator,
+    Oct2025PpCalculator,
+    Sep2022PpCalculator,
+    calculateBonusPp,
+    calculateProfilePp,
+    parseBeatmap,
     type PpCalculatorResult,
-} from "../src/PpCalculator";
-import Sep2022PpCalculator from "../src/sep2022/Sep2022PpCalculator";
+} from "../src";
 
 const fixture_path = (...segments: string[]) =>
     join(import.meta.dir, "fixtures", ...segments);
@@ -76,19 +76,19 @@ function expect_close_values(
     }
 }
 
-describe("calculate_bonus_pp", () => {
+describe("calculateBonusPp", () => {
     test("starts at zero scores", () => {
-        expect(calculate_bonus_pp(0)).toBe(0);
+        expect(calculateBonusPp(0)).toBe(0);
     });
 
     test("caps unique score count at 1000", () => {
-        expect(calculate_bonus_pp(1001)).toBe(calculate_bonus_pp(1000));
+        expect(calculateBonusPp(1001)).toBe(calculateBonusPp(1000));
     });
 });
 
-describe("calculate_profile_pp", () => {
+describe("calculateProfilePp", () => {
     test("keeps the best score per beatmap before weighting", () => {
-        const profile = calculate_profile_pp([
+        const profile = calculateProfilePp([
             score_result(10, 100),
             score_result(10, 150),
             score_result(20, 80),
@@ -125,7 +125,7 @@ describe.each([
             }),
     )("%s", (fixture_filename, beatmap_filename) => {
         const fixture = read_fixture(fixture_filename);
-        const beatmap = parse_osu_content(
+        const beatmap = parseBeatmap(
             readFileSync(fixture_path(beatmap_filename), "utf8"),
         );
         const result = new calculator_class().calculate_score(

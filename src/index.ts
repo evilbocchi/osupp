@@ -108,8 +108,10 @@ export {
     Dec2017PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
+    May2018PpCalculator,
     Oct2024PpCalculator,
     Oct2025PpCalculator,
+    Sep2022PpCalculator,
 };
 
 export type {
