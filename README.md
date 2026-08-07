@@ -1,15 +1,13 @@
-# osupp
+# osu-pp
 
-To install dependencies:
+[![npm version](https://img.shields.io/npm/v/osu-pp)](https://www.npmjs.com/package/osu-pp)
 
-```bash
-bun install
+A pure-JavaScript osu pp calculator.
+
+```sh
+bun install osu-pp
 ```
 
-To run:
+## Development
 
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.9. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
