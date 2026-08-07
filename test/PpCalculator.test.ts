@@ -15,14 +15,14 @@ import {
     type PpCalculatorResult,
 } from "../src";
 
-const fixture_path = (...segments: string[]) =>
+const fixturePath = (...segments: string[]) =>
     join(import.meta.dir, "fixtures", ...segments);
 
-function read_fixture(filename: string): PpCalculatorResult {
-    return JSON.parse(readFileSync(fixture_path(filename), "utf8"));
+function readFixture(filename: string): PpCalculatorResult {
+    return JSON.parse(readFileSync(fixturePath(filename), "utf8"));
 }
 
-function score_result(beatmapId: number, pp: number): PpCalculatorResult {
+function scoreResult(beatmapId: number, pp: number): PpCalculatorResult {
     return {
         score: {
             ruleset_id: 0,
@@ -54,19 +54,19 @@ function score_result(beatmapId: number, pp: number): PpCalculatorResult {
     };
 }
 
-function expect_close_values(
+function expectCloseValues(
     mismatches: string[],
     name: string,
     received: number | undefined,
     expected: number | undefined,
-    tolerance_digits: number,
+    toleranceDigits: number,
 ) {
     if (received === undefined || expected === undefined) {
         mismatches.push(`${name}: expected ${expected}, received ${received}`);
         return;
     }
 
-    const tolerance = 0.5 * 10 ** -tolerance_digits;
+    const tolerance = 0.5 * 10 ** -toleranceDigits;
     const difference = Math.abs(received - expected);
 
     if (difference >= tolerance) {
@@ -89,9 +89,9 @@ describe("calculateBonusPp", () => {
 describe("calculateProfilePp", () => {
     test("keeps the best score per beatmap before weighting", () => {
         const profile = calculateProfilePp([
-            score_result(10, 100),
-            score_result(10, 150),
-            score_result(20, 80),
+            scoreResult(10, 100),
+            scoreResult(10, 150),
+            scoreResult(20, 80),
         ]);
 
         expect(profile.score_count).toBe(2);
@@ -110,25 +110,25 @@ describe.each([
     ["oct2025", Oct2025PpCalculator],
     ["sep2022", Sep2022PpCalculator],
     ["may2018", May2018PpCalculator],
-] as const)("%s", (rework_slug, calculator_class) => {
+] as const)("%s", (reworkSlug, Calculator) => {
     test.each(
-        readdirSync(fixture_path())
-            .filter((filename) => filename.endsWith(`_${rework_slug}.json`))
+        readdirSync(fixturePath())
+            .filter((filename) => filename.endsWith(`_${reworkSlug}.json`))
             .sort()
-            .map((fixture_filename) => {
-                const fixture = read_fixture(fixture_filename);
+            .map((fixtureFilename) => {
+                const fixture = readFixture(fixtureFilename);
 
                 return [
-                    fixture_filename,
+                    fixtureFilename,
                     `${fixture.score.beatmap_id}.osu`,
                 ] as const;
             }),
-    )("%s", (fixture_filename, beatmap_filename) => {
-        const fixture = read_fixture(fixture_filename);
+    )("%s", (fixtureFilename, beatmapFilename) => {
+        const fixture = readFixture(fixtureFilename);
         const beatmap = parseBeatmap(
-            readFileSync(fixture_path(beatmap_filename), "utf8"),
+            readFileSync(fixturePath(beatmapFilename), "utf8"),
         );
-        const result = new calculator_class().calculate_score(
+        const result = new Calculator().calculate_score(
             fixture.score as any,
             beatmap,
         );
@@ -153,7 +153,7 @@ describe.each([
         ] as const) {
             if (fixture.difficulty_attributes[key] === undefined) continue;
 
-            expect_close_values(
+            expectCloseValues(
                 mismatches,
                 `difficulty_attributes.${key}`,
                 result.difficulty_attributes[key],
@@ -164,7 +164,7 @@ describe.each([
 
         for (const key of ["effective_miss_count", "pp"] as const) {
             // DO NOT CHANGE THE TOLERANCE
-            expect_close_values(
+            expectCloseValues(
                 mismatches,
                 `performance_attributes.${key}`,
                 result.performance_attributes[key],
