@@ -35,7 +35,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tag="release-$(date -u +'%Y%m%d-%H%M%S')-${GITHUB_RUN_NUMBER}"
+          tag="$(date -u +'%Y%m%d-%H%M%S')-${GITHUB_RUN_NUMBER}"
           gh release create "$tag" \
             --target "$GITHUB_SHA" \
             --title "Release $tag" \
