@@ -28,7 +28,9 @@
         "format": "prettier --write .",
         "build": "bun build ./src/index.ts --outdir ./dist --production && tsc",
         "test": "bun test",
-        "test:watch": "bun test --watch"
+        "test:watch": "bun test --watch",
+        "prepare": "lefthook install",
+        "prepack": "npm run build"
     },
     "devDependencies": {
         "@types/bun": "latest",
