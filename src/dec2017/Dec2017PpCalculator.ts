@@ -3,11 +3,9 @@ import PpCalculator, { type PpCalculatorResult } from "../PpCalculator";
 import May2018PpCalculator from "../may2018/May2018PpCalculator";
 
 /**
- * December 2017 performance calculation as implemented by oppai-ng 1.1.30.
+ * No news post found for this rework.
  *
- * oppai-ng 1.1.52 moved the Hidden bonus from aim to speed and made the aim
- * bonus approach-rate dependent. Reuse the shared strain and pp calculation,
- * then restore the 1.1.30 Hidden balance.
+ * Target: actual pp values (wayback machine)
  */
 export default class Dec2017PpCalculator extends PpCalculator {
     private readonly may2018 = new May2018PpCalculator({ ruleset_id: null });

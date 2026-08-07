@@ -2,82 +2,118 @@ We need to make an osu! PP calculator for JavaScript!
 
 CONTRIBUTING.md is actually just the personal repo notes for this project. Please read below to understand the context of this project.
 
+## CURRENT PROJECT STATUS
+
+no plans yet = still deciding if we want to implement this  
+not triaged = we don't have a stable reference to reliably implement this rework yet  
+not started = we haven't started implementing this rework yet  
+in progress = we are currently implementing this rework, but values are not accurate  
+complete* = we have implemented this rework but subject to change as we can't fully validate it yet or the rework is targeting huismetbenen numbers
+complete = we have implemented this rework and it is fully validated against the wayback machine numbers
+
+standard:
+
+- jan2014: not triaged
+- feb2015: not triaged
+- jul2015: not triaged
+- dec2017: complete* (low precision)
+- may2018: complete* (low precision)
+- feb2019: not triaged
+- jan2021: not triaged
+- jul2021: not triaged
+- nov2021: not triaged
+- sep2022: complete
+- oct2024: complete* (huismetbenen)
+- mar2025: complete* (huismetbenen)
+- oct2025: complete
+- jul2026: complete
+
+taiko: no plans yet  
+mania: no plans yet  
+catch: no plans yet
+
 ## OFFICIAL COLLECTED FROM WAYBACK MACHINE
 
-score 4460552935:
+### `4460552935`
 
-- oct2024: 1886.9pp (huismetbenen says 1886.904/agrees)
-- mar2025: 1774.15pp (huismetbenen says 1774.146/agrees)
-- oct2025: 1657.26pp (huismetbenen says 1657.255/agrees)
+| Rework  |   wayback | huismetbenen    |
+| ------- | --------: | --------------- |
+| oct2024 |  1886.9pp | 1886.904/agrees |
+| mar2025 | 1774.15pp | 1774.146/agrees |
+| oct2025 | 1657.26pp | 1657.255/agrees |
 
-score 4746396766:
+### `4746396766`
 
-- mar2025: 2048.21pp (huismetbenen says 2048.216/agrees)
-- oct2025: 1807.26pp (huismetbenen says 1807.261/agrees)
+| Rework  |   wayback | huismetbenen    |
+| ------- | --------: | --------------- |
+| mar2025 | 2048.21pp | 2048.216/agrees |
+| oct2025 | 1807.26pp | 1807.261/agrees |
 
-score 244720292:
+### `244720292`
 
-- dec2017: 532pp (huismetbenen says 534.794/+2.794)
-- may2018: 516pp (huismetbenen says 519.772/+3.772)
-- feb2019: 548pp (huismetbenen says 556.937/+8.937)
-- jan2021: 547.560pp (huismetbenen says 560.586/+13.026)
-- jul2021: 537.448pp (huismetbenen says 545.728/+8.280)
-- nov2021: 564.057pp (huismetbenen says 559.954/-4.103)
-- sep2022: 564.695pp (huismetbenen says 564.7/agrees)
-- oct2024: 557.634pp (huismetbenen says 557.639/+0.005)
-- mar2025: 558.998pp (huismetbenen says 558.997/-0.001)
-- oct2025: 559.973pp (huismetbenen agrees)
+| Rework  |   wayback | huismetbenen    |
+| ------- | --------: | --------------- |
+| dec2017 |     532pp | 534.794/+2.794  |
+| may2018 |     516pp | 519.772/+3.772  |
+| feb2019 |     548pp | 556.937/+8.937  |
+| jan2021 | 547.560pp | 560.586/+13.026 |
+| jul2021 | 537.448pp | 545.728/+8.280  |
+| nov2021 | 564.057pp | 559.954/-4.103  |
+| sep2022 | 564.695pp | 564.7/agrees    |
+| oct2024 | 557.634pp | 557.639/+0.005  |
+| mar2025 | 558.998pp | 558.997/-0.001  |
+| oct2025 | 559.973pp | agrees          |
 
-score 176782980:
+### `176782980`
 
-- dec2017: 480pp (huismetbenen says 479.915/agrees)
-- may2018: 480pp (huismetbenen says 479.918/agrees)
-- feb2019: 522pp (huismetbenen says 523.261/+1.261)
-- jan2021: 522.342pp (huismetbenen says 528.356/+6.014)
-- jul2021: 528.395pp (huismetbenen says 528.761/+0.366)
-- nov2021: 547.810pp (huismetbenen says 546.913/-0.897)
-- sep2022: 556.680pp (huismetbenen says 556.7/agrees)
-- oct2024: 500.123pp (huismetbenen says 500.124/+0.001)
-- mar2025: unknown
-- oct2025: 501.838pp (huismetbenen agrees)
+| Rework  |   wayback | huismetbenen   |
+| ------- | --------: | -------------- |
+| dec2017 |     480pp | 479.915/agrees |
+| may2018 |     480pp | 479.918/agrees |
+| feb2019 |     522pp | 523.261/+1.261 |
+| jan2021 | 522.342pp | 528.356/+6.014 |
+| jul2021 | 528.395pp | 528.761/+0.366 |
+| nov2021 | 547.810pp | 546.913/-0.897 |
+| sep2022 | 556.680pp | 556.7/agrees   |
+| oct2024 | 500.123pp | 500.124/+0.001 |
+| mar2025 |   unknown | unknown        |
+| oct2025 | 501.838pp | agrees         |
 
-score 235561156:
+### `235561156`
 
-- dec2017: 453pp (huismetbenen says 453.468/agrees)
-- may2018: 453pp (huismetbenen says 453.473/agrees)
-- feb2019: 487pp (huismetbenen says 487.534/+0.534)
-- jan2021: 486.663pp (huismetbenen says 492.065/+5.402)
-- jul2021: 493.306pp (huismetbenen says 493.642/+0.336)
-- nov2021: unknown
-- sep2022: 503.125pp (huismetbenen says 503.1/agrees)
-- oct2024: 497.639pp (huismetbenen says 497.638/-0.001)
-- mar2025: 500.681pp (huismetbenen says 500.682/+0.001)
-- oct2025: 506.433pp (huismetbenen agrees)
+| Rework  |   wayback | huismetbenen   |
+| ------- | --------: | -------------- |
+| dec2017 |     453pp | 453.468/agrees |
+| may2018 |     453pp | 453.473/agrees |
+| feb2019 |     487pp | 487.534/+0.534 |
+| jan2021 | 486.663pp | 492.065/+5.402 |
+| jul2021 | 493.306pp | 493.642/+0.336 |
+| nov2021 |   unknown | unknown        |
+| sep2022 | 503.125pp | 503.1/agrees   |
+| oct2024 | 497.639pp | 497.638/-0.001 |
+| mar2025 | 500.681pp | 500.682/+0.001 |
+| oct2025 | 506.433pp | agrees         |
 
-score 110536233:
+### `110536233`
 
-- dec2017: 435pp
-- may2018: 435pp
-- feb2019: 452pp
-- jan2021: 451.998pp (huismetbenen says 456.587/+4.589)
-- jul2021: unknown
-- nov2021: 507.523pp (huismetbenen says 507.129/-0.394)
-- sep2022: 516.224pp (huismetbenen says 516.2/agrees)
-- oct2024: 504.307pp (huismetbenen says 504.306/-0.001)
-- mar2025: 506.375pp (huismetbenen says 506.374/-0.001)
-- oct2025: 523.186pp (huismetbenen agrees)
+| Rework  |   wayback | huismetbenen   |
+| ------- | --------: | -------------- |
+| dec2017 |     435pp | not checked    |
+| may2018 |     435pp | not checked    |
+| feb2019 |     452pp | not checked    |
+| jan2021 | 451.998pp | 456.587/+4.589 |
+| jul2021 |   unknown | unknown        |
+| nov2021 | 507.523pp | 507.129/-0.394 |
+| sep2022 | 516.224pp | 516.2/agrees   |
+| oct2024 | 504.307pp | 504.306/-0.001 |
+| mar2025 | 506.375pp | 506.374/-0.001 |
+| oct2025 | 523.186pp | agrees         |
 
 The simple conclusion is that huismetbenen is fully agreeable for oct2025 and sep2022, maybe even for mar2025 and oct2024. But the drift for older reworks is too high and inconsistent and we want to check ourselves and find osu code that matches the wayback machine numbers.
 
 For now, we aim for parity to wayback machine numbers, or if we don't have the real game code for that we aim for parity to huismetbenen numbers. We expect a precision of 0.001pp to ensure users get the most accurate results possible.
 
 Old pp code that matches the wayback machine numbers is desperately wanted. Please make an issue or PR if you have any!
-
-## COMMITS WE USE RIGHT NOW (./osu_*)
-
-- sep2022: ppy/osu a7799e4f1e6e6e5ab92be4c116a1f9ee77460f53
-- oct2024: ppy/osu 105008672d68941679e197bb4f1bf9a6f7258f56
-- mar2025: ppy/osu 356281792a893ddf7e637937738fb2b99ff117f1
 
 ## FROM REAL OSU GAME CODE
 
