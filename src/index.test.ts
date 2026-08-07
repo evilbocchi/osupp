@@ -13,10 +13,10 @@ import {
     calculateProfilePp,
     parseBeatmap,
     type PpCalculatorResult,
-} from "../src";
+} from ".";
 
 const fixturePath = (...segments: string[]) =>
-    join(import.meta.dir, "fixtures", ...segments);
+    join(import.meta.dir, "..", "fixtures", ...segments);
 
 function readFixture(filename: string): PpCalculatorResult {
     return JSON.parse(readFileSync(fixturePath(filename), "utf8"));
@@ -75,6 +75,29 @@ function expectCloseValues(
         );
     }
 }
+
+describe("parseBeatmap", () => {
+    test.each(["164020.osu", "4921872.osu", "5047712.osu"])(
+        "parses %s into beatmap data",
+        (filename) => {
+            const content = readFileSync(fixturePath(filename), "utf8");
+            const beatmap = parseBeatmap(content);
+
+            expect(beatmap.hit_objects.length).toBeGreaterThan(0);
+            expect(
+                beatmap.num_hit_circles +
+                    beatmap.num_sliders +
+                    beatmap.num_spinners,
+            ).toBe(beatmap.hit_objects.length);
+            expect(beatmap.max_combo).toBeGreaterThanOrEqual(
+                beatmap.hit_objects.length,
+            );
+            expect(beatmap.od).toBeGreaterThanOrEqual(0);
+            expect(beatmap.ar).toBeGreaterThanOrEqual(0);
+            expect(beatmap.cs).toBeGreaterThan(0);
+        },
+    );
+});
 
 describe("calculateBonusPp", () => {
     test("starts at zero scores", () => {
