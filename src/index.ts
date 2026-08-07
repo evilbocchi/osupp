@@ -1,5 +1,11 @@
 import type { BeatmapData, ScoreData } from "./BeatmapData";
 import { parse_osu_content } from "./BeatmapData";
+import Dec2017PpCalculator from "./dec2017/Dec2017PpCalculator";
+import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
+import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
+import May2018PpCalculator from "./may2018/May2018PpCalculator";
+import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
+import Oct2025PpCalculator from "./oct2025/Oct2025PpCalculator";
 import PpCalculator, {
     calculate_bonus_pp,
     calculate_profile_pp,
@@ -9,15 +15,16 @@ import PpCalculator, {
     type ProfilePpBreakdown,
     type RulesetId,
 } from "./PpCalculator";
-import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
-import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
-import May2018PpCalculator from "./may2018/May2018PpCalculator";
-import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
-import Oct2025PpCalculator from "./oct2025/Oct2025PpCalculator";
 import Sep2022PpCalculator from "./sep2022/Sep2022PpCalculator";
 
 export type SupportedRework =
-    "jul2026" | "oct2025" | "mar2025" | "oct2024" | "sep2022" | "may2018";
+    | "jul2026"
+    | "oct2025"
+    | "mar2025"
+    | "oct2024"
+    | "sep2022"
+    | "may2018"
+    | "dec2017";
 
 export interface CreatePpCalculatorOptions {
     /** PP rework implementation to use. Defaults to mar2025. */
@@ -36,6 +43,7 @@ export interface CalculateScoreOptions extends CreatePpCalculatorOptions {
 export const rulesets = RULESET_IDS;
 
 export const reworks = {
+    dec2017: "dec2017",
     may2018: "may2018",
     jul2026: "jul2026",
     oct2025: "oct2025",
@@ -60,6 +68,8 @@ export function createPpCalculator(
     };
 
     switch (options.rework ?? reworks.mar2025) {
+        case reworks.dec2017:
+            return new Dec2017PpCalculator(calculator_options);
         case reworks.may2018:
             return new May2018PpCalculator(calculator_options);
         case reworks.jul2026:
@@ -95,6 +105,7 @@ export function calculateScore({
 export {
     calculate_bonus_pp as calculateBonusPp,
     calculate_profile_pp as calculateProfilePp,
+    Dec2017PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     Oct2024PpCalculator,

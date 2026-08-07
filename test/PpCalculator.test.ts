@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { parse_osu_content } from "../src/BeatmapData";
+import Dec2017PpCalculator from "../src/dec2017/Dec2017PpCalculator";
 import Jul2026PpCalculator from "../src/jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "../src/mar2025/Mar2025PpCalculator";
 import May2018PpCalculator from "../src/may2018/May2018PpCalculator";
@@ -102,6 +103,7 @@ describe("calculate_profile_pp", () => {
 });
 
 for (const [rework_slug, calculator_class] of [
+    ["dec2017", Dec2017PpCalculator],
     ["jul2026", Jul2026PpCalculator],
     ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],
