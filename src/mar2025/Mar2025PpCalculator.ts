@@ -4,6 +4,11 @@ import type { OsuRework } from "./AimSkill";
 import { calculate_difficulty } from "./DifficultyCalculator";
 import { calculate_performance } from "./PerformanceCalculator";
 
+/**
+ * https://osu.ppy.sh/home/news/2025-03-06-performance-points-star-rating-updates
+ *
+ * Target: actual pp values (wayback machine)
+ */
 export default class Mar2025PpCalculator extends PpCalculator {
     protected readonly rework: OsuRework = "mar2025";
 
