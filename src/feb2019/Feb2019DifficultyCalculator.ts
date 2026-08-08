@@ -106,7 +106,8 @@ function calculate_strain(
 
     for (const current of objects) {
         while (current.base_object.time > current_section_end) {
-            strain_peaks.push(current_section_peak);
+            if (object_strains.length > 0)
+                strain_peaks.push(current_section_peak);
             const previous = current.previous(0);
             current_section_peak = previous
                 ? current_strain *

@@ -361,9 +361,11 @@ export class OsuDifficultyHitObject {
         const last_obj = this.last_object;
         let scaling_factor = Math.fround(52 / this.radius);
         if (this.radius < 30) {
-            const small_circle_bonus = Math.min(30 - this.radius, 5) / 50;
+            const small_circle_bonus = Math.fround(
+                Math.min(30 - this.radius, 5) / 50,
+            );
             scaling_factor = Math.fround(
-                scaling_factor * (1 + small_circle_bonus),
+                scaling_factor * Math.fround(1 + small_circle_bonus),
             );
         }
 
@@ -373,20 +375,22 @@ export class OsuDifficultyHitObject {
             );
         }
 
-        if (base_obj.is_spinner) return;
-
         const last_cursor_pos = this.get_end_cursor_position(last_obj);
-        const dx = Math.fround(
-            Math.fround(base_obj.stacked_x * scaling_factor) -
-                Math.fround(last_cursor_pos.x * scaling_factor),
-        );
-        const dy = Math.fround(
-            Math.fround(base_obj.stacked_y * scaling_factor) -
-                Math.fround(last_cursor_pos.y * scaling_factor),
-        );
-        this.jump_distance = Math.fround(
-            Math.sqrt(Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy))),
-        );
+        if (!base_obj.is_spinner) {
+            const dx = Math.fround(
+                Math.fround(base_obj.stacked_x * scaling_factor) -
+                    Math.fround(last_cursor_pos.x * scaling_factor),
+            );
+            const dy = Math.fround(
+                Math.fround(base_obj.stacked_y * scaling_factor) -
+                    Math.fround(last_cursor_pos.y * scaling_factor),
+            );
+            this.jump_distance = Math.fround(
+                Math.sqrt(
+                    Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy)),
+                ),
+            );
+        }
 
         if (this.last_last_object) {
             const last_last_cursor_pos = this.get_end_cursor_position(

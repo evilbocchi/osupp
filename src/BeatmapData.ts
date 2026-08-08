@@ -29,6 +29,7 @@ export interface HitObject {
     slider_span_count?: number;
     slider_pixel_length?: number;
     slider_duration?: number;
+    slider_legacy_velocity?: number;
     slider_nested_times?: number[];
     slider_nested_events?: SliderNestedEvent[];
     stack_height: number;
@@ -351,12 +352,25 @@ export function parse_osu_content(content: string): BeatmapData {
         points: { x: number; y: number }[],
         expected_distance: number,
     ) => {
+        const path_distance = (
+            first: { x: number; y: number },
+            second: { x: number; y: number },
+        ) => {
+            const dx = Math.fround(first.x - second.x);
+            const dy = Math.fround(first.y - second.y);
+            return Math.fround(
+                Math.sqrt(
+                    Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy)),
+                ),
+            );
+        };
+
         if (points.length < 2) return points;
 
         const cumulative: number[] = [0];
         let calculated_length = 0;
         for (let i = 0; i < points.length - 1; i++) {
-            calculated_length += distance(points[i]!, points[i + 1]!);
+            calculated_length += path_distance(points[i]!, points[i + 1]!);
             cumulative.push(calculated_length);
         }
 
@@ -390,13 +404,24 @@ export function parse_osu_content(content: string): BeatmapData {
             const segment_length = end_distance - start_distance;
             if (segment_length <= 0) return points.slice(0, end_index);
 
-            const progress =
-                (expected_distance - start_distance) / segment_length;
+            const progress = Math.fround(
+                (expected_distance - start_distance) / segment_length,
+            );
             return [
                 ...points.slice(0, end_index),
                 {
-                    x: start.x + (end.x - start.x) * progress,
-                    y: start.y + (end.y - start.y) * progress,
+                    x: Math.fround(
+                        start.x +
+                            Math.fround(
+                                Math.fround(end.x - start.x) * progress,
+                            ),
+                    ),
+                    y: Math.fround(
+                        start.y +
+                            Math.fround(
+                                Math.fround(end.y - start.y) * progress,
+                            ),
+                    ),
                 },
             ];
         }
@@ -405,14 +430,25 @@ export function parse_osu_content(content: string): BeatmapData {
             calculated_length - cumulative[cumulative.length - 2]!;
         if (last_segment_length <= 0) return points;
 
-        const progress =
+        const progress = Math.fround(
             (expected_distance - cumulative[cumulative.length - 2]!) /
-            last_segment_length;
+                last_segment_length,
+        );
         return [
             ...points.slice(0, -1),
             {
-                x: previous.x + (last.x - previous.x) * progress,
-                y: previous.y + (last.y - previous.y) * progress,
+                x: Math.fround(
+                    previous.x +
+                        Math.fround(
+                            Math.fround(last.x - previous.x) * progress,
+                        ),
+                ),
+                y: Math.fround(
+                    previous.y +
+                        Math.fround(
+                            Math.fround(last.y - previous.y) * progress,
+                        ),
+                ),
             },
         ];
     };
@@ -423,10 +459,36 @@ export function parse_osu_content(content: string): BeatmapData {
     ): SliderPathPoint[] => {
         points = adjust_path_distance(points, expected_distance);
         let path_distance = 0;
-        return points.map((point, index) => {
-            if (index > 0) path_distance += distance(points[index - 1]!, point);
+        const result = points.map((point, index) => {
+            if (index > 0) {
+                const previous = points[index - 1]!;
+                const dx = Math.fround(point.x - previous.x);
+                const dy = Math.fround(point.y - previous.y);
+                path_distance += Math.fround(
+                    Math.sqrt(
+                        Math.fround(
+                            Math.fround(dx * dx) + Math.fround(dy * dy),
+                        ),
+                    ),
+                );
+            }
             return { ...point, path_distance };
         });
+
+        const last = points[points.length - 1];
+        const previous = points[points.length - 2];
+        if (
+            last &&
+            previous &&
+            path_distance !== expected_distance &&
+            (last.x !== previous.x ||
+                last.y !== previous.y ||
+                expected_distance <= path_distance)
+        ) {
+            result[result.length - 1]!.path_distance = expected_distance;
+        }
+
+        return result;
     };
 
     const BEZIER_TOLERANCE = 0.25;
@@ -935,6 +997,7 @@ export function parse_osu_content(content: string): BeatmapData {
                     const length = parseFloat(parts[7]!);
 
                     const sv = get_sv(time);
+                    const beat_length = get_timing_beat_length(time);
                     const scoring_distance = 100 * slider_multiplier * sv;
                     const tick_distance = scoring_distance / slider_tick_rate;
 
@@ -962,6 +1025,8 @@ export function parse_osu_content(content: string): BeatmapData {
                     hit_object.slider_span_count = slides;
                     hit_object.slider_pixel_length = length;
                     hit_object.slider_duration = lazy.duration;
+                    hit_object.slider_legacy_velocity =
+                        scoring_distance / beat_length;
                     hit_object.slider_nested_times = lazy.nested_times;
                     hit_object.slider_nested_events = lazy.nested_events;
 

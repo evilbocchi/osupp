@@ -931,6 +931,48 @@ export function prepare_hit_objects_for_difficulty(
                 continue;
             }
 
+            if (prepared.slider_legacy_velocity != null) {
+                const span_count = prepared.slider_span_count;
+                const duration =
+                    prepared.time +
+                    (span_count * prepared.slider_pixel_length) /
+                        prepared.slider_legacy_velocity -
+                    prepared.time;
+                const span_duration = duration / span_count;
+                prepared.slider_duration = duration;
+
+                if (prepared.slider_nested_events) {
+                    let span = 0;
+                    prepared.slider_nested_events =
+                        prepared.slider_nested_events.map((event) => {
+                            let time: number;
+                            if (event.type === "head") {
+                                time = prepared.time;
+                            } else if (event.type === "repeat") {
+                                span++;
+                                time = prepared.time + span * span_duration;
+                            } else if (event.type === "tail") {
+                                time = prepared.time + duration;
+                            } else {
+                                const time_progress =
+                                    span % 2 === 1
+                                        ? 1 - event.path_progress
+                                        : event.path_progress;
+                                time =
+                                    prepared.time +
+                                    span * span_duration +
+                                    time_progress * span_duration;
+                            }
+
+                            return { ...event, time };
+                        });
+                    prepared.slider_nested_times =
+                        prepared.slider_nested_events.map(
+                            (event) => event.time,
+                        );
+                }
+            }
+
             const lazy = compute_feb2019_lazy_slider_position(
                 { x: prepared.stacked_x, y: prepared.stacked_y },
                 prepared.slider_path,
@@ -1293,8 +1335,7 @@ function compute_lazy_slider_position(
 
     if (!official_jul2026) {
         lazy_travel_distance = f(
-            lazy_travel_distance *
-                f((1 + (span_count - 1) / 2.5) ** (1 / 2.5)),
+            lazy_travel_distance * f((1 + (span_count - 1) / 2.5) ** (1 / 2.5)),
         );
     }
 
@@ -1325,44 +1366,83 @@ function compute_feb2019_lazy_slider_position(
     const radius = f(64 * circle_scale_for_rework(circle_size, "feb2019"));
     const follow_circle_radius = f(radius * 3);
     const span_duration = duration / span_count;
+    const has_path_distances =
+        path.length > 0 && path[path.length - 1]!.path_distance != null;
     const legacy_path = path.map((point) => ({
         x: f(point.x),
         y: f(point.y),
-        path_distance: 0,
+        path_distance: point.path_distance ?? 0,
     }));
-    let path_distance = 0;
-    for (let index = 1; index < legacy_path.length; index++) {
-        const previous = legacy_path[index - 1]!;
-        const current = legacy_path[index]!;
-        const dx = f(current.x - previous.x);
-        const dy = f(current.y - previous.y);
-        const segment_distance = f(Math.sqrt(f(f(dx * dx) + f(dy * dy))));
 
-        if (pixel_length - path_distance < segment_distance) {
-            const ratio = f((pixel_length - path_distance) / segment_distance);
-            current.x = f(previous.x + f(dx * ratio));
-            current.y = f(previous.y + f(dy * ratio));
-            path_distance = pixel_length;
+    if (!has_path_distances) {
+        let path_distance = 0;
+        for (let index = 1; index < legacy_path.length; index++) {
+            const previous = legacy_path[index - 1]!;
+            const current = legacy_path[index]!;
+            const dx = f(current.x - previous.x);
+            const dy = f(current.y - previous.y);
+            const segment_distance = f(Math.sqrt(f(f(dx * dx) + f(dy * dy))));
+
+            if (pixel_length - path_distance < segment_distance) {
+                const ratio = f(
+                    (pixel_length - path_distance) / segment_distance,
+                );
+                current.x = f(previous.x + f(dx * ratio));
+                current.y = f(previous.y + f(dy * ratio));
+                path_distance = pixel_length;
+                current.path_distance = path_distance;
+                legacy_path.splice(index + 1);
+                break;
+            }
+
+            path_distance += segment_distance;
             current.path_distance = path_distance;
-            legacy_path.splice(index + 1);
-            break;
         }
 
-        path_distance += segment_distance;
-        current.path_distance = path_distance;
+        if (legacy_path.length > 1 && path_distance < pixel_length) {
+            const previous = legacy_path[legacy_path.length - 2]!;
+            const current = legacy_path[legacy_path.length - 1]!;
+            const dx = f(current.x - previous.x);
+            const dy = f(current.y - previous.y);
+            const segment_distance = f(Math.sqrt(f(f(dx * dx) + f(dy * dy))));
+            const ratio = f((pixel_length - path_distance) / segment_distance);
+            current.x = f(current.x + f(dx * ratio));
+            current.y = f(current.y + f(dy * ratio));
+            current.path_distance = pixel_length;
+        }
     }
 
-    if (legacy_path.length > 1 && path_distance < pixel_length) {
-        const previous = legacy_path[legacy_path.length - 2]!;
-        const current = legacy_path[legacy_path.length - 1]!;
-        const dx = f(current.x - previous.x);
-        const dy = f(current.y - previous.y);
-        const segment_distance = f(Math.sqrt(f(f(dx * dx) + f(dy * dy))));
-        const ratio = f((pixel_length - path_distance) / segment_distance);
-        current.x = f(current.x + f(dx * ratio));
-        current.y = f(current.y + f(dy * ratio));
-        current.path_distance = pixel_length;
-    }
+    const point_at_legacy_slider_path = (target_distance: number) => {
+        if (legacy_path.length === 0) return { x: 0, y: 0 };
+
+        const target = Math.max(0, target_distance);
+        const total_distance =
+            legacy_path[legacy_path.length - 1]!.path_distance;
+        if (target <= 0) return legacy_path[0]!;
+        if (target >= total_distance)
+            return legacy_path[legacy_path.length - 1]!;
+
+        let low = 1;
+        let high = legacy_path.length - 1;
+        while (low < high) {
+            const mid = Math.floor((low + high) / 2);
+            if (legacy_path[mid]!.path_distance < target) low = mid + 1;
+            else high = mid;
+        }
+
+        const end = legacy_path[low]!;
+        const start = legacy_path[low - 1]!;
+        const start_distance = start.path_distance;
+        const end_distance = end.path_distance;
+        const segment_distance = end_distance - start_distance;
+        if (segment_distance <= 0) return end;
+
+        const progress = f((target - start_distance) / segment_distance);
+        return {
+            x: f(start.x + f(f(end.x - start.x) * progress)),
+            y: f(start.y + f(f(end.y - start.y) * progress)),
+        };
+    };
 
     let lazy_end_x = f(start.x);
     let lazy_end_y = f(start.y);
@@ -1383,15 +1463,11 @@ function compute_feb2019_lazy_slider_position(
           }));
 
     for (let index = 1; index < scoring_times.length; index++) {
-        const progress = (scoring_times[index]!.time - start_time) / duration;
-        const span_progress = (progress * span_count) % 1;
-        const span = Math.floor(progress * span_count);
+        const progress =
+            (scoring_times[index]!.time - start_time) / span_duration;
         const path_progress =
-            span % 2 === 1 ? 1 - span_progress : span_progress;
-        const point = point_at_slider_path(
-            legacy_path,
-            path_progress * pixel_length,
-        );
+            progress % 2 >= 1 ? 1 - (progress % 1) : progress % 1;
+        const point = point_at_legacy_slider_path(path_progress * pixel_length);
         const point_x = f(start.x + f(point.x));
         const point_y = f(start.y + f(point.y));
         const diff_x = f(point_x - lazy_end_x);
@@ -1402,8 +1478,9 @@ function compute_feb2019_lazy_slider_position(
 
         if (distance > follow_circle_radius) {
             const movement = f(distance - follow_circle_radius);
-            const direction_x = f(diff_x / distance);
-            const direction_y = f(diff_y / distance);
+            const inverse_distance = f(1 / distance);
+            const direction_x = f(diff_x * inverse_distance);
+            const direction_y = f(diff_y * inverse_distance);
             lazy_end_x = f(lazy_end_x + f(direction_x * movement));
             lazy_end_y = f(lazy_end_y + f(direction_y * movement));
             lazy_travel_distance = f(lazy_travel_distance + movement);
