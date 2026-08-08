@@ -1,0 +1,55 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1620144,
+        "beatmap": "Tanaka Hirokazu - C-TYPE (Arf) [Bonsai's BasS-TYPE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 97.11934156378601,
+        "combo": 162,
+        "statistics": {
+            "great": 155,
+            "ok": 7,
+            "meh": 0,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 794.2773705926019,
+        "speed": 97.08099369203366,
+        "accuracy": 86.22532186502538,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1038.8168275529538
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.656317353872282,
+        "max_combo": 162,
+        "aim_difficulty": 5.519400832281079,
+        "speed_difficulty": 2.754432210901327,
+        "approach_rate": 11,
+        "overall_difficulty": 11.0833,
+        "circle_size": 8.06
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 1473890,
+    "score_id": 1069222342
+}

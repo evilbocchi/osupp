@@ -1,0 +1,55 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5416765,
+        "beatmap": "Altermis & takehirotei & Violet Delta - Christmas Slop (Sotarks) [Nymphe's Ultra+]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 100,
+        "combo": 392,
+        "statistics": {
+            "great": 280,
+            "ok": 0,
+            "meh": 0,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1027.3906435970723,
+        "speed": 347.30741616060897,
+        "accuracy": 160.85037899278328,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1596.2335330276328
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.930230398739958,
+        "max_combo": 392,
+        "aim_difficulty": 5.918472999242034,
+        "speed_difficulty": 4.1050417997538124,
+        "approach_rate": 7.61333,
+        "overall_difficulty": 7.52778,
+        "circle_size": 2
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 10077431,
+    "score_id": 6133830008
+}

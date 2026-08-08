@@ -1,0 +1,49 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2844649,
+        "beatmap": "t+pazolite - Oshama Scramble! (IOException Edit) (IOException) [Special]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 95.66801619433198,
+        "combo": 353,
+        "statistics": {
+            "great": 711,
+            "ok": 37,
+            "meh": 1,
+            "miss": 5
+        }
+    },
+    "performance_attributes": {
+        "aim": 176.11651771734972,
+        "speed": 156.4825427929747,
+        "accuracy": 14.362120198938161,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 360.5540545360757
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.69006893260509,
+        "max_combo": 1322,
+        "aim_difficulty": 4.893403286227911,
+        "speed_difficulty": 4.699928006526448,
+        "approach_rate": 10.6667,
+        "overall_difficulty": 10.4167,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 7562902,
+    "score_id": 3773020400
+}

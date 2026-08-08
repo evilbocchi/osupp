@@ -1,0 +1,49 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4874327,
+        "beatmap": "Jeff Williams feat. Casey Lee Williams - Time to Say Goodbye (TV Size) (My Angel Ram) [No Return]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 98.24407374890255,
+        "combo": 261,
+        "statistics": {
+            "great": 191,
+            "ok": 6,
+            "meh": 0,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 1142.6868434746145,
+        "speed": 326.67014042966093,
+        "accuracy": 83.0830153335443,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1633.8230467541096
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.301588299211359,
+        "max_combo": 261,
+        "aim_difficulty": 6.178982637894468,
+        "speed_difficulty": 4.066228684739312,
+        "approach_rate": 10.8667,
+        "overall_difficulty": 10.9722,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 7562902,
+    "score_id": 6591717443
+}

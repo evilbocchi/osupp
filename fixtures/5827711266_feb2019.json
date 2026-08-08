@@ -1,0 +1,55 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5098651,
+        "beatmap": "BAD NERVES - ANTIDOTE (midwest) [SMOKE'S ANTIDOTE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 98.10606060606061,
+        "combo": 343,
+        "statistics": {
+            "great": 514,
+            "ok": 12,
+            "meh": 0,
+            "miss": 2
+        }
+    },
+    "performance_attributes": {
+        "aim": 441.5734774154049,
+        "speed": 142.85122851088778,
+        "accuracy": 87.87091224610974,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 696.9069756704042
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.435446529313575,
+        "max_combo": 798,
+        "aim_difficulty": 5.662980145074588,
+        "speed_difficulty": 3.8819526234033863,
+        "approach_rate": 7.58667,
+        "overall_difficulty": 7.75,
+        "circle_size": 1.75
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 10077431,
+    "score_id": 5827711266
+}

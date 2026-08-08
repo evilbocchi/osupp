@@ -1,0 +1,58 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4791385,
+        "beatmap": "toby fox - Song That Might Play When You Fight Sans (Smoke) [browiec's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "NF"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 93.69658119658119,
+        "combo": 286,
+        "statistics": {
+            "great": 283,
+            "ok": 27,
+            "meh": 2,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 571.6765192325996,
+        "speed": 238.34367240573116,
+        "accuracy": 19.93571053644286,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 873.2939392138367
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.122574365724754,
+        "max_combo": 423,
+        "aim_difficulty": 5.397731365562546,
+        "speed_difficulty": 4.05195463476187,
+        "approach_rate": 11,
+        "overall_difficulty": 11.0833,
+        "circle_size": 3.9
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 10077431,
+    "score_id": 4111017165
+}

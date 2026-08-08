@@ -1,0 +1,52 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5246964,
+        "beatmap": "Alex C. feat. Yasmin K. - Angel Of Darkness (Video Mix) (Nightcore Mix) (239hachiman) [Ultra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 95.37323701410388,
+        "combo": 713,
+        "statistics": {
+            "great": 904,
+            "ok": 60,
+            "meh": 1,
+            "miss": 4
+        }
+    },
+    "performance_attributes": {
+        "aim": 257.93488825567135,
+        "speed": 376.56674635820565,
+        "accuracy": 64.94557592561448,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 721.1840822077181
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.627145963075723,
+        "max_combo": 1239,
+        "aim_difficulty": 4.382462240249397,
+        "speed_difficulty": 4.95727656196735,
+        "approach_rate": 10.8,
+        "overall_difficulty": 11.0833,
+        "circle_size": 3.8
+    },
+    "rework_data": {
+        "id": 102,
+        "code": "pp_feb2019",
+        "version": 1,
+        "last_updated": "2025-02-12 08:30"
+    },
+    "user_id": 7562902,
+    "score_id": 5460844152
+}
