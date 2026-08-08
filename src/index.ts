@@ -5,6 +5,7 @@ import Feb2019PpCalculator from "./feb2019/Feb2019PpCalculator";
 import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
 import May2018PpCalculator from "./may2018/May2018PpCalculator";
+import Nov2021PpCalculator from "./nov2021/Nov2021PpCalculator";
 import Oct2024PpCalculator from "./oct2024/Oct2024PpCalculator";
 import Oct2025PpCalculator from "./oct2025/Oct2025PpCalculator";
 import PpCalculator, {
@@ -19,6 +20,7 @@ import PpCalculator, {
 import Sep2022PpCalculator from "./sep2022/Sep2022PpCalculator";
 
 export type SupportedRework =
+    | "nov2021"
     | "jul2026"
     | "oct2025"
     | "mar2025"
@@ -45,6 +47,7 @@ export interface CalculateScoreOptions extends CreatePpCalculatorOptions {
 export const rulesets = RULESET_IDS;
 
 export const reworks = {
+    nov2021: "nov2021",
     dec2017: "dec2017",
     feb2019: "feb2019",
     may2018: "may2018",
@@ -71,6 +74,8 @@ export function createPpCalculator(
     };
 
     switch (options.rework ?? reworks.mar2025) {
+        case reworks.nov2021:
+            return new Nov2021PpCalculator(calculator_options);
         case reworks.dec2017:
             return new Dec2017PpCalculator(calculator_options);
         case reworks.feb2019:
@@ -115,6 +120,7 @@ export {
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     May2018PpCalculator,
+    Nov2021PpCalculator,
     Oct2024PpCalculator,
     Oct2025PpCalculator,
     Sep2022PpCalculator,

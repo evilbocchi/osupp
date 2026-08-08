@@ -28,8 +28,11 @@ function calculate_performance_values(
     const count_meh = stats.meh ?? 0;
     const count_miss = stats.miss ?? 0;
     const total_hits = count_great + count_good + count_meh + count_miss;
-    const score_accuracy = score.accuracy ?? 0;
-    const accuracy = score_accuracy > 1 ? score_accuracy / 100 : score_accuracy;
+    const accuracy =
+        total_hits > 0
+            ? (count_great * 300 + count_good * 100 + count_meh * 50) /
+              (total_hits * 300)
+            : 0;
     const max_combo = difficulty.max_combo;
     const combo = source_score.combo ?? 0;
 
@@ -73,8 +76,7 @@ function calculate_performance_values(
         combo_scaling;
     let speed_approach_rate_factor = 1;
     if (difficulty.approach_rate > 10.33) {
-        speed_approach_rate_factor +=
-            0.3 * (difficulty.approach_rate - 10.33);
+        speed_approach_rate_factor += 0.3 * (difficulty.approach_rate - 10.33);
     }
     speed *= speed_approach_rate_factor;
     if (mods.includes("HD"))
@@ -109,7 +111,7 @@ function calculate_performance_values(
         aim,
         speed,
         accuracy: accuracy_value,
-            effective_miss_count: 0,
+        effective_miss_count: 0,
         pp,
     };
 }

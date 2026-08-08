@@ -7,6 +7,7 @@ import {
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     May2018PpCalculator,
+    Nov2021PpCalculator,
     Oct2024PpCalculator,
     Oct2025PpCalculator,
     Sep2022PpCalculator,
@@ -129,6 +130,7 @@ describe("calculateProfilePp", () => {
 describe.each([
     ["dec2017", Dec2017PpCalculator],
     ["feb2019", Feb2019PpCalculator],
+    ["nov2021", Nov2021PpCalculator],
     ["jul2026", Jul2026PpCalculator],
     ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],

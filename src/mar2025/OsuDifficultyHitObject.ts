@@ -15,11 +15,18 @@ function circle_scale_for_rework(
     circle_size: number,
     rework: OsuRework,
 ): number {
+    if (rework === "feb2019") {
+        const f = Math.fround;
+        const cs = f(circle_size);
+        const term = f(f(0.7) * f(cs - f(5)));
+        return f(f(f(1) - f(term / f(5))) / f(2));
+    }
+
     return rework === "jul2026"
         ? osu_circle_scale(circle_size)
         : Math.fround(
               ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) *
-                  (rework === "sep2022" || rework === "feb2019" ? 1 : 1.00041),
+                  (rework === "sep2022" ? 1 : 1.00041),
           );
 }
 
@@ -385,10 +392,14 @@ export class OsuDifficultyHitObject {
             const last_last_cursor_pos = this.get_end_cursor_position(
                 this.last_last_object,
             );
-            const v1x = last_last_cursor_pos.x - last_obj.stacked_x;
-            const v1y = last_last_cursor_pos.y - last_obj.stacked_y;
-            const v2x = base_obj.stacked_x - last_cursor_pos.x;
-            const v2y = base_obj.stacked_y - last_cursor_pos.y;
+            const v1x = Math.fround(
+                last_last_cursor_pos.x - last_obj.stacked_x,
+            );
+            const v1y = Math.fround(
+                last_last_cursor_pos.y - last_obj.stacked_y,
+            );
+            const v2x = Math.fround(base_obj.stacked_x - last_cursor_pos.x);
+            const v2y = Math.fround(base_obj.stacked_y - last_cursor_pos.y);
             const dot = Math.fround(
                 Math.fround(v1x * v2x) + Math.fround(v1y * v2y),
             );
