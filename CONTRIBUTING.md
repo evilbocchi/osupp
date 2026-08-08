@@ -18,7 +18,7 @@ standard:
 - jul2015: not triaged
 - dec2017: complete* (low precision)
 - may2018: complete* (low precision)
-- feb2019: not triaged
+- feb2019: in progress
 - jan2021: not triaged
 - jul2021: not triaged
 - nov2021: not triaged
