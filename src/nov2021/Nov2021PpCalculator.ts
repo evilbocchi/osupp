@@ -200,6 +200,11 @@ function clamp(value: number, min: number, max: number): number {
     return Math.max(min, Math.min(max, value));
 }
 
+/**
+ * https://osu.ppy.sh/home/news/2021-11-09-performance-points-star-rating-updates
+ *
+ * Target: osu 5a3be778a172405402bdcaadfdfdb7bb04ce190d
+ */
 export default class Nov2021PpCalculator extends PpCalculator {
     protected calculate_performance(score: ScoreData, beatmap: BeatmapData) {
         const source_score = score as ScoreData & { combo?: number };

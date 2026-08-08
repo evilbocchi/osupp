@@ -116,6 +116,11 @@ function calculate_performance_values(
     };
 }
 
+/**
+ * https://osu.ppy.sh/home/news/2019-02-05-new-changes-to-star-rating-performance-points
+ *
+ * Target: actual pp values (wayback machine)
+ */
 export default class Feb2019PpCalculator extends PpCalculator {
     protected calculate_performance(score: ScoreData, beatmap: BeatmapData) {
         const difficulty = calculate_feb2019_difficulty(
