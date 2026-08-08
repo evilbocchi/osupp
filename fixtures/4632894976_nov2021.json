@@ -1,0 +1,63 @@
+{
+    "score": {
+        "id": 4632894976,
+        "user_id": 15406985,
+        "ruleset_id": 0,
+        "beatmap_id": 2496721,
+        "beatmap": "Fleshgod Apocalypse - The Violation (Mazzerin) [pishi's Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 815872,
+        "legacy_total_score": 74609857,
+        "accuracy": 94.69619999999999,
+        "max_combo": 2018,
+        "combo": 2018,
+        "statistics": {
+            "ok": 150,
+            "meh": 5,
+            "great": 1809
+        },
+        "ended_at": "2025-04-05T14:04:06Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "pp": 1548.4312908990887,
+    "performance_attributes": {
+        "aim": 349.68297011103436,
+        "speed": 1083.4780459789038,
+        "accuracy": 29.88532181618903,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 9,
+        "ar": 9.5,
+        "max_combo": 3436,
+        "pp": 1548.4312908990887
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.113296291917438,
+        "max_combo": 3436,
+        "aim_strain": 4.574022828248331,
+        "speed_strain": 6.659592860729319,
+        "slider_factor": 0.9974345543149005,
+        "approach_rate": 9.5,
+        "overall_difficulty": 9,
+        "circle_size": 2
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 1651.92,
+    "user_id": 15406985,
+    "score_id": 4632894976
+}

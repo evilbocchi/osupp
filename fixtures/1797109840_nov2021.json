@@ -1,0 +1,62 @@
+{
+    "score": {
+        "id": 1797109840,
+        "user_id": 1719471,
+        "ruleset_id": 0,
+        "beatmap_id": 2654458,
+        "beatmap": "UNDEAD CORPORATION - Frozen (Daycore) [Everything Will Freeze]",
+        "mods": [
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1024507,
+        "legacy_total_score": 56787063,
+        "accuracy": 98.5108,
+        "max_combo": 1682,
+        "combo": 1682,
+        "statistics": {
+            "ok": 30,
+            "great": 1313
+        },
+        "ended_at": "2023-12-04T23:16:31Z",
+        "rank": "S",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "pp": 804.2367198513278,
+    "performance_attributes": {
+        "aim": 346.05371769227656,
+        "speed": 320.4649261421177,
+        "accuracy": 120.44369251247113,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 10,
+        "ar": 9.8,
+        "max_combo": 1687,
+        "pp": 804.2367198513278
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.503944125287637,
+        "max_combo": 1687,
+        "aim_strain": 4.174595718674043,
+        "speed_strain": 4.010249900272967,
+        "slider_factor": 0.9875304070075545,
+        "approach_rate": 9.8,
+        "overall_difficulty": 10,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 811.584,
+    "user_id": 1719471,
+    "score_id": 1797109840
+}

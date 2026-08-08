@@ -1,0 +1,66 @@
+{
+    "score": {
+        "id": 1773742642,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 2240526,
+        "beatmap": "TUYU - Anoyo-iki no Bus ni Notte Saraba. (SnowNiNo_) [Yandere]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1027556,
+        "legacy_total_score": 28807374,
+        "accuracy": 96.2025,
+        "max_combo": 1022,
+        "combo": 1022,
+        "statistics": {
+            "ok": 45,
+            "miss": 6,
+            "great": 897
+        },
+        "ended_at": "2023-10-01T10:25:58Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "pp": 1376.748989323842,
+    "performance_attributes": {
+        "aim": 915.5543220820082,
+        "speed": 326.6059362661598,
+        "accuracy": 71.98795341042927,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 9.5,
+        "ar": 9.8,
+        "max_combo": 1230,
+        "pp": 1376.748989323842
+    },
+    "difficulty_attributes": {
+        "star_rating": 11.113057966312313,
+        "max_combo": 1230,
+        "aim_strain": 6.094207386752186,
+        "speed_strain": 4.232373262567519,
+        "slider_factor": 0.9896029235279337,
+        "approach_rate": 9.8,
+        "overall_difficulty": 9.5,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 1131.3,
+    "user_id": 7562902,
+    "score_id": 1773742642
+}

@@ -1,0 +1,65 @@
+{
+    "score": {
+        "id": 5508451250,
+        "user_id": 6567297,
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1280978,
+        "legacy_total_score": 24287660,
+        "accuracy": 99.8079,
+        "max_combo": 938,
+        "combo": 938,
+        "statistics": {
+            "ok": 2,
+            "great": 692
+        },
+        "ended_at": "2025-09-25T21:59:32Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": true,
+        "legacy_perfect": true
+    },
+    "pp": 1045.1646232135106,
+    "performance_attributes": {
+        "aim": 277.32803639668373,
+        "speed": 335.29401486626557,
+        "accuracy": 147.91053773082643,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 10,
+        "ar": 9.7,
+        "max_combo": 938,
+        "pp": 1045.1646232135106
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.67930426133784,
+        "max_combo": 938,
+        "aim_strain": 4.002455914935071,
+        "speed_strain": 4.180025815711575,
+        "slider_factor": 0.9981141558174111,
+        "approach_rate": 9.7,
+        "overall_difficulty": 10,
+        "circle_size": 4.5
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 1027.01,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}

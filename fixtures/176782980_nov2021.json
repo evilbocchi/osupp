@@ -20,22 +20,23 @@
             "slider_tail_miss": 0
         }
     },
-    "pp": 546.9126935769505,
+    "pp": 547.8100264603037,
     "performance_attributes": {
-        "aim": 204.2761942400122,
-        "speed": 266.87516986507256,
+        "aim": 204.27619424001216,
+        "speed": 267.7261926292607,
         "accuracy": 61.35214215293208,
         "flashlight": 0,
+        "effective_miss_count": 0,
         "od": 8,
         "ar": 9,
         "max_combo": 2385,
-        "pp": 546.9126935769505
+        "pp": 547.8100264603037
     },
     "difficulty_attributes": {
-        "star_rating": 7.519303642924295,
+        "star_rating": 7.523817433239596,
         "max_combo": 2385,
         "aim_strain": 3.4522674726242832,
-        "speed_strain": 3.7718237000039756,
+        "speed_strain": 3.7757713576721557,
         "slider_factor": 0.9954493248500754,
         "approach_rate": 9,
         "overall_difficulty": 8,
@@ -45,9 +46,10 @@
         "id": 20,
         "code": "pp_nov2021",
         "version": 3,
-        "last_updated": "2021-04-07 20:14"
+        "last_updated": "2021-11-12 21:41"
     },
     "live_pp": 471.628,
+    "historical_pp": 547.81,
     "user_id": 352328,
     "score_id": 176782980
 }

@@ -1,0 +1,65 @@
+{
+    "score": {
+        "id": 1679573718,
+        "user_id": 6600930,
+        "ruleset_id": 0,
+        "beatmap_id": 646428,
+        "beatmap": "Go Ichinose - Encounter! Psychic (baraatje123) [Irre's Extra]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1115637,
+        "legacy_total_score": 949703,
+        "accuracy": 96.1749,
+        "max_combo": 212,
+        "combo": 212,
+        "statistics": {
+            "ok": 7,
+            "great": 115
+        },
+        "ended_at": "2023-02-06T13:07:31Z",
+        "rank": "SH",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "pp": 402.4412047789144,
+    "performance_attributes": {
+        "aim": 278.8111153851471,
+        "speed": 96.17751006180417,
+        "accuracy": 4.9075837468514925,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 7.5,
+        "ar": 9,
+        "max_combo": 218,
+        "pp": 402.4412047789144
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.9437330975658815,
+        "max_combo": 218,
+        "aim_strain": 4.3907457337967015,
+        "speed_strain": 2.9390260962321704,
+        "slider_factor": 0.8288787775237624,
+        "approach_rate": 9,
+        "overall_difficulty": 7.5,
+        "circle_size": 7
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 520.653,
+    "user_id": 6600930,
+    "score_id": 1679573718
+}

@@ -1,0 +1,66 @@
+{
+    "score": {
+        "id": 6905328546,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 5577996,
+        "beatmap": "Ariabl'eyeS - Souzou no Idea (Maaadbot) [Eternity]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 716826,
+        "legacy_total_score": 11481568,
+        "accuracy": 96.6967,
+        "max_combo": 428,
+        "combo": 428,
+        "statistics": {
+            "ok": 59,
+            "miss": 12,
+            "great": 1483
+        },
+        "ended_at": "2026-06-18T17:50:01Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "pp": 624.5387321619909,
+    "performance_attributes": {
+        "aim": 413.15160958959035,
+        "speed": 115.40818705947608,
+        "accuracy": 71.34925738946471,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "od": 10,
+        "ar": 10,
+        "max_combo": 2405,
+        "pp": 624.5387321619909
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.568316235587066,
+        "max_combo": 2405,
+        "aim_strain": 7.036429463483733,
+        "speed_strain": 4.409695058540471,
+        "slider_factor": 0.9903366147430506,
+        "approach_rate": 10,
+        "overall_difficulty": 10,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "id": 20,
+        "code": "pp_nov2021",
+        "version": 3,
+        "last_updated": "2021-11-12 21:41"
+    },
+    "live_pp": 1523.13,
+    "user_id": 7562902,
+    "score_id": 6905328546
+}
