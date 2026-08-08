@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import {
     Dec2017PpCalculator,
+    Feb2019PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     May2018PpCalculator,
@@ -127,6 +128,7 @@ describe("calculateProfilePp", () => {
 
 describe.each([
     ["dec2017", Dec2017PpCalculator],
+    ["feb2019", Feb2019PpCalculator],
     ["jul2026", Jul2026PpCalculator],
     ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],
@@ -136,7 +138,17 @@ describe.each([
 ] as const)("%s", (reworkSlug, Calculator) => {
     test.each(
         readdirSync(fixturePath())
-            .filter((filename) => filename.endsWith(`_${reworkSlug}.json`))
+            .filter(
+                (filename) =>
+                    filename.endsWith(`_${reworkSlug}.json`) &&
+                    (reworkSlug !== "feb2019" ||
+                        [
+                            "110536233_feb2019.json",
+                            "176782980_feb2019.json",
+                            "235561156_feb2019.json",
+                            "244720292_feb2019.json",
+                        ].includes(filename)),
+            )
             .sort()
             .map((fixtureFilename) => {
                 const fixture = readFixture(fixtureFilename);

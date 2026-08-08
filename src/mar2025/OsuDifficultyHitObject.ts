@@ -19,7 +19,7 @@ function circle_scale_for_rework(
         ? osu_circle_scale(circle_size)
         : Math.fround(
               ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) *
-                  (rework === "sep2022" ? 1 : 1.00041),
+                  (rework === "sep2022" || rework === "feb2019" ? 1 : 1.00041),
           );
 }
 
@@ -82,7 +82,10 @@ export class OsuDifficultyHitObject {
                 ? hit_object.end_time / clock_rate
                 : this.start_time;
 
-        this.strain_time = Math.max(MIN_DELTA_TIME, this.delta_time);
+        this.strain_time = Math.max(
+            this.rework === "feb2019" ? 50 : MIN_DELTA_TIME,
+            this.delta_time,
+        );
         this.adjusted_delta_time = this.strain_time;
         this.last_object_end_delta_time =
             this.rework === "jul2026" && this.previous(0)
@@ -194,6 +197,11 @@ export class OsuDifficultyHitObject {
     }
 
     private set_distances(clock_rate: number, circle_size: number): void {
+        if (this.rework === "feb2019") {
+            this.set_feb2019_distances();
+            return;
+        }
+
         if (this.rework !== "jul2026") {
             this.set_legacy_distances(clock_rate, circle_size);
             return;
@@ -341,6 +349,50 @@ export class OsuDifficultyHitObject {
         }
     }
 
+    private set_feb2019_distances(): void {
+        const base_obj = this.base_object;
+        const last_obj = this.last_object;
+        const scaling_factor = Math.fround(52 / this.radius);
+
+        if (last_obj.is_slider && last_obj.lazy_travel_distance != null) {
+            this.travel_distance = Math.fround(
+                last_obj.lazy_travel_distance * scaling_factor,
+            );
+        }
+
+        if (base_obj.is_spinner) return;
+
+        const last_cursor_pos = this.get_end_cursor_position(last_obj);
+        const dx = Math.fround(
+            Math.fround(base_obj.stacked_x * scaling_factor) -
+                Math.fround(last_cursor_pos.x * scaling_factor),
+        );
+        const dy = Math.fround(
+            Math.fround(base_obj.stacked_y * scaling_factor) -
+                Math.fround(last_cursor_pos.y * scaling_factor),
+        );
+        this.jump_distance = Math.fround(
+            Math.sqrt(Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy))),
+        );
+
+        if (this.last_last_object) {
+            const last_last_cursor_pos = this.get_end_cursor_position(
+                this.last_last_object,
+            );
+            const v1x = last_last_cursor_pos.x - last_obj.stacked_x;
+            const v1y = last_last_cursor_pos.y - last_obj.stacked_y;
+            const v2x = base_obj.stacked_x - last_cursor_pos.x;
+            const v2y = base_obj.stacked_y - last_cursor_pos.y;
+            const dot = Math.fround(
+                Math.fround(v1x * v2x) + Math.fround(v1y * v2y),
+            );
+            const det = Math.fround(
+                Math.fround(v1x * v2y) - Math.fround(v1y * v2x),
+            );
+            this.angle = Math.abs(Math.atan2(det, dot));
+        }
+    }
+
     private set_legacy_distances(
         clock_rate: number,
         circle_size: number,
@@ -361,7 +413,9 @@ export class OsuDifficultyHitObject {
 
         const obj_scale = circle_scale_for_rework(circle_size, this.rework);
         const radius = Math.fround(64 * obj_scale);
-        let scaling_factor = Math.fround(NORMALIZED_RADIUS / radius);
+        const normalized_radius =
+            this.rework === "feb2019" ? 52 : NORMALIZED_RADIUS;
+        let scaling_factor = Math.fround(normalized_radius / radius);
         if (this.rework !== "oct2025" && radius < 30) {
             const small_circle_bonus = Math.min(30 - radius, 5) / 50;
             scaling_factor = Math.fround(
@@ -547,6 +601,10 @@ export class OsuDifficultyHitObject {
 
     private get_end_cursor_position(obj: HitObject): { x: number; y: number } {
         if (obj.is_slider && obj.lazy_end_x != null && obj.lazy_end_y != null) {
+            if (this.rework === "feb2019") {
+                return { x: obj.lazy_end_x, y: obj.lazy_end_y };
+            }
+
             const stack_offset_x =
                 this.rework === "jul2026" ? 0 : obj.stacked_x - obj.x;
             const stack_offset_y =

@@ -88,7 +88,7 @@ function circle_scale_for_rework(
         ? osu_circle_scale(circle_size)
         : Math.fround(
               ((1.0 - (0.7 * (circle_size - 5)) / 5) / 2) *
-                  (rework === "sep2022" ? 1 : 1.00041),
+                  (rework === "sep2022" || rework === "feb2019" ? 1 : 1.00041),
           );
 }
 
@@ -863,6 +863,7 @@ export function prepare_hit_objects_for_difficulty(
 
         if (
             rework !== "jul2026" &&
+            rework !== "feb2019" &&
             prepared.is_slider &&
             prepared.slider_path &&
             prepared.slider_span_count != null &&
@@ -906,6 +907,37 @@ export function prepare_hit_objects_for_difficulty(
         const offset = Math.fround(hit_object.stack_height * obj_scale * -6.4);
         hit_object.stacked_x = Math.fround(hit_object.x + offset);
         hit_object.stacked_y = Math.fround(hit_object.y + offset);
+    }
+
+    if (rework === "feb2019") {
+        for (const prepared of hit_objects) {
+            if (
+                !prepared.is_slider ||
+                !prepared.slider_path ||
+                prepared.slider_span_count == null ||
+                prepared.slider_pixel_length == null ||
+                prepared.slider_duration == null ||
+                !prepared.slider_nested_times
+            ) {
+                continue;
+            }
+
+            const lazy = compute_feb2019_lazy_slider_position(
+                { x: prepared.stacked_x, y: prepared.stacked_y },
+                prepared.slider_path,
+                prepared.slider_span_count,
+                prepared.slider_pixel_length,
+                prepared.time,
+                prepared.slider_duration,
+                prepared.slider_nested_times,
+                prepared.slider_nested_events,
+                circle_size,
+            );
+            prepared.lazy_end_x = lazy.lazy_end_x;
+            prepared.lazy_end_y = lazy.lazy_end_y;
+            prepared.lazy_travel_distance = lazy.lazy_travel_distance;
+            prepared.lazy_travel_time = lazy.lazy_travel_time;
+        }
     }
 
     if (rework === "jul2026") {
@@ -1244,5 +1276,71 @@ function compute_lazy_slider_position(
         lazy_travel_time,
         tail_x: tail.x,
         tail_y: tail.y,
+    };
+}
+
+function compute_feb2019_lazy_slider_position(
+    start: { x: number; y: number },
+    path: SliderPathPoint[],
+    span_count: number,
+    pixel_length: number,
+    start_time: number,
+    duration: number,
+    nested_times: number[],
+    nested_events: SliderNestedEvent[] | undefined,
+    circle_size: number,
+) {
+    const f = Math.fround;
+    const radius = f(64 * circle_scale_for_rework(circle_size, "feb2019"));
+    const follow_circle_radius = f(radius * 3);
+    const span_duration = duration / span_count;
+    let lazy_end_x = f(start.x);
+    let lazy_end_y = f(start.y);
+    let lazy_travel_distance = 0;
+
+    const scoring_times = nested_events
+        ? nested_events
+              .map((event) => ({
+                  time:
+                      event.type === "tail"
+                          ? Math.max(start_time + duration / 2, event.time - 36)
+                          : event.time,
+              }))
+              .sort((first, second) => first.time - second.time)
+        : nested_times.map((time, index) => ({
+              time:
+                  index === nested_times.length - 1
+                      ? Math.max(start_time + duration / 2, time - 36)
+                      : time,
+          }));
+
+    for (let index = 1; index < scoring_times.length; index++) {
+        const progress = (scoring_times[index]!.time - start_time) / duration;
+        const span_progress = (progress * span_count) % 1;
+        const span = Math.floor(progress * span_count);
+        const path_progress =
+            span % 2 === 1 ? 1 - span_progress : span_progress;
+        const point = point_at_slider_path(path, path_progress * pixel_length);
+        const point_x = f(start.x + point.x);
+        const point_y = f(start.y + point.y);
+        const diff_x = f(point_x - lazy_end_x);
+        const diff_y = f(point_y - lazy_end_y);
+        const distance = f(
+            Math.sqrt(f(f(diff_x * diff_x) + f(diff_y * diff_y))),
+        );
+
+        if (distance > follow_circle_radius) {
+            const movement = f(distance - follow_circle_radius);
+            lazy_end_x = f(lazy_end_x + f((diff_x / distance) * movement));
+            lazy_end_y = f(lazy_end_y + f((diff_y / distance) * movement));
+            lazy_travel_distance = f(lazy_travel_distance + movement);
+        }
+    }
+
+    return {
+        lazy_end_x,
+        lazy_end_y,
+        lazy_travel_distance,
+        lazy_travel_time: span_duration * span_count,
     };
 }
