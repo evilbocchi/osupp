@@ -28,18 +28,18 @@
         }
     },
     "performance_attributes": {
-        "aim": 1027.3906435970723,
-        "speed": 347.30741616060897,
-        "accuracy": 160.85037899278328,
+        "aim": 699.1259175214559,
+        "speed": 324.4626767549291,
+        "accuracy": 43.57509037170772,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 1596.2335330276328
+        "pp": 1116.2532811369122
     },
     "difficulty_attributes": {
-        "star_rating": 10.930230398739958,
+        "star_rating": 10.005203987559565,
         "max_combo": 392,
-        "aim_difficulty": 5.918472999242034,
-        "speed_difficulty": 4.1050417997538124,
+        "aim_difficulty": 5.301784774652423,
+        "speed_difficulty": 4.105053651161863,
         "approach_rate": 7.61333,
         "overall_difficulty": 7.52778,
         "circle_size": 2

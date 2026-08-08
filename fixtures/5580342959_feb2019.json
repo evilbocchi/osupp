@@ -19,12 +19,12 @@
         }
     },
     "performance_attributes": {
-        "aim": 194.29573612923534,
+        "aim": 463.55724493976015,
         "speed": 280.0215344483899,
-        "accuracy": 144.5016864523256,
+        "accuracy": 147.39171742522117,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 629.4860936672309
+        "pp": 911.7790461332085
     },
     "difficulty_attributes": {
         "star_rating": 7.4793660916508395,
