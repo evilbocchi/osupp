@@ -138,17 +138,7 @@ describe.each([
 ] as const)("%s", (reworkSlug, Calculator) => {
     test.each(
         readdirSync(fixturePath())
-            .filter(
-                (filename) =>
-                    filename.endsWith(`_${reworkSlug}.json`) &&
-                    (reworkSlug !== "feb2019" ||
-                        [
-                            "110536233_feb2019.json",
-                            "176782980_feb2019.json",
-                            "235561156_feb2019.json",
-                            "244720292_feb2019.json",
-                        ].includes(filename)),
-            )
+            .filter((filename) => filename.endsWith(`_${reworkSlug}.json`))
             .sort()
             .map((fixtureFilename) => {
                 const fixture = readFixture(fixtureFilename);
