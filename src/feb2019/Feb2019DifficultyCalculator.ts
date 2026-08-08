@@ -237,7 +237,7 @@ export function calculate_feb2019_difficulty(
         total_hits: beatmap.hit_objects.length,
         effective_ar,
         effective_od,
-        hit_window_great: (80 - 6 * od) / clock_rate,
+        hit_window_great: Math.trunc(80 - 6 * od) / clock_rate,
         hit_window_ok: (140 - 8 * od) / clock_rate,
         hit_window_meh: (200 - 10 * od) / clock_rate,
         drain_rate: hp,

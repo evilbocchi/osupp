@@ -70,8 +70,13 @@ function calculate_performance_values(
         base_value(difficulty.speed_difficulty) *
         length_bonus *
         miss_penalty *
-        combo_scaling *
-        approach_rate_factor;
+        combo_scaling;
+    let speed_approach_rate_factor = 1;
+    if (difficulty.approach_rate > 10.33) {
+        speed_approach_rate_factor +=
+            0.3 * (difficulty.approach_rate - 10.33);
+    }
+    speed *= speed_approach_rate_factor;
     if (mods.includes("HD"))
         speed *= 1 + 0.04 * (12 - difficulty.approach_rate);
     speed *= 0.02 + accuracy;
@@ -104,7 +109,7 @@ function calculate_performance_values(
         aim,
         speed,
         accuracy: accuracy_value,
-        effective_miss_count: count_miss,
+            effective_miss_count: 0,
         pp,
     };
 }

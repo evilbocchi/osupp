@@ -352,7 +352,13 @@ export class OsuDifficultyHitObject {
     private set_feb2019_distances(): void {
         const base_obj = this.base_object;
         const last_obj = this.last_object;
-        const scaling_factor = Math.fround(52 / this.radius);
+        let scaling_factor = Math.fround(52 / this.radius);
+        if (this.radius < 30) {
+            const small_circle_bonus = Math.min(30 - this.radius, 5) / 50;
+            scaling_factor = Math.fround(
+                scaling_factor * (1 + small_circle_bonus),
+            );
+        }
 
         if (last_obj.is_slider && last_obj.lazy_travel_distance != null) {
             this.travel_distance = Math.fround(

@@ -139,8 +139,13 @@ export function calculate_effective_arod(
     const great_hit_window =
         (rework === "oct2025" || rework === "jul2026"
             ? osu_hit_window(od, 80, 50, 20)
-            : 80 - 6 * od) / clock_rate;
-    const preempt = difficulty_range(ar, 1800, 1200, 450) / clock_rate;
+            : rework === "feb2019"
+                            ? Math.trunc(80 - 6 * od)
+              : 80 - 6 * od) / clock_rate;
+    const preempt =
+        (rework === "feb2019"
+            ? Math.trunc(difficulty_range(ar, 1800, 1200, 450))
+            : difficulty_range(ar, 1800, 1200, 450)) / clock_rate;
 
     return {
         effective_od:
@@ -1299,14 +1304,17 @@ function compute_feb2019_lazy_slider_position(
     let lazy_travel_distance = 0;
 
     const scoring_times = nested_events
-        ? nested_events
-              .map((event) => ({
-                  time:
-                      event.type === "tail"
-                          ? Math.max(start_time + duration / 2, event.time - 36)
-                          : event.time,
-              }))
-              .sort((first, second) => first.time - second.time)
+        ? [
+              ...nested_events.filter((event) => event.type === "head"),
+              ...nested_events.filter((event) => event.type === "tail"),
+              ...nested_events.filter((event) => event.type === "tick"),
+              ...nested_events.filter((event) => event.type === "repeat"),
+          ].map((event) => ({
+              time:
+                  event.type === "tail"
+                      ? Math.max(start_time + duration / 2, event.time - 36)
+                      : event.time,
+          }))
         : nested_times.map((time, index) => ({
               time:
                   index === nested_times.length - 1
