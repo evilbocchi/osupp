@@ -21,7 +21,7 @@ standard:
 - feb2019: in progress
 - jan2021: not triaged
 - jul2021: not triaged
-- nov2021: not triaged
+- nov2021: complete* (osu)
 - sep2022: complete
 - oct2024: complete* (huismetbenen)
 - mar2025: complete* (huismetbenen)
@@ -202,7 +202,7 @@ PS Z:\osupp> dotnet run --project .\OsuPpApi\OsuPpApi.csproj -p:OsuRework=osu_ma
 
 ## TESTS
 
-Fixtures in `test/fixtures` are collected from a third-party source (https://pp.huismetbenen.nl/) and are used to validate our calculations. They claim to use:
+Fixtures in `fixtures/` are collected from a third-party source (https://pp.huismetbenen.nl/) and are used to validate our calculations. They claim to use:
 
 - jul2026: ppy/osu pp-dev 00d08feb8c4e24a68601773a7a7fa3c59e990aa2
 - oct2025: ppy/osu master e1baa0362239ae63ab1618d387f67a6355a70a3a
