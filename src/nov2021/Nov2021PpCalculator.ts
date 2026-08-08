@@ -34,10 +34,9 @@ function calculate_effective_miss_count(
     }
 
     combo_based_miss_count = Math.min(combo_based_miss_count, total_hits);
-    const reported = Math.floor(combo_based_miss_count);
     return {
-        value: Math.max(miss_count, reported),
-        reported,
+        value: Math.max(miss_count, Math.floor(combo_based_miss_count)),
+        reported: 0,
     };
 }
 

@@ -1293,7 +1293,8 @@ function compute_lazy_slider_position(
 
     if (!official_jul2026) {
         lazy_travel_distance = f(
-            lazy_travel_distance * f((1 + (span_count - 1) / 2.5) ** (1 / 2.5)),
+            lazy_travel_distance *
+                f((1 + (span_count - 1) / 2.5) ** (1 / 2.5)),
         );
     }
 

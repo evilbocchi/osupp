@@ -64,7 +64,7 @@ function clone_for_mods(
         hr ? ["HR"] : [],
         cs,
         ar,
-        "nov2021",
+        "sep2022",
     );
 
     return {
@@ -646,7 +646,7 @@ function calculate_speed_difficulty(
             section_end += SECTION_LENGTH;
         }
 
-        current_strain *= strain_decay(current.strain_time, 0.3);
+        current_strain *= strain_decay(current.delta_time, 0.3);
         current_strain +=
             calculate_speed_strain_value(current, previous, great_window) *
             1375;
@@ -713,8 +713,9 @@ function calculate_flashlight_difficulty(
 
             for (let i = 0; i < previous.length; i++) {
                 const last = previous[i]!;
-                cumulative_strain_time += last.strain_time;
                 if (last.base_object.is_spinner) continue;
+
+                cumulative_strain_time += last.strain_time;
 
                 const jump_distance = distance(
                     {
