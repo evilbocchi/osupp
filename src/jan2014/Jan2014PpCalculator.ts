@@ -2,7 +2,7 @@ import type { PpCalculatorOptions } from "../PpCalculator";
 import Jul2015PpCalculator from "../jul2015/Jul2015PpCalculator";
 
 /**
- * Historical osu! performance calculation from the pp-jan14-feb15 oracle.
+ * https://osu.ppy.sh/home/news/2014-01-26-new-performance-ranking
  *
  * Target: huismetbenen pp values.
  */

@@ -240,7 +240,7 @@ function calculate_difficulty(
 }
 
 /**
- * Historical osu! performance calculation from the pp-jul15-dec17 oracle.
+ * No news post found for this rework.
  *
  * Target: huismetbenen pp values.
  */
