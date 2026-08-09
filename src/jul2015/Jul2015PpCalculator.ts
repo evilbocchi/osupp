@@ -240,6 +240,8 @@ function calculate_difficulty(
 }
 
 /**
+ * High CS nerf
+ *
  * No news post found for this rework.
  *
  * Target: huismetbenen pp values.

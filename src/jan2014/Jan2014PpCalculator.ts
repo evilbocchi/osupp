@@ -2,6 +2,8 @@ import type { PpCalculatorOptions } from "../PpCalculator";
 import Jul2015PpCalculator from "../jul2015/Jul2015PpCalculator";
 
 /**
+ * ppv2 releases
+ *
  * https://osu.ppy.sh/home/news/2014-01-26-new-performance-ranking
  *
  * Target: huismetbenen pp values.

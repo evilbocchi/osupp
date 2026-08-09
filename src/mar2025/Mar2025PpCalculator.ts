@@ -5,6 +5,8 @@ import { calculate_difficulty } from "./DifficultyCalculator";
 import { calculate_performance } from "./PerformanceCalculator";
 
 /**
+ * High BPM aim and speed deviation rebalances
+ *
  * https://osu.ppy.sh/home/news/2025-03-06-performance-points-star-rating-updates
  *
  * Target: huismetbenen pp values

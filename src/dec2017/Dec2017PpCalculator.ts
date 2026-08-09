@@ -3,6 +3,8 @@ import PpCalculator, { type PpCalculatorResult } from "../PpCalculator";
 import May2018PpCalculator from "../may2018/May2018PpCalculator";
 
 /**
+ * Touchscreen nerf (December 15, 2017)
+ *
  * https://osu.ppy.sh/community/forums/topics/665986
  *
  * Target: actual pp values (wayback machine)

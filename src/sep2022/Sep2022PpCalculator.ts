@@ -1,6 +1,8 @@
 import Mar2025PpCalculator from "../mar2025/Mar2025PpCalculator";
 
 /**
+ * Speed and wide angle rebalances
+ *
  * https://osu.ppy.sh/home/news/2022-09-30-changes-to-osu-sr-and-pp
  *
  * Target: actual pp values (wayback machine)

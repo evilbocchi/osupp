@@ -117,6 +117,8 @@ function calculate_performance_values(
 }
 
 /**
+ * Wide angle aim rebalance and flow aim nerf
+ *
  * https://osu.ppy.sh/home/news/2019-02-05-new-changes-to-star-rating-performance-points
  *
  * Target: actual pp values (wayback machine)

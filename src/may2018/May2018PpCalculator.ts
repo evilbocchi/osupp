@@ -159,6 +159,8 @@ function rounded_statistics(
 }
 
 /**
+ * Hidden and aim rebalances
+ *
  * https://osu.ppy.sh/home/news/2018-05-16-performance-updates
  *
  * Target: actual pp values (wayback machine)

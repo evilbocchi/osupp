@@ -1,6 +1,8 @@
 import Mar2025PpCalculator from "../mar2025/Mar2025PpCalculator";
 
 /**
+ * Combo scaling removal, high BPM streams nerf, and rhythm complexity rebalance
+ *
  * https://osu.ppy.sh/home/news/2024-10-28-performance-points-star-rating-updates
  *
  * Target: huismetbenen pp values

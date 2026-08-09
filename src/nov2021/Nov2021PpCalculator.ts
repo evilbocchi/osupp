@@ -201,6 +201,8 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 /**
+ * Rhythm complexity, flashlight, and general aim rebalances
+ *
  * https://osu.ppy.sh/home/news/2021-11-09-performance-points-star-rating-updates
  *
  * Target: osu 5a3be778a172405402bdcaadfdfdb7bb04ce190d

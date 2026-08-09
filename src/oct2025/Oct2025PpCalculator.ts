@@ -1,6 +1,8 @@
 import Mar2025PpCalculator from "../mar2025/Mar2025PpCalculator";
 
 /**
+ * High CS buff and velocity change/sliderbreak recalculation
+ *
  * https://osu.ppy.sh/home/news/2025-10-29-performance-points-star-rating-updates
  *
  * Target: actual pp values (wayback machine)
