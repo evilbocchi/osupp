@@ -27,42 +27,29 @@
         }
     },
     "performance_attributes": {
-        "aim": 282.33914665276706,
-        "speed": 149.89078956546942,
+        "aim": 274.499894598762,
+        "speed": 149.92484537705622,
         "accuracy": 101.42199044300355,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 545.7283700636494
+        "pp": 537.4539170948757
     },
     "difficulty_attributes": {
-        "star_rating": 7.599303142697956,
-        "aim_difficulty": 3.9983974052491744,
+        "star_rating": 0.49147860522675424,
+        "max_combo": 652,
+        "aim_difficulty": 3.961548338581196,
         "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.2034140696483875,
-        "flashlight_difficulty": 0,
-        "reading_difficulty": 0,
-        "slider_factor": 1,
-        "aim_top_weighted_slider_factor": 0,
-        "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 60.85717777003556,
-        "speed_difficult_strain_count": 71.59528156761151,
-        "reading_difficult_note_count": 0,
-        "nested_score_per_object": 0,
-        "legacy_score_base_multiplier": 0,
-        "maximum_legacy_combo_score": 0,
+        "speed_difficulty": 3.203652571583716,
+        "speed_note_count": 0,
         "approach_rate": 10.333333333333332,
         "overall_difficulty": 10.444444444444445,
-        "circle_size": 4,
-        "drain_rate": 6,
         "hit_circle_count": 345,
-        "slider_count": 132,
-        "spinner_count": 2,
-        "max_combo": 652,
-        "speed_note_count": 0
+        "slider_count": 0,
+        "spinner_count": 2
     },
     "rework_data": {
         "code": "pp_jul2021",
-        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 559.973,
     "user_id": 352328,

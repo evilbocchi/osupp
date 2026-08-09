@@ -164,7 +164,7 @@ function difficulty_rating(difficulty_value: number): number {
 }
 
 function performance_from_rating(rating: number): number {
-    return (5 * Math.max(1, rating / DIFFICULTY_MULTIPLIER) - 4) ** 3 / 100000;
+    return (5 * Math.max(1, rating) - 4) ** 3 / 100000;
 }
 
 export function calculate_jul2021_difficulty(

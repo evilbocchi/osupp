@@ -23,42 +23,29 @@
         }
     },
     "performance_attributes": {
-        "aim": 483.31292615030225,
-        "speed": 298.5262462316322,
+        "aim": 483.612315900859,
+        "speed": 298.788876063003,
         "accuracy": 147.3916808460909,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 951.3409297234327
+        "pp": 951.9228059121508
     },
     "difficulty_attributes": {
-        "star_rating": 7.575433355301868,
-        "aim_difficulty": 3.4759857566270367,
-        "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.8916269846589,
-        "flashlight_difficulty": 0,
-        "reading_difficulty": 0,
-        "slider_factor": 1,
-        "aim_top_weighted_slider_factor": 0,
-        "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 310.17323535961384,
-        "speed_difficult_strain_count": 281.35696347182056,
-        "reading_difficult_note_count": 0,
-        "nested_score_per_object": 0,
-        "legacy_score_base_multiplier": 0,
-        "maximum_legacy_combo_score": 0,
-        "approach_rate": 9.8,
-        "overall_difficulty": 9.5,
-        "circle_size": 4,
-        "drain_rate": 5.199999809265137,
-        "hit_circle_count": 1231,
-        "slider_count": 151,
-        "spinner_count": 1,
+        "star_rating": 0.4997510851645483,
         "max_combo": 1696,
-        "speed_note_count": 0
+        "aim_difficulty": 3.476692197481825,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.892752044765516,
+        "speed_note_count": 0,
+        "approach_rate": 9.806666666666667,
+        "overall_difficulty": 9.5,
+        "hit_circle_count": 1231,
+        "slider_count": 0,
+        "spinner_count": 1
     },
     "rework_data": {
         "code": "pp_jul2021",
-        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 1019.36,
     "user_id": 6567297,

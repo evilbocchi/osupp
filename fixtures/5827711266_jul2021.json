@@ -30,42 +30,29 @@
         }
     },
     "performance_attributes": {
-        "aim": 321.2408436369563,
-        "speed": 135.74879122226488,
+        "aim": 320.6873663130759,
+        "speed": 135.74493400464803,
         "accuracy": 22.71980844066208,
         "flashlight": 0,
         "effective_miss_count": 2,
-        "pp": 501.8263336716858
+        "pp": 501.2229072825309
     },
     "difficulty_attributes": {
-        "star_rating": 9.690808176489018,
-        "aim_difficulty": 5.154893450564387,
-        "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.9169360012848733,
-        "flashlight_difficulty": 0,
-        "reading_difficulty": 0,
-        "slider_factor": 1,
-        "aim_top_weighted_slider_factor": 0,
-        "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 65.80898596191938,
-        "speed_difficult_strain_count": 109.83031477032523,
-        "reading_difficult_note_count": 0,
-        "nested_score_per_object": 0,
-        "legacy_score_base_multiplier": 0,
-        "maximum_legacy_combo_score": 0,
-        "approach_rate": 7.586666666666666,
-        "overall_difficulty": 7.677777777777777,
-        "circle_size": 1.75,
-        "drain_rate": 2.799999952316284,
-        "hit_circle_count": 279,
-        "slider_count": 249,
-        "spinner_count": 0,
+        "star_rating": 0.6274729893434677,
         "max_combo": 798,
-        "speed_note_count": 0
+        "aim_difficulty": 5.1519622626617085,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.916899413295663,
+        "speed_note_count": 0,
+        "approach_rate": 7.586666666666666,
+        "overall_difficulty": 7.777777777777778,
+        "hit_circle_count": 279,
+        "slider_count": 0,
+        "spinner_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
-        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 852.529,
     "user_id": 10077431,

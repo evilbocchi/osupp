@@ -26,42 +26,29 @@
         }
     },
     "performance_attributes": {
-        "aim": 999.4474811407331,
-        "speed": 309.27179004674747,
+        "aim": 998.5367909614523,
+        "speed": 309.27185305556594,
         "accuracy": 83.08298561234791,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 1460.6045033460339
+        "pp": 1459.6113839501174
     },
     "difficulty_attributes": {
-        "star_rating": 11.185565485479774,
-        "aim_difficulty": 6.100682582925614,
-        "aim_difficult_slider_count": 0,
-        "speed_difficulty": 4.069083222182703,
-        "flashlight_difficulty": 0,
-        "reading_difficulty": 0,
-        "slider_factor": 1,
-        "aim_top_weighted_slider_factor": 0,
-        "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 53.4995048531261,
-        "speed_difficult_strain_count": 73.21191156603754,
-        "reading_difficult_note_count": 0,
-        "nested_score_per_object": 0,
-        "legacy_score_base_multiplier": 0,
-        "maximum_legacy_combo_score": 0,
-        "approach_rate": 10.866666666666667,
-        "overall_difficulty": 10.911111111111111,
-        "circle_size": 4,
-        "drain_rate": 5.5,
-        "hit_circle_count": 136,
-        "slider_count": 61,
-        "spinner_count": 0,
+        "star_rating": 0.721243099990364,
         "max_combo": 261,
-        "speed_note_count": 0
+        "aim_difficulty": 6.098845458601277,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.069083494850781,
+        "speed_note_count": 0,
+        "approach_rate": 10.871111111111112,
+        "overall_difficulty": 11,
+        "hit_circle_count": 136,
+        "slider_count": 0,
+        "spinner_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
-        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 1745.85,
     "user_id": 7562902,

@@ -143,11 +143,11 @@ export function calculate_effective_arod(
     const great_hit_window =
         (rework === "oct2025" || rework === "jul2026"
             ? osu_hit_window(od, 80, 50, 20)
-            : rework === "feb2019"
+            : rework === "feb2019" || rework === "jul2021"
               ? Math.trunc(80 - 6 * od)
               : 80 - 6 * od) / clock_rate;
     const preempt =
-        (rework === "feb2019"
+        (rework === "feb2019" || rework === "jul2021"
             ? Math.trunc(difficulty_range(ar, 1800, 1200, 450))
             : difficulty_range(ar, 1800, 1200, 450)) / clock_rate;
 
@@ -873,6 +873,7 @@ export function prepare_hit_objects_for_difficulty(
         if (
             rework !== "jul2026" &&
             rework !== "feb2019" &&
+            rework !== "jul2021" &&
             prepared.is_slider &&
             prepared.slider_path &&
             prepared.slider_span_count != null &&
@@ -918,7 +919,7 @@ export function prepare_hit_objects_for_difficulty(
         hit_object.stacked_y = Math.fround(hit_object.y + offset);
     }
 
-    if (rework === "feb2019") {
+    if (rework === "feb2019" || rework === "jul2021") {
         for (const prepared of hit_objects) {
             if (
                 !prepared.is_slider ||
@@ -983,6 +984,8 @@ export function prepare_hit_objects_for_difficulty(
                 prepared.slider_nested_times,
                 prepared.slider_nested_events,
                 circle_size,
+                rework === "jul2021" ? 0 : 36,
+                rework,
             );
             prepared.lazy_end_x = lazy.lazy_end_x;
             prepared.lazy_end_y = lazy.lazy_end_y;
@@ -1361,9 +1364,11 @@ function compute_feb2019_lazy_slider_position(
     nested_times: number[],
     nested_events: SliderNestedEvent[] | undefined,
     circle_size: number,
+    tail_time_offset: number,
+    rework: OsuRework = "feb2019",
 ) {
     const f = Math.fround;
-    const radius = f(64 * circle_scale_for_rework(circle_size, "feb2019"));
+    const radius = f(64 * circle_scale_for_rework(circle_size, rework));
     const follow_circle_radius = f(radius * 3);
     const span_duration = duration / span_count;
     const has_path_distances =
@@ -1452,13 +1457,19 @@ function compute_feb2019_lazy_slider_position(
         ? [...nested_events].map((event) => ({
               time:
                   event.type === "tail"
-                      ? Math.max(start_time + duration / 2, event.time - 36)
+                      ? Math.max(
+                            start_time + duration / 2,
+                            event.time - tail_time_offset,
+                        )
                       : event.time,
           }))
         : nested_times.map((time, index) => ({
               time:
                   index === nested_times.length - 1
-                      ? Math.max(start_time + duration / 2, time - 36)
+                      ? Math.max(
+                            start_time + duration / 2,
+                            time - tail_time_offset,
+                        )
                       : time,
           }));
 

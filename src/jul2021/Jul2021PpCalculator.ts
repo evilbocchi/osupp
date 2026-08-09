@@ -63,8 +63,9 @@ function calculate_performance_values(
         combo_scaling;
     if (mods.includes("TD")) aim = aim ** 0.8;
     if (mods.includes("HD")) aim *= 1 + 0.04 * (12 - difficulty.approach_rate);
+    let flashlight_bonus = 1;
     if (mods.includes("FL")) {
-        aim *=
+        flashlight_bonus =
             1 +
             0.35 * Math.min(1, total_hits / 200) +
             (total_hits > 200
@@ -72,7 +73,7 @@ function calculate_performance_values(
                   (total_hits > 500 ? (total_hits - 500) / 1200 : 0)
                 : 0);
     }
-    aim *= Math.max(1, approach_rate_bonus);
+    aim *= Math.max(flashlight_bonus, approach_rate_bonus);
     aim *= 0.5 + accuracy / 2;
     aim *= 0.98 + difficulty.overall_difficulty ** 2 / 2500;
 

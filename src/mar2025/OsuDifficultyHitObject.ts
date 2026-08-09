@@ -22,6 +22,14 @@ function circle_scale_for_rework(
         return f(f(f(1) - f(term / f(5))) / f(2));
     }
 
+    if (rework === "jul2021") {
+        const f = Math.fround;
+        const cs = f(circle_size);
+        const term = f(f(0.7) * f(cs - f(5)));
+        const scale = f(f(f(1) - f(term / f(5))) / f(2));
+        return f(scale * f(1.00041));
+    }
+
     return rework === "jul2026"
         ? osu_circle_scale(circle_size)
         : Math.fround(
@@ -90,7 +98,9 @@ export class OsuDifficultyHitObject {
                 : this.start_time;
 
         this.strain_time = Math.max(
-            this.rework === "feb2019" ? 50 : MIN_DELTA_TIME,
+            this.rework === "feb2019" || this.rework === "jul2021"
+                ? 50
+                : MIN_DELTA_TIME,
             this.delta_time,
         );
         this.adjusted_delta_time = this.strain_time;
@@ -204,7 +214,7 @@ export class OsuDifficultyHitObject {
     }
 
     private set_distances(clock_rate: number, circle_size: number): void {
-        if (this.rework === "feb2019") {
+        if (this.rework === "feb2019" || this.rework === "jul2021") {
             this.set_feb2019_distances();
             return;
         }
@@ -435,7 +445,9 @@ export class OsuDifficultyHitObject {
         const obj_scale = circle_scale_for_rework(circle_size, this.rework);
         const radius = Math.fround(64 * obj_scale);
         const normalized_radius =
-            this.rework === "feb2019" ? 52 : NORMALIZED_RADIUS;
+            this.rework === "feb2019" || this.rework === "jul2021"
+                ? 52
+                : NORMALIZED_RADIUS;
         let scaling_factor = Math.fround(normalized_radius / radius);
         if (this.rework !== "oct2025" && radius < 30) {
             const small_circle_bonus = Math.min(30 - radius, 5) / 50;
@@ -622,7 +634,7 @@ export class OsuDifficultyHitObject {
 
     private get_end_cursor_position(obj: HitObject): { x: number; y: number } {
         if (obj.is_slider && obj.lazy_end_x != null && obj.lazy_end_y != null) {
-            if (this.rework === "feb2019") {
+            if (this.rework === "feb2019" || this.rework === "jul2021") {
                 return { x: obj.lazy_end_x, y: obj.lazy_end_y };
             }
 

@@ -5,17 +5,19 @@
         "beatmap": "Mutsuhiko Izumi - Red Goose (nold_1702) [Superable]",
         "mods": [
             {
-                "acronym": "HR"
+                "acronym": "HR",
+                "settings": {}
             },
             {
-                "acronym": "HD"
+                "acronym": "HD",
+                "settings": {}
             },
             {
-                "acronym": "CL"
+                "acronym": "CL",
+                "settings": {}
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 0,
         "accuracy": 99.31473323543808,
         "combo": 988,
         "statistics": {
@@ -26,32 +28,34 @@
             "slider_tail_miss": 0
         }
     },
+    "pp": 507.5238617566199,
     "performance_attributes": {
-        "aim": 159.71769767980805,
-        "speed": 152.4493608896726,
+        "aim": 159.4129842626488,
+        "speed": 152.48830524727305,
         "accuracy": 131.62441221000205,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 449.95066288443127
+        "pp": 449.6790668175305
     },
     "difficulty_attributes": {
-        "star_rating": 6.473682302868181,
+        "star_rating": 0.4336396547254041,
         "max_combo": 990,
-        "aim_difficulty": 3.2617802168725865,
-        "speed_difficulty": 3.1620239551186033,
-        "aim_difficult_strain_count": 131.35908148707546,
-        "speed_difficult_strain_count": 138.09625256360917,
+        "aim_difficulty": 3.2597389570982385,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.162288588765322,
+        "speed_note_count": 0,
         "approach_rate": 10,
         "overall_difficulty": 10,
-        "circle_size": 5.2
+        "hit_circle_count": 498,
+        "slider_count": 0,
+        "spinner_count": 1
     },
     "rework_data": {
-        "id": 41,
         "code": "pp_jul2021",
-        "version": 2,
-        "last_updated": "2025-01-25 02:24"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 520.961,
+    "historical_pp": 507.523,
     "user_id": 352328,
     "score_id": 110536233
 }

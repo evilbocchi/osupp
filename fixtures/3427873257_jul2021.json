@@ -27,42 +27,29 @@
         }
     },
     "performance_attributes": {
-        "aim": 608.9522861027498,
-        "speed": 858.7504308400596,
+        "aim": 608.798283182116,
+        "speed": 858.8725402872609,
         "accuracy": 204.28002048530695,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 1716.593420840041
+        "pp": 1716.5652136459958
     },
     "difficulty_attributes": {
-        "star_rating": 9.555523181062654,
-        "aim_difficulty": 4.443026522058706,
-        "aim_difficult_slider_count": 0,
-        "speed_difficulty": 4.889339946688867,
-        "flashlight_difficulty": 0,
-        "reading_difficulty": 0,
-        "slider_factor": 1,
-        "aim_top_weighted_slider_factor": 0,
-        "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 190.447650343823,
-        "speed_difficult_strain_count": 235.7059456290614,
-        "reading_difficult_note_count": 0,
-        "nested_score_per_object": 0,
-        "legacy_score_base_multiplier": 0,
-        "maximum_legacy_combo_score": 0,
-        "approach_rate": 10.666666666666668,
-        "overall_difficulty": 10.244444444444445,
-        "circle_size": 4,
-        "drain_rate": 5,
-        "hit_circle_count": 2280,
-        "slider_count": 977,
-        "spinner_count": 3,
+        "star_rating": 0.6319217785039363,
         "max_combo": 4312,
-        "speed_note_count": 0
+        "aim_difficulty": 4.4426564986012265,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.889569121810902,
+        "speed_note_count": 0,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.333333333333334,
+        "hit_circle_count": 2280,
+        "slider_count": 0,
+        "spinner_count": 3
     },
     "rework_data": {
         "code": "pp_jul2021",
-        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
+        "source": "Givikap120/osu pp-jul21-nov21@b31fef7e001c22f5e55c01ff8c3fa4df9c090b01"
     },
     "live_pp": 1761.57,
     "user_id": 7562902,

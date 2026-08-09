@@ -19,6 +19,7 @@ const STRAIN_DECAY_BASE = 0.15;
 
 export type OsuRework =
     | "feb2019"
+    | "jul2021"
     | "mar2025"
     | "nov2021"
     | "oct2024"
