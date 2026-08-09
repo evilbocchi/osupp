@@ -1,70 +1,67 @@
 {
     "score": {
         "ruleset_id": 0,
-        "beatmap_id": 164020,
-        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "beatmap_id": 2496721,
+        "beatmap": "Fleshgod Apocalypse - The Violation (Mazzerin) [pishi's Extra]",
         "mods": [
             {
                 "acronym": "DT"
-            },
-            {
-                "acronym": "HD"
             },
             {
                 "acronym": "CL"
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 10520461,
-        "accuracy": 98.32985386221294,
-        "combo": 651,
+        "legacy_total_score": 74609857,
+        "accuracy": 94.69619823489477,
+        "combo": 2018,
         "statistics": {
-            "great": 467,
-            "ok": 12,
-            "meh": 0,
+            "great": 1809,
+            "ok": 150,
+            "meh": 5,
             "miss": 0,
             "slider_tail_miss": 0
         }
     },
     "performance_attributes": {
-        "aim": 282.33914665276706,
-        "speed": 149.89078956546942,
-        "accuracy": 101.42199044300355,
+        "aim": 288.18305484562245,
+        "speed": 494.19655556093363,
+        "accuracy": 29.88532181618903,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 545.7283700636494
+        "pp": 847.6876851406731
     },
     "difficulty_attributes": {
-        "star_rating": 7.599303142697956,
-        "aim_difficulty": 3.9983974052491744,
+        "star_rating": 9.728300131735558,
+        "aim_difficulty": 4.204254321070258,
         "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.2034140696483875,
+        "speed_difficulty": 5.08411531413362,
         "flashlight_difficulty": 0,
         "reading_difficulty": 0,
         "slider_factor": 1,
         "aim_top_weighted_slider_factor": 0,
         "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 60.85717777003556,
-        "speed_difficult_strain_count": 71.59528156761151,
+        "aim_difficult_strain_count": 139.07385555280527,
+        "speed_difficult_strain_count": 317.4200706151619,
         "reading_difficult_note_count": 0,
         "nested_score_per_object": 0,
         "legacy_score_base_multiplier": 0,
         "maximum_legacy_combo_score": 0,
-        "approach_rate": 10.333333333333332,
+        "approach_rate": 10.666666666666668,
         "overall_difficulty": 10.444444444444445,
-        "circle_size": 4,
-        "drain_rate": 6,
-        "hit_circle_count": 345,
-        "slider_count": 132,
-        "spinner_count": 2,
-        "max_combo": 652,
+        "circle_size": 2,
+        "drain_rate": 4,
+        "hit_circle_count": 1247,
+        "slider_count": 717,
+        "spinner_count": 0,
+        "max_combo": 3436,
         "speed_note_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
         "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
     },
-    "live_pp": 559.973,
-    "user_id": 352328,
-    "score_id": 244720292
+    "live_pp": 1869.24,
+    "user_id": 15406985,
+    "score_id": 4632894976
 }

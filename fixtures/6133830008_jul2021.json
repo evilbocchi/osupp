@@ -1,11 +1,14 @@
 {
     "score": {
         "ruleset_id": 0,
-        "beatmap_id": 164020,
-        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "beatmap_id": 5416765,
+        "beatmap": "Altermis & takehirotei & Violet Delta - Christmas Slop (Sotarks) [Nymphe's Ultra+]",
         "mods": [
             {
                 "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
             },
             {
                 "acronym": "HD"
@@ -15,56 +18,56 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 10520461,
-        "accuracy": 98.32985386221294,
-        "combo": 651,
+        "legacy_total_score": 2081046,
+        "accuracy": 100,
+        "combo": 392,
         "statistics": {
-            "great": 467,
-            "ok": 12,
+            "great": 280,
+            "ok": 0,
             "meh": 0,
             "miss": 0,
             "slider_tail_miss": 0
         }
     },
     "performance_attributes": {
-        "aim": 282.33914665276706,
-        "speed": 149.89078956546942,
-        "accuracy": 101.42199044300355,
+        "aim": 689.7743843853843,
+        "speed": 336.5013539441081,
+        "accuracy": 43.57507963783774,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 545.7283700636494
+        "pp": 1118.2252575226382
     },
     "difficulty_attributes": {
-        "star_rating": 7.599303142697956,
-        "aim_difficulty": 3.9983974052491744,
+        "star_rating": 9.99410045422007,
+        "aim_difficulty": 5.282572334423476,
         "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.2034140696483875,
+        "speed_difficulty": 4.140483905169713,
         "flashlight_difficulty": 0,
         "reading_difficulty": 0,
         "slider_factor": 1,
         "aim_top_weighted_slider_factor": 0,
         "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 60.85717777003556,
-        "speed_difficult_strain_count": 71.59528156761151,
+        "aim_difficult_strain_count": 85.26715775574216,
+        "speed_difficult_strain_count": 97.87359961674368,
         "reading_difficult_note_count": 0,
         "nested_score_per_object": 0,
         "legacy_score_base_multiplier": 0,
         "maximum_legacy_combo_score": 0,
-        "approach_rate": 10.333333333333332,
-        "overall_difficulty": 10.444444444444445,
-        "circle_size": 4,
-        "drain_rate": 6,
-        "hit_circle_count": 345,
-        "slider_count": 132,
-        "spinner_count": 2,
-        "max_combo": 652,
+        "approach_rate": 7.613333333333333,
+        "overall_difficulty": 7.544444444444445,
+        "circle_size": 2,
+        "drain_rate": 2.5,
+        "hit_circle_count": 180,
+        "slider_count": 99,
+        "spinner_count": 1,
+        "max_combo": 392,
         "speed_note_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
         "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
     },
-    "live_pp": 559.973,
-    "user_id": 352328,
-    "score_id": 244720292
+    "live_pp": 1184.37,
+    "user_id": 10077431,
+    "score_id": 6133830008
 }

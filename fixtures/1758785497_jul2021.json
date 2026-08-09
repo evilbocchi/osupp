@@ -1,11 +1,14 @@
 {
     "score": {
         "ruleset_id": 0,
-        "beatmap_id": 4921872,
-        "beatmap": "Tim Follin - Title Screen (Mekadon) [The Game of Video Quick Draw]",
+        "beatmap_id": 3746239,
+        "beatmap": "Wire - Brazil (Apo11o) [Kuki's Extra]",
         "mods": [
             {
                 "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
             },
             {
                 "acronym": "HD"
@@ -15,56 +18,56 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 2789907,
-        "accuracy": 97.56521739130434,
-        "combo": 207,
+        "legacy_total_score": 1626203,
+        "accuracy": 97.9381443298969,
+        "combo": 262,
         "statistics": {
-            "great": 557,
-            "ok": 12,
+            "great": 188,
+            "ok": 6,
             "meh": 0,
-            "miss": 6,
+            "miss": 0,
             "slider_tail_miss": 0
         }
     },
     "performance_attributes": {
-        "aim": 437.05787899860405,
-        "speed": 170.14557619014582,
-        "accuracy": 103.16463784235668,
+        "aim": 578.7060348279784,
+        "speed": 193.58655682751882,
+        "accuracy": 79.6064057478106,
         "flashlight": 0,
-        "effective_miss_count": 6,
-        "pp": 732.7576502713368
+        "effective_miss_count": 0,
+        "pp": 887.2879017679885
     },
     "difficulty_attributes": {
-        "star_rating": 12.105794174864752,
-        "aim_difficulty": 6.52107092525742,
+        "star_rating": 9.396714345174587,
+        "aim_difficulty": 5.099938799522729,
         "aim_difficult_slider_count": 0,
-        "speed_difficulty": 4.648375573957243,
+        "speed_difficulty": 3.493612291780987,
         "flashlight_difficulty": 0,
         "reading_difficulty": 0,
         "slider_factor": 1,
         "aim_top_weighted_slider_factor": 0,
         "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 115.12629284651246,
-        "speed_difficult_strain_count": 163.05775748154304,
+        "aim_difficult_strain_count": 51.967943495974595,
+        "speed_difficult_strain_count": 66.00215379307518,
         "reading_difficult_note_count": 0,
         "nested_score_per_object": 0,
         "legacy_score_base_multiplier": 0,
         "maximum_legacy_combo_score": 0,
         "approach_rate": 11,
-        "overall_difficulty": 10.97777777777778,
-        "circle_size": 4,
-        "drain_rate": 5,
-        "hit_circle_count": 411,
-        "slider_count": 164,
+        "overall_difficulty": 11.111111111111112,
+        "circle_size": 4.9399999999999995,
+        "drain_rate": 7,
+        "hit_circle_count": 125,
+        "slider_count": 69,
         "spinner_count": 0,
-        "max_combo": 745,
+        "max_combo": 265,
         "speed_note_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
         "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
     },
-    "live_pp": 1657.26,
-    "user_id": 7562902,
-    "score_id": 4460552935
+    "live_pp": 912.363,
+    "user_id": 10077431,
+    "score_id": 1758785497
 }

@@ -15,7 +15,7 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 0,
+        "legacy_total_score": 89731914,
         "accuracy": 99.21074727120067,
         "combo": 1829,
         "statistics": {
@@ -36,22 +36,35 @@
     },
     "difficulty_attributes": {
         "star_rating": 10.729869071592159,
-        "max_combo": 2905,
         "aim_difficulty": 5.772491278633958,
+        "aim_difficult_slider_count": 0,
         "speed_difficulty": 4.142264307282441,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
         "aim_difficult_strain_count": 177.86240086391427,
         "speed_difficult_strain_count": 295.3199782652396,
+        "reading_difficult_note_count": 0,
+        "nested_score_per_object": 0,
+        "legacy_score_base_multiplier": 0,
+        "maximum_legacy_combo_score": 0,
         "approach_rate": 10.866666666666667,
         "overall_difficulty": 10.97777777777778,
-        "circle_size": 3.6
+        "circle_size": 3.6,
+        "drain_rate": 5,
+        "hit_circle_count": 1121,
+        "slider_count": 860,
+        "spinner_count": 4,
+        "max_combo": 2905,
+        "speed_note_count": 0
     },
     "rework_data": {
-        "id": 41,
         "code": "pp_jul2021",
-        "version": 2,
-        "last_updated": "2025-01-25 02:24"
+        "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
     },
-    "live_pp": 1563.23,
+    "live_pp": 1807.26,
     "user_id": 7562902,
     "score_id": 4746396766
 }

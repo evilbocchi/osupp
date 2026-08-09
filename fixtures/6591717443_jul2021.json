@@ -1,70 +1,69 @@
 {
     "score": {
         "ruleset_id": 0,
-        "beatmap_id": 164020,
-        "beatmap": "Saiya - Remote Control (Garven) [Insane]",
+        "beatmap_id": 4874327,
+        "beatmap": "Jeff Williams feat. Casey Lee Williams - Time to Say Goodbye (TV Size) (My Angel Ram) [No Return]",
         "mods": [
             {
                 "acronym": "DT"
             },
             {
                 "acronym": "HD"
-            },
-            {
-                "acronym": "CL"
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 10520461,
-        "accuracy": 98.32985386221294,
-        "combo": 651,
+        "legacy_total_score": 0,
+        "accuracy": 98.24407374890255,
+        "combo": 261,
         "statistics": {
-            "great": 467,
-            "ok": 12,
+            "great": 191,
+            "ok": 6,
             "meh": 0,
             "miss": 0,
+            "large_tick_miss": 0,
+            "slider_tail_hit": 61,
             "slider_tail_miss": 0
         }
     },
     "performance_attributes": {
-        "aim": 282.33914665276706,
-        "speed": 149.89078956546942,
-        "accuracy": 101.42199044300355,
+        "aim": 999.4474811407331,
+        "speed": 309.27179004674747,
+        "accuracy": 83.08298561234791,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 545.7283700636494
+        "pp": 1460.6045033460339
     },
     "difficulty_attributes": {
-        "star_rating": 7.599303142697956,
-        "aim_difficulty": 3.9983974052491744,
+        "star_rating": 11.185565485479774,
+        "aim_difficulty": 6.100682582925614,
         "aim_difficult_slider_count": 0,
-        "speed_difficulty": 3.2034140696483875,
+        "speed_difficulty": 4.069083222182703,
         "flashlight_difficulty": 0,
         "reading_difficulty": 0,
         "slider_factor": 1,
         "aim_top_weighted_slider_factor": 0,
         "speed_top_weighted_slider_factor": 0,
-        "aim_difficult_strain_count": 60.85717777003556,
-        "speed_difficult_strain_count": 71.59528156761151,
+        "aim_difficult_strain_count": 53.4995048531261,
+        "speed_difficult_strain_count": 73.21191156603754,
         "reading_difficult_note_count": 0,
         "nested_score_per_object": 0,
         "legacy_score_base_multiplier": 0,
         "maximum_legacy_combo_score": 0,
-        "approach_rate": 10.333333333333332,
-        "overall_difficulty": 10.444444444444445,
+        "approach_rate": 10.866666666666667,
+        "overall_difficulty": 10.911111111111111,
         "circle_size": 4,
-        "drain_rate": 6,
-        "hit_circle_count": 345,
-        "slider_count": 132,
-        "spinner_count": 2,
-        "max_combo": 652,
+        "drain_rate": 5.5,
+        "hit_circle_count": 136,
+        "slider_count": 61,
+        "spinner_count": 0,
+        "max_combo": 261,
         "speed_note_count": 0
     },
     "rework_data": {
         "code": "pp_jul2021",
         "source": "Givikap120/osu pp-jul21-nov21@5134fa0eb5da4812c68d5ef90809c6f6180585e"
     },
-    "live_pp": 559.973,
-    "user_id": 352328,
-    "score_id": 244720292
+    "live_pp": 1745.85,
+    "user_id": 7562902,
+    "score_id": 6591717443
 }
