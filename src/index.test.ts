@@ -4,6 +4,7 @@ import { join } from "node:path";
 import {
     Dec2017PpCalculator,
     Feb2019PpCalculator,
+    Jul2015PpCalculator,
     Jul2021PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
@@ -129,6 +130,7 @@ describe("calculateProfilePp", () => {
 });
 
 describe.each([
+    ["jul2015", Jul2015PpCalculator],
     ["dec2017", Dec2017PpCalculator],
     ["may2018", May2018PpCalculator],
     ["feb2019", Feb2019PpCalculator],

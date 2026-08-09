@@ -18,6 +18,7 @@ const WIGGLE_MULTIPLIER = 1.02;
 const STRAIN_DECAY_BASE = 0.15;
 
 export type OsuRework =
+    | "jul2015"
     | "feb2019"
     | "jul2021"
     | "mar2025"
