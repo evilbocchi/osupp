@@ -3,7 +3,9 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import {
     Dec2017PpCalculator,
+    Feb2015PpCalculator,
     Feb2019PpCalculator,
+    Jan2014PpCalculator,
     Jul2015PpCalculator,
     Jul2021PpCalculator,
     Jul2026PpCalculator,
@@ -130,6 +132,8 @@ describe("calculateProfilePp", () => {
 });
 
 describe.each([
+    ["jan2014", Jan2014PpCalculator],
+    ["feb2015", Feb2015PpCalculator],
     ["jul2015", Jul2015PpCalculator],
     ["dec2017", Dec2017PpCalculator],
     ["may2018", May2018PpCalculator],

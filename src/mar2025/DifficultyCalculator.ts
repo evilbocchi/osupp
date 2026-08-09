@@ -1129,6 +1129,39 @@ function compute_lazy_slider_position(
         };
     };
 
+    if (rework === "jan2014") {
+        const radius = f(64 * circle_scale_for_rework(circle_size, rework));
+        const follow_radius = radius * 3;
+        let lazy_end = { x: f(start.x), y: f(start.y) };
+        let lazy_travel_distance = 0;
+
+        for (const nested_time of nested_times) {
+            const progress = (nested_time - start_time) / duration;
+            const position = position_at_progress(progress);
+            const dx = f(position.x - lazy_end.x);
+            const dy = f(position.y - lazy_end.y);
+            const distance = f(Math.sqrt(f(f(dx * dx) + f(dy * dy))));
+
+            if (distance > follow_radius) {
+                const movement = distance - follow_radius;
+                lazy_end = {
+                    x: f(lazy_end.x + f((dx / distance) * movement)),
+                    y: f(lazy_end.y + f((dy / distance) * movement)),
+                };
+                lazy_travel_distance = f(lazy_travel_distance + movement);
+            }
+        }
+
+        return {
+            lazy_end_x: lazy_end.x,
+            lazy_end_y: lazy_end.y,
+            lazy_travel_distance,
+            lazy_travel_time: duration,
+            tail_x: position_at_progress(1).x,
+            tail_y: position_at_progress(1).y,
+        };
+    }
+
     const position_at_event = (event: SliderNestedEvent) => {
         const point = point_at_official_slider_path(
             event.path_progress * pixel_length,

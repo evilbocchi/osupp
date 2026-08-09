@@ -1,6 +1,9 @@
 import type { BeatmapData, ScoreData } from "../BeatmapData";
 import { osu_circle_scale } from "../BeatmapData";
-import PpCalculator, { type PpCalculatorResult } from "../PpCalculator";
+import PpCalculator, {
+    type PpCalculatorOptions,
+    type PpCalculatorResult,
+} from "../PpCalculator";
 import {
     apply_mods_to_difficulty,
     calculate_effective_arod,
@@ -18,6 +21,8 @@ interface SkillResult {
     difficult_strain_count: number;
 }
 
+export type Legacy2015Rework = "jan2014" | "feb2015" | "jul2015";
+
 const DIFFICULTY_MULTIPLIER = 0.0675;
 const SECTION_LENGTH = 400;
 const DECAY_WEIGHT = 0.9;
@@ -33,6 +38,7 @@ function has_mod(mods: string[], acronym: string): boolean {
 function create_difficulty_hit_objects(
     beatmap: BeatmapData,
     mods: string[],
+    rework: Legacy2015Rework,
 ): {
     objects: DifficultyHitObject[];
     effective_ar: number;
@@ -42,20 +48,20 @@ function create_difficulty_hit_objects(
     const { clock_rate, ar, od, cs } = apply_mods_to_difficulty(
         beatmap,
         mods,
-        "jul2015",
+        rework,
     );
     const hit_objects = prepare_hit_objects_for_difficulty(
         beatmap,
         mods,
         cs,
         ar,
-        "jul2015",
+        rework,
     );
     const { effective_ar, effective_od } = calculate_effective_arod(
         ar,
         od,
         clock_rate,
-        "jul2015",
+        rework,
     );
     const objects: DifficultyHitObject[] = [];
 
@@ -66,17 +72,37 @@ function create_difficulty_hit_objects(
         let scaling_factor = 52 / radius;
 
         if (radius < 30) {
-            scaling_factor *= 1 + Math.min(30 - radius, 5) / 50;
+            scaling_factor *=
+                1 +
+                (rework === "jan2014" || rework === "feb2015"
+                    ? (30 - radius) / 40
+                    : Math.min(30 - radius, 5) / 50);
         }
 
-        const dx = Math.fround(current.stacked_x - previous.stacked_x);
-        const dy = Math.fround(current.stacked_y - previous.stacked_y);
+        const stack_offset_x = previous.stacked_x - previous.x;
+        const stack_offset_y = previous.stacked_y - previous.y;
+        const last_cursor_x =
+            rework === "jan2014" && previous.is_slider
+                ? (previous.lazy_end_x ?? previous.stacked_x) + stack_offset_x
+                : previous.stacked_x;
+        const last_cursor_y =
+            rework === "jan2014" && previous.is_slider
+                ? (previous.lazy_end_y ?? previous.stacked_y) + stack_offset_y
+                : previous.stacked_y;
+        const dx = Math.fround(current.stacked_x - last_cursor_x);
+        const dy = Math.fround(current.stacked_y - last_cursor_y);
         const distance =
-            Math.fround(
-                Math.sqrt(
-                    Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy)),
-                ),
-            ) * scaling_factor;
+            ((previous.is_slider && rework === "jan2014"
+                ? (previous.lazy_travel_distance ?? 0)
+                : 0) +
+                Math.fround(
+                    Math.sqrt(
+                        Math.fround(
+                            Math.fround(dx * dx) + Math.fround(dy * dy),
+                        ),
+                    ),
+                )) *
+            scaling_factor;
 
         objects.push({
             start_time: current.time / clock_rate,
@@ -178,9 +204,10 @@ function difficulty_to_performance(difficulty: number): number {
 function calculate_difficulty(
     beatmap: BeatmapData,
     mods: string[],
+    rework: Legacy2015Rework,
 ): PpCalculatorResult["difficulty_attributes"] {
     const { objects, effective_ar, effective_od, effective_cs } =
-        create_difficulty_hit_objects(beatmap, mods);
+        create_difficulty_hit_objects(beatmap, mods, rework);
     const aim = calculate_skill(objects, false);
     const speed = calculate_skill(objects, true);
     const aim_difficulty =
@@ -218,6 +245,19 @@ function calculate_difficulty(
  * Target: huismetbenen pp values.
  */
 export default class Jul2015PpCalculator extends PpCalculator {
+    protected readonly rework: Legacy2015Rework;
+    protected readonly approach_rate_bonus_start: number = 10.33;
+    protected readonly approach_rate_bonus_multiplier: number = 0.45;
+    protected readonly flashlight_length_multiplier: number = 0.45;
+
+    constructor(
+        options: PpCalculatorOptions = {},
+        rework: Legacy2015Rework = "jul2015",
+    ) {
+        super(options);
+        this.rework = rework;
+    }
+
     protected calculate_performance(
         score: ScoreData,
         beatmap: BeatmapData,
@@ -228,7 +268,7 @@ export default class Jul2015PpCalculator extends PpCalculator {
         const stats = score.statistics as Record<string, number | undefined>;
         const source_score = score as ScoreData & { combo?: number };
         const mods = mod_names(score);
-        const difficulty = calculate_difficulty(beatmap, mods);
+        const difficulty = calculate_difficulty(beatmap, mods, this.rework);
         const accuracy = (score.accuracy ?? 0) / 100;
         const score_max_combo = source_score.combo ?? score.max_combo ?? 0;
         const great = stats.great ?? 0;
@@ -264,8 +304,11 @@ export default class Jul2015PpCalculator extends PpCalculator {
                   )
                 : 1;
         const approach_rate_factor =
-            difficulty.approach_rate > 10.33
-                ? 1 + 0.45 * (difficulty.approach_rate - 10.33)
+            difficulty.approach_rate > this.approach_rate_bonus_start
+                ? 1 +
+                  this.approach_rate_bonus_multiplier *
+                      (difficulty.approach_rate -
+                          this.approach_rate_bonus_start)
                 : difficulty.approach_rate < 8
                   ? 1 +
                     (has_mod(mods, "HD") ? 0.02 : 0.01) *
@@ -282,7 +325,8 @@ export default class Jul2015PpCalculator extends PpCalculator {
             combo_scaling *
             approach_rate_factor;
         if (has_mod(mods, "HD")) aim *= 1.18;
-        if (has_mod(mods, "FL")) aim *= 1 + 0.45 * length_bonus;
+        if (has_mod(mods, "FL"))
+            aim *= 1 + this.flashlight_length_multiplier * length_bonus;
         aim *= accuracy_factor * overall_difficulty_factor;
 
         const speed =
