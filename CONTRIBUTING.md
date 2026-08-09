@@ -109,6 +109,28 @@ catch: no plans yet
 | mar2025 | 506.375pp | 506.374/-0.001 |
 | oct2025 | 523.186pp | agrees         |
 
+## EXTREMELY WELL-KNOWN SCORES
+
+## `948327084`
+
+| Rework  | confirmed | huismetbenen    |
+| ------- | --------: | --------------- |
+| feb2019 |    1171pp | 1170.938/agrees |
+| jan2021 |    1150pp | 1150.264/agrees |
+
+## `1191045921`
+
+| Rework  | confirmed | huismetbenen    |
+| ------- | --------: | --------------- |
+| jan2021 |    1258pp | 1261.555/+3.555 |
+
+## `1314141259`
+
+| Rework  | confirmed | huismetbenen    |
+| ------- | --------: | --------------- |
+| jan2021 |    1255pp | 1260.643/+5.643 |
+| jul2021 |    1241pp | 1240.86/agrees  |
+
 The simple conclusion is that huismetbenen is fully agreeable for oct2025 and sep2022, maybe even for mar2025 and oct2024. But the drift for older reworks is too high and inconsistent and we want to check ourselves and find osu code that matches the wayback machine numbers.
 
 For now, we aim for parity to wayback machine numbers, or if we don't have the real game code for that we aim for parity to huismetbenen numbers. We expect a precision of 0.001pp to ensure users get the most accurate results possible.
