@@ -7,7 +7,7 @@ CONTRIBUTING.md is actually just the personal repo notes for this project. Pleas
 no plans yet = still deciding if we want to implement this  
 not triaged = we don't have a stable reference to reliably implement this rework yet  
 not started = we haven't started implementing this rework yet  
-in progress = we are currently implementing this rework, but values are not accurate  
+in progress = we are currently implementing this rework but the calculator cannot correctly calculate the target  
 complete* = we have implemented this rework but subject to change as we can't fully validate it yet or the rework is targeting incorrect numbers
 complete = we have implemented this rework and it is fully validated against the wayback machine numbers
 
