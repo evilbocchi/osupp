@@ -4,6 +4,7 @@ import { join } from "node:path";
 import {
     Dec2017PpCalculator,
     Feb2019PpCalculator,
+    Jul2021PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     May2018PpCalculator,
@@ -129,14 +130,15 @@ describe("calculateProfilePp", () => {
 
 describe.each([
     ["dec2017", Dec2017PpCalculator],
+    ["may2018", May2018PpCalculator],
     ["feb2019", Feb2019PpCalculator],
+    ["jul2021", Jul2021PpCalculator],
     ["nov2021", Nov2021PpCalculator],
-    ["jul2026", Jul2026PpCalculator],
+    ["sep2022", Sep2022PpCalculator],
     ["oct2024", Oct2024PpCalculator],
     ["mar2025", Mar2025PpCalculator],
     ["oct2025", Oct2025PpCalculator],
-    ["sep2022", Sep2022PpCalculator],
-    ["may2018", May2018PpCalculator],
+    ["jul2026", Jul2026PpCalculator],
 ] as const)("%s", (reworkSlug, Calculator) => {
     test.each(
         readdirSync(fixturePath())

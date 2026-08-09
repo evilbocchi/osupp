@@ -2,6 +2,7 @@ import type { BeatmapData, ScoreData } from "./BeatmapData";
 import { parse_osu_content } from "./BeatmapData";
 import Dec2017PpCalculator from "./dec2017/Dec2017PpCalculator";
 import Feb2019PpCalculator from "./feb2019/Feb2019PpCalculator";
+import Jul2021PpCalculator from "./jul2021/Jul2021PpCalculator";
 import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
 import Mar2025PpCalculator from "./mar2025/Mar2025PpCalculator";
 import May2018PpCalculator from "./may2018/May2018PpCalculator";
@@ -21,6 +22,7 @@ import Sep2022PpCalculator from "./sep2022/Sep2022PpCalculator";
 
 export type SupportedRework =
     | "nov2021"
+    | "jul2021"
     | "jul2026"
     | "oct2025"
     | "mar2025"
@@ -48,6 +50,7 @@ export const rulesets = RULESET_IDS;
 
 export const reworks = {
     nov2021: "nov2021",
+    jul2021: "jul2021",
     dec2017: "dec2017",
     feb2019: "feb2019",
     may2018: "may2018",
@@ -76,6 +79,8 @@ export function createPpCalculator(
     switch (options.rework ?? reworks.mar2025) {
         case reworks.nov2021:
             return new Nov2021PpCalculator(calculator_options);
+        case reworks.jul2021:
+            return new Jul2021PpCalculator(calculator_options);
         case reworks.dec2017:
             return new Dec2017PpCalculator(calculator_options);
         case reworks.feb2019:
@@ -117,6 +122,7 @@ export {
     calculate_profile_pp as calculateProfilePp,
     Dec2017PpCalculator,
     Feb2019PpCalculator,
+    Jul2021PpCalculator,
     Jul2026PpCalculator,
     Mar2025PpCalculator,
     May2018PpCalculator,
