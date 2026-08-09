@@ -1,57 +1,57 @@
 {
-  "score": {
-    "ruleset_id": 0,
-    "beatmap_id": 5577996,
-    "beatmap": "Ariabl'eyeS - Souzou no Idea (Maaadbot) [Eternity]",
-    "mods": [
-      {
-        "acronym": "DT"
-      },
-      {
-        "acronym": "HD"
-      },
-      {
-        "acronym": "CL"
-      }
-    ],
-    "total_score": 0,
-    "accuracy": 96.69669669669669,
-    "combo": 428,
-    "statistics": {
-      "great": 1483,
-      "ok": 59,
-      "meh": 0,
-      "miss": 12
-    }
-  },
-  "performance_attributes": {
-    "aim": 383.33349510611475,
-    "speed": 71.76506959328788,
-    "accuracy": 67.38543107556832,
-    "flashlight": 0,
-    "effective_miss_count": 12,
-    "speed_deviation": null,
-    "pp": 547.2913283383568
-  },
-  "difficulty_attributes": {
-    "star_rating": 12.021304294144555,
-    "max_combo": 2405,
-    "aim_difficulty": 6.563974680911342,
-    "aim_difficult_slider_count": 0,
-    "speed_difficulty": 4.350684545555082,
-    "aim_difficult_strain_count": 121.99139117003655,
-    "speed_difficult_strain_count": 242.2554684943112,
-    "circle_size": 4,
-    "approach_rate": 11,
-    "overall_difficulty": 11.0833
-  },
-  "rework_data": {
-    "id": 118,
-    "code": "pp_feb2015",
-    "version": 1,
-    "last_updated": "2025-04-02 21:05"
-  },
-  "live_pp": null,
-  "user_id": 7562902,
-  "score_id": 6905328546
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5577996,
+        "beatmap": "Ariabl'eyeS - Souzou no Idea (Maaadbot) [Eternity]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 96.69669669669669,
+        "combo": 428,
+        "statistics": {
+            "great": 1483,
+            "ok": 59,
+            "meh": 0,
+            "miss": 12
+        }
+    },
+    "performance_attributes": {
+        "aim": 383.33349510611475,
+        "speed": 71.76506959328788,
+        "accuracy": 67.38543107556832,
+        "flashlight": 0,
+        "effective_miss_count": 12,
+        "speed_deviation": null,
+        "pp": 547.2913283383568
+    },
+    "difficulty_attributes": {
+        "star_rating": 12.021304294144555,
+        "max_combo": 2405,
+        "aim_difficulty": 6.563974680911342,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.350684545555082,
+        "aim_difficult_strain_count": 121.99139117003655,
+        "speed_difficult_strain_count": 242.2554684943112,
+        "circle_size": 4,
+        "approach_rate": 11,
+        "overall_difficulty": 11.0833
+    },
+    "rework_data": {
+        "id": 118,
+        "code": "pp_feb2015",
+        "version": 1,
+        "last_updated": "2025-04-02 21:05"
+    },
+    "live_pp": null,
+    "user_id": 7562902,
+    "score_id": 6905328546
 }

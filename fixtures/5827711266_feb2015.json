@@ -1,60 +1,60 @@
 {
-  "score": {
-    "ruleset_id": 0,
-    "beatmap_id": 5098651,
-    "beatmap": "BAD NERVES - ANTIDOTE (midwest) [SMOKE'S ANTIDOTE]",
-    "mods": [
-      {
-        "acronym": "DT"
-      },
-      {
-        "acronym": "EZ"
-      },
-      {
-        "acronym": "HD"
-      },
-      {
-        "acronym": "CL"
-      }
-    ],
-    "total_score": 0,
-    "accuracy": 98.10606060606061,
-    "combo": 343,
-    "statistics": {
-      "great": 514,
-      "ok": 12,
-      "meh": 0,
-      "miss": 2
-    }
-  },
-  "performance_attributes": {
-    "aim": 320.7437792325931,
-    "speed": 114.91057481121719,
-    "accuracy": 20.575493040218706,
-    "flashlight": 0,
-    "effective_miss_count": 2,
-    "speed_deviation": null,
-    "pp": 478.9161210701918
-  },
-  "difficulty_attributes": {
-    "star_rating": 9.661642985218277,
-    "max_combo": 798,
-    "aim_difficulty": 5.145772229106429,
-    "aim_difficult_slider_count": 0,
-    "speed_difficulty": 3.885969283117267,
-    "aim_difficult_strain_count": 51.12767039717013,
-    "speed_difficult_strain_count": 100.33314197782386,
-    "circle_size": 1.75,
-    "approach_rate": 7.58667,
-    "overall_difficulty": 7.75
-  },
-  "rework_data": {
-    "id": 118,
-    "code": "pp_feb2015",
-    "version": 1,
-    "last_updated": "2025-04-02 21:05"
-  },
-  "live_pp": null,
-  "user_id": 10077431,
-  "score_id": 5827711266
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5098651,
+        "beatmap": "BAD NERVES - ANTIDOTE (midwest) [SMOKE'S ANTIDOTE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 98.10606060606061,
+        "combo": 343,
+        "statistics": {
+            "great": 514,
+            "ok": 12,
+            "meh": 0,
+            "miss": 2
+        }
+    },
+    "performance_attributes": {
+        "aim": 320.7437792325931,
+        "speed": 114.91057481121719,
+        "accuracy": 20.575493040218706,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "speed_deviation": null,
+        "pp": 478.9161210701918
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.661642985218277,
+        "max_combo": 798,
+        "aim_difficulty": 5.145772229106429,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.885969283117267,
+        "aim_difficult_strain_count": 51.12767039717013,
+        "speed_difficult_strain_count": 100.33314197782386,
+        "circle_size": 1.75,
+        "approach_rate": 7.58667,
+        "overall_difficulty": 7.75
+    },
+    "rework_data": {
+        "id": 118,
+        "code": "pp_feb2015",
+        "version": 1,
+        "last_updated": "2025-04-02 21:05"
+    },
+    "live_pp": null,
+    "user_id": 10077431,
+    "score_id": 5827711266
 }
