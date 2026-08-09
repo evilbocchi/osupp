@@ -248,3 +248,11 @@ huismetbenen is fully reliable for oct2025 and jul2026, but for older reworks th
 ## CODING STYLE
 
 We know that JavaScript loves camelCase! But internally we use snake_case for all our variables to be consistent with the osu! API. We expose a public camelCase interface for our users.
+
+## USEFUL LINKS
+
+- huismetbenen: https://pp.huismetbenen.nl/
+- legacy osu-performance repo: https://github.com/ppy/osu-performance/
+- osu!: https://github.com/ppy/osu/
+- osu! pp-dev branch: https://github.com/ppy/osu/tree/pp-dev/
+- givikap120's osu fork: https://github.com/Givikap120/osu/
