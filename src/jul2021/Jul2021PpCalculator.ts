@@ -128,6 +128,8 @@ function calculate_performance_values(
 }
 
 /**
+ * https://osu.ppy.sh/home/news/2021-07-27-performance-points-star-rating-updates
+ *
  * Target: osu! source snapshot from July 22, 2021.
  */
 export default class Jul2021PpCalculator extends PpCalculator {
