@@ -13,8 +13,8 @@ complete = we have implemented this rework and it is fully validated against the
 
 standard:
 
-- jan2014: not triaged
-- feb2015: not triaged
+- jan2014: complete* (huismetbenen)
+- feb2015: complete* (huismetbenen)
 - jul2015: complete* (huismetbenen)
 - dec2017: complete* (low precision)
 - may2018: complete* (low precision)
