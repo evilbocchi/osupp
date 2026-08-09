@@ -1,0 +1,70 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5098651,
+        "beatmap": "BAD NERVES - ANTIDOTE (midwest) [SMOKE'S ANTIDOTE]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "EZ"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 98.10606060606061,
+        "combo": 343,
+        "statistics": {
+            "great": 514,
+            "ok": 12,
+            "meh": 0,
+            "miss": 2
+        }
+    },
+    "performance_attributes": {
+        "aim": 320.7437792325931,
+        "speed": 114.91057481121719,
+        "accuracy": 20.575493040218706,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "pp": 478.9161210701918
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.661642985218277,
+        "max_combo": 798,
+        "aim_difficulty": 5.145772229106429,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.885969283117267,
+        "speed_note_count": 0,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "aim_difficult_strain_count": 51.12767039717013,
+        "speed_difficult_strain_count": 100.33314197782386,
+        "reading_difficult_note_count": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "approach_rate": 7.58667,
+        "overall_difficulty": 7.75,
+        "circle_size": 1.75,
+        "drain_rate": 2.799999952316284,
+        "hit_circle_count": 279,
+        "slider_count": 249,
+        "spinner_count": 0
+    },
+    "rework_data": {
+        "id": 105,
+        "code": "pp_jul2015",
+        "version": 2,
+        "last_updated": "2025-03-01 22:13"
+    },
+    "live_pp": null,
+    "user_id": 10077431,
+    "score_id": 5827711266
+}

@@ -1,0 +1,73 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 4791385,
+        "beatmap": "toby fox - Song That Might Play When You Fight Sans (Smoke) [browiec's Extreme]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "NF"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 93.69658119658119,
+        "combo": 286,
+        "statistics": {
+            "great": 283,
+            "ok": 27,
+            "meh": 2,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 695.4193737162102,
+        "speed": 190.1423820718201,
+        "accuracy": 18.828169961954462,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 864.2758238622763
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.088672587817841,
+        "max_combo": 423,
+        "aim_difficulty": 5.378679654248905,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.041306212888968,
+        "speed_note_count": 0,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "aim_difficult_strain_count": 50.88497944593926,
+        "speed_difficult_strain_count": 98.7724125007094,
+        "reading_difficult_note_count": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "approach_rate": 11,
+        "overall_difficulty": 11.0833,
+        "circle_size": 3.9,
+        "drain_rate": 7,
+        "hit_circle_count": 213,
+        "slider_count": 97,
+        "spinner_count": 2
+    },
+    "rework_data": {
+        "id": 105,
+        "code": "pp_jul2015",
+        "version": 2,
+        "last_updated": "2025-03-01 22:13"
+    },
+    "live_pp": null,
+    "user_id": 10077431,
+    "score_id": 4111017165
+}

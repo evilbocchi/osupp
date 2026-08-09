@@ -1,0 +1,67 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2240526,
+        "beatmap": "TUYU - Anoyo-iki no Bus ni Notte Saraba. (SnowNiNo_) [Yandere]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 96.20253164556962,
+        "combo": 1022,
+        "statistics": {
+            "great": 897,
+            "ok": 45,
+            "meh": 0,
+            "miss": 6
+        }
+    },
+    "performance_attributes": {
+        "aim": 955.6903021926022,
+        "speed": 233.0355234912448,
+        "accuracy": 67.9886426434229,
+        "flashlight": 0,
+        "effective_miss_count": 6,
+        "pp": 1326.6919862763389
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.85880187844887,
+        "max_combo": 1230,
+        "aim_difficulty": 5.850296618347447,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.1667139018554,
+        "speed_note_count": 0,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "aim_difficult_strain_count": 53.67523433118543,
+        "speed_difficult_strain_count": 165.57593467622166,
+        "reading_difficult_note_count": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "approach_rate": 10.8667,
+        "overall_difficulty": 10.75,
+        "circle_size": 4,
+        "drain_rate": 5.5,
+        "hit_circle_count": 704,
+        "slider_count": 244,
+        "spinner_count": 0
+    },
+    "rework_data": {
+        "id": 105,
+        "code": "pp_jul2015",
+        "version": 2,
+        "last_updated": "2025-03-01 22:13"
+    },
+    "live_pp": null,
+    "user_id": 7562902,
+    "score_id": 1773742642
+}

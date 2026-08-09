@@ -1,0 +1,67 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1811527,
+        "beatmap": "Avenged Sevenfold - Save Me (Sersh4nt) [Nightmare]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 99.20245398773007,
+        "combo": 4310,
+        "statistics": {
+            "great": 3221,
+            "ok": 39,
+            "meh": 0,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 648.3047211116271,
+        "speed": 456.4788375804362,
+        "accuracy": 185.8648003705012,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1321.8422250365172
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.666630934254009,
+        "max_combo": 4312,
+        "aim_difficulty": 4.34903316034192,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 4.286162387482257,
+        "speed_note_count": 0,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "aim_difficult_strain_count": 131.80326270081238,
+        "speed_difficult_strain_count": 271.88693033944105,
+        "reading_difficult_note_count": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "approach_rate": 10.6667,
+        "overall_difficulty": 10.3056,
+        "circle_size": 4,
+        "drain_rate": 5,
+        "hit_circle_count": 2280,
+        "slider_count": 977,
+        "spinner_count": 3
+    },
+    "rework_data": {
+        "id": 105,
+        "code": "pp_jul2015",
+        "version": 2,
+        "last_updated": "2025-03-01 22:13"
+    },
+    "live_pp": null,
+    "user_id": 7562902,
+    "score_id": 3427873257
+}

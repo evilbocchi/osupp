@@ -1,0 +1,64 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 2870806,
+        "beatmap": "Noah - Deadly force - Put an end (Keqing) [The end.]",
+        "mods": [
+            {
+                "acronym": "HT"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "accuracy": 99.30421337456514,
+        "combo": 1986,
+        "statistics": {
+            "great": 2560,
+            "ok": 27,
+            "meh": 0,
+            "miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 233.66670190286413,
+        "speed": 183.15734461686915,
+        "accuracy": 108.15720580960974,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 534.4978564899428
+    },
+    "difficulty_attributes": {
+        "star_rating": 7.835514739460596,
+        "max_combo": 3320,
+        "aim_difficulty": 3.9945743455317846,
+        "aim_difficult_slider_count": 0,
+        "speed_difficulty": 3.687306442325838,
+        "speed_note_count": 0,
+        "flashlight_difficulty": 0,
+        "reading_difficulty": 0,
+        "aim_difficult_strain_count": 164.2315182436143,
+        "speed_difficult_strain_count": 256.99474496633854,
+        "reading_difficult_note_count": 0,
+        "slider_factor": 1,
+        "aim_top_weighted_slider_factor": 0,
+        "speed_top_weighted_slider_factor": 0,
+        "approach_rate": 9,
+        "overall_difficulty": 8.91667,
+        "circle_size": 4,
+        "drain_rate": 3,
+        "hit_circle_count": 1905,
+        "slider_count": 682,
+        "spinner_count": 0
+    },
+    "rework_data": {
+        "id": 105,
+        "code": "pp_jul2015",
+        "version": 2,
+        "last_updated": "2025-03-01 22:13"
+    },
+    "live_pp": null,
+    "user_id": 1719471,
+    "score_id": 4813317877
+}
