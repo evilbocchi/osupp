@@ -2,4 +2,4 @@ pre-commit:
   commands:
     prettier:
       run: "bun run prettier --write ."
-      stage-fixed: true
+      stage_fixed: true
