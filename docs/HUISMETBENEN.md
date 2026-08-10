@@ -1,6 +1,13 @@
 ## HUISMETBENEN DOCUMENTED CHANGES
 
-oct2025 2025-10-29: awaiting.
+jul2026 2026-07-03: awaiting.
+
+oct2025 2025-10-29: This page uses the pp version that was active from November 2025 until July 2026. Changes that were introduced in this version include:
+
+- Move all score-independent bonuses into star rating
+- Reduce relax Ok miss multiplier
+- Use proportion of difficult sliders to better estimate sliderbreaks on classic accuracy scores
+- Scorev1-based Misscount Estimation
 
 mar2025 2025-03-06: This page uses the pp version that was active from March 2025 until the new changes in November 2025. Changes that were introduced in this version include:
 
