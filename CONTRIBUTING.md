@@ -256,3 +256,6 @@ We know that JavaScript loves camelCase! But internally we use snake_case for al
 - osu!: https://github.com/ppy/osu/
 - osu! pp-dev branch: https://github.com/ppy/osu/tree/pp-dev/
 - givikap120's osu fork: https://github.com/Givikap120/osu/
+- rosu (2021+ era): https://github.com/MaxOhn/rosu-pp
+- oppai-ng (2017-2021 era): https://github.com/Francesco149/oppai-ng
+- oppai (2016-2017 era): https://github.com/Francesco149/oppai
