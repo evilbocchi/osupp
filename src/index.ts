@@ -4,6 +4,7 @@ import Dec2017PpCalculator from "./dec2017/Dec2017PpCalculator";
 import Feb2015PpCalculator from "./feb2015/Feb2015PpCalculator";
 import Feb2019PpCalculator from "./feb2019/Feb2019PpCalculator";
 import Jan2014PpCalculator from "./jan2014/Jan2014PpCalculator";
+import Jan2021PpCalculator from "./jan2021/Jan2021PpCalculator";
 import Jul2015PpCalculator from "./jul2015/Jul2015PpCalculator";
 import Jul2021PpCalculator from "./jul2021/Jul2021PpCalculator";
 import Jul2026PpCalculator from "./jul2026/Jul2026PpCalculator";
@@ -27,6 +28,7 @@ export type SupportedRework =
     | "jan2014"
     | "feb2015"
     | "jul2015"
+    | "jan2021"
     | "nov2021"
     | "jul2021"
     | "jul2026"
@@ -58,6 +60,7 @@ export const reworks = {
     jan2014: "jan2014",
     feb2015: "feb2015",
     jul2015: "jul2015",
+    jan2021: "jan2021",
     nov2021: "nov2021",
     jul2021: "jul2021",
     dec2017: "dec2017",
@@ -92,6 +95,8 @@ export function createPpCalculator(
             return new Feb2015PpCalculator(calculator_options);
         case reworks.jul2015:
             return new Jul2015PpCalculator(calculator_options);
+        case reworks.jan2021:
+            return new Jan2021PpCalculator(calculator_options);
         case reworks.nov2021:
             return new Nov2021PpCalculator(calculator_options);
         case reworks.jul2021:
@@ -139,6 +144,7 @@ export {
     Feb2015PpCalculator,
     Feb2019PpCalculator,
     Jan2014PpCalculator,
+    Jan2021PpCalculator,
     Jul2015PpCalculator,
     Jul2021PpCalculator,
     Jul2026PpCalculator,
