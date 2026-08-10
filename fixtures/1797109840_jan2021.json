@@ -1,8 +1,8 @@
 {
     "score": {
         "ruleset_id": 0,
-        "beatmap_id": 550235,
-        "beatmap": "Our Stolen Theory - United (L.A.O.S Remix) (Asphyxia) [Infinity]",
+        "beatmap_id": 2654458,
+        "beatmap": "UNDEAD CORPORATION - Frozen (Daycore) [Everything Will Freeze]",
         "mods": [
             {
                 "acronym": "HR"
@@ -12,30 +12,30 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 127472559,
-        "accuracy": 99.3932499051953,
-        "combo": 2274,
+        "legacy_total_score": 56787063,
+        "accuracy": 98.51079672375279,
+        "combo": 1682,
         "statistics": {
-            "great": 1742,
-            "ok": 16,
+            "great": 1313,
+            "ok": 30,
             "meh": 0,
             "miss": 0,
             "slider_tail_miss": 0
         }
     },
     "performance_attributes": {
-        "aim": 163.73839052435088,
-        "speed": 151.2561199288055,
-        "accuracy": 169.5849046211661,
+        "aim": 349.5441365927323,
+        "speed": 341.7859048392715,
+        "accuracy": 120.44369251247113,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 491.19876238171906
+        "pp": 829.9324032745811
     },
     "difficulty_attributes": {
-        "star_rating": 6.287534069028203,
-        "max_combo": 2275,
-        "aim_difficulty": 3.176593627285873,
-        "speed_difficulty": 3.0452872561987863,
+        "star_rating": 8.307288904654264,
+        "max_combo": 1687,
+        "aim_difficulty": 4.172822146078957,
+        "speed_difficulty": 4.096111371071658,
         "approach_rate": 10,
         "overall_difficulty": 10,
         "circle_size": 5.2
@@ -44,7 +44,7 @@
         "code": "pp_jan2021",
         "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
     },
-    "live_pp": 506.433,
-    "user_id": 352328,
-    "score_id": 235561156
+    "live_pp": 804.771,
+    "user_id": 1719471,
+    "score_id": 1797109840
 }

@@ -1,0 +1,53 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 5141310,
+        "beatmap": "VINXIS - Sidetracked Day (Short Ver.) (Firiiu) [-Tynamo's Resolution]",
+        "mods": [
+            {
+                "acronym": "FL"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 24287660,
+        "accuracy": 99.80787704130644,
+        "combo": 938,
+        "statistics": {
+            "great": 692,
+            "ok": 2,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 545.6219021089049,
+        "speed": 340.728545204873,
+        "accuracy": 147.91053773082643,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1060.4555528091444
+    },
+    "difficulty_attributes": {
+        "star_rating": 8.358905846081283,
+        "max_combo": 938,
+        "aim_difficulty": 4.111214520212027,
+        "speed_difficulty": 4.202199057316846,
+        "approach_rate": 10,
+        "overall_difficulty": 10,
+        "circle_size": 5.85
+    },
+    "rework_data": {
+        "code": "pp_jan2021",
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
+    },
+    "live_pp": 1011.76,
+    "user_id": 6567297,
+    "score_id": 5508451250
+}

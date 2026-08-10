@@ -1,0 +1,59 @@
+{
+    "score": {
+        "id": 948327084,
+        "user_id": 6447454,
+        "ruleset_id": 0,
+        "beatmap_id": 1695382,
+        "beatmap": "THE ORAL CIGARETTES - Mou Ii kai? (Nevo) [Rain]",
+        "mods": [
+            {
+                "acronym": "NC"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1083318,
+        "legacy_total_score": 8882741,
+        "accuracy": 98.1381,
+        "max_combo": 530,
+        "combo": 530,
+        "statistics": {
+            "ok": 14,
+            "miss": 1,
+            "great": 540
+        },
+        "ended_at": "2020-06-17T23:01:39Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 469.48502935734723,
+        "speed": 521.8076844184559,
+        "accuracy": 128.97309185811187,
+        "flashlight": 0,
+        "effective_miss_count": 1,
+        "pp": 1149.8228113262194
+    },
+    "difficulty_attributes": {
+        "star_rating": 10.042789288487324,
+        "max_combo": 672,
+        "aim_difficulty": 4.95012070175172,
+        "speed_difficulty": 5.045152625074309,
+        "approach_rate": 10.73777777777778,
+        "overall_difficulty": 10.777777777777779,
+        "circle_size": 4.2
+    },
+    "live_pp": 1153.27,
+    "user_id": 6447454,
+    "score_id": 948327084,
+    "rework_data": {
+        "code": "pp_jan2021",
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
+    }
+}

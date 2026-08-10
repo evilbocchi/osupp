@@ -15,7 +15,7 @@
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 0,
+        "legacy_total_score": 2789907,
         "accuracy": 97.56521739130434,
         "combo": 207,
         "statistics": {
@@ -27,31 +27,27 @@
         }
     },
     "performance_attributes": {
-        "aim": 431.9753344808481,
-        "speed": 157.74828459691383,
+        "aim": 429.92018471332847,
+        "speed": 157.6597328071515,
         "accuracy": 103.16463784235668,
         "flashlight": 0,
         "effective_miss_count": 6,
-        "pp": 715.1820858859536
+        "pp": 712.8824680637932
     },
     "difficulty_attributes": {
-        "star_rating": 12.205693704308784,
+        "star_rating": 12.189668119607669,
         "max_combo": 745,
-        "aim_difficulty": 6.601361564601189,
-        "speed_difficulty": 4.607302714814004,
-        "aim_difficult_strain_count": 85.0224747996876,
-        "speed_difficult_strain_count": 149.7397736481037,
+        "aim_difficulty": 6.590961893560425,
+        "speed_difficulty": 4.606450558534066,
         "approach_rate": 11,
-        "overall_difficulty": 10.97777777777778,
+        "overall_difficulty": 11,
         "circle_size": 4
     },
     "rework_data": {
-        "id": 89,
         "code": "pp_jan2021",
-        "version": 2,
-        "last_updated": "2025-01-24 11:01"
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
     },
-    "live_pp": 1581.41,
+    "live_pp": 1657.26,
     "user_id": 7562902,
     "score_id": 4460552935
 }

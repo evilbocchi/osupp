@@ -5,17 +5,19 @@
         "beatmap": "Mutsuhiko Izumi - Red Goose (nold_1702) [Superable]",
         "mods": [
             {
-                "acronym": "HR"
+                "acronym": "HR",
+                "settings": {}
             },
             {
-                "acronym": "HD"
+                "acronym": "HD",
+                "settings": {}
             },
             {
-                "acronym": "CL"
+                "acronym": "CL",
+                "settings": {}
             }
         ],
         "total_score": 0,
-        "legacy_total_score": 0,
         "accuracy": 99.31473323543808,
         "combo": 988,
         "statistics": {
@@ -27,29 +29,25 @@
         }
     },
     "performance_attributes": {
-        "aim": 166.98143705065507,
-        "speed": 151.66850411496372,
+        "aim": 166.78722841186482,
+        "speed": 151.71101300059604,
         "accuracy": 131.62441221000205,
         "flashlight": 0,
         "effective_miss_count": 0,
-        "pp": 456.5873920492782
+        "pp": 456.43158899424924
     },
     "difficulty_attributes": {
-        "star_rating": 6.542888544279941,
+        "star_rating": 6.541139458078194,
         "max_combo": 990,
-        "aim_difficulty": 3.3096895760265044,
-        "speed_difficulty": 3.1567083604803683,
-        "aim_difficult_strain_count": 90.33521075546928,
-        "speed_difficult_strain_count": 119.28135929458846,
+        "aim_difficulty": 3.3084269040846985,
+        "speed_difficulty": 3.1569982039022926,
         "approach_rate": 10,
         "overall_difficulty": 10,
         "circle_size": 5.2
     },
     "rework_data": {
-        "id": 89,
         "code": "pp_jan2021",
-        "version": 2,
-        "last_updated": "2025-01-24 11:01"
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
     },
     "live_pp": 520.961,
     "user_id": 352328,

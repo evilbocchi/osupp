@@ -1,0 +1,62 @@
+{
+    "score": {
+        "id": 1314141259,
+        "user_id": 7562902,
+        "ruleset_id": 0,
+        "beatmap_id": 2486881,
+        "beatmap": "Yamajet feat. Hiura Masako - Sunglow (Onlybiscuit) [Harmony]",
+        "mods": [
+            {
+                "acronym": "NC"
+            },
+            {
+                "acronym": "HR"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 1299429,
+        "legacy_total_score": 70427194,
+        "accuracy": 98.3852,
+        "max_combo": 1631,
+        "combo": 1631,
+        "statistics": {
+            "ok": 25,
+            "miss": 2,
+            "great": 1129
+        },
+        "ended_at": "2021-07-17T06:44:23Z",
+        "rank": "A",
+        "passed": true,
+        "is_perfect_combo": false,
+        "legacy_perfect": false
+    },
+    "performance_attributes": {
+        "aim": 829.3771891324026,
+        "speed": 230.40003976479414,
+        "accuracy": 145.72423953947393,
+        "flashlight": 0,
+        "effective_miss_count": 2,
+        "pp": 1254.7815326027812
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.447013212073763,
+        "max_combo": 1646,
+        "aim_difficulty": 5.186308431199365,
+        "speed_difficulty": 3.3351011305494325,
+        "approach_rate": 11,
+        "overall_difficulty": 11.111111111111112,
+        "circle_size": 5.2
+    },
+    "live_pp": 995.177,
+    "user_id": 7562902,
+    "score_id": 1314141259,
+    "rework_data": {
+        "code": "pp_jan2021",
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
+    }
+}

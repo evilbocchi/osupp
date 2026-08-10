@@ -1,0 +1,53 @@
+{
+    "score": {
+        "ruleset_id": 0,
+        "beatmap_id": 1811527,
+        "beatmap": "Avenged Sevenfold - Save Me (Sersh4nt) [Nightmare]",
+        "mods": [
+            {
+                "acronym": "DT"
+            },
+            {
+                "acronym": "HD"
+            },
+            {
+                "acronym": "CL"
+            }
+        ],
+        "total_score": 0,
+        "legacy_total_score": 389718226,
+        "accuracy": 99.20245398773007,
+        "combo": 4310,
+        "statistics": {
+            "great": 3221,
+            "ok": 39,
+            "meh": 0,
+            "miss": 0,
+            "slider_tail_miss": 0
+        }
+    },
+    "performance_attributes": {
+        "aim": 616.3330557918241,
+        "speed": 834.3208922565045,
+        "accuracy": 204.28002048530695,
+        "flashlight": 0,
+        "effective_miss_count": 0,
+        "pp": 1698.34176515766
+    },
+    "difficulty_attributes": {
+        "star_rating": 9.49491373005489,
+        "max_combo": 4312,
+        "aim_difficulty": 4.460687670108092,
+        "speed_difficulty": 4.843046596667229,
+        "approach_rate": 10.666666666666668,
+        "overall_difficulty": 10.333333333333334,
+        "circle_size": 4
+    },
+    "rework_data": {
+        "code": "pp_jan2021",
+        "source": "ppy/osu@1ba586a683b3321cf7806d9dabf068983d0bd27b"
+    },
+    "live_pp": 1761.57,
+    "user_id": 7562902,
+    "score_id": 3427873257
+}
