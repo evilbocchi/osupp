@@ -19,7 +19,7 @@ standard:
 - dec2017: complete* (low precision)
 - may2018: complete* (low precision)
 - feb2019: complete* (low precision, osu)
-- jan2021: not triaged
+- jan2021: in progress
 - jul2021: complete* (osu)
 - nov2021: complete* (osu)
 - sep2022: complete
