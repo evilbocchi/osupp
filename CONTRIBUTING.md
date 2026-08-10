@@ -115,7 +115,7 @@ catch: no plans yet
 
 | Rework  | confirmed | huismetbenen    |
 | ------- | --------: | --------------- |
-| feb2019 |    1171pp | 1170.938/agrees |
+| feb2019 |    1170pp | 1170.938/+0.938 |
 | jan2021 |    1150pp | 1150.264/agrees |
 
 ## `1191045921`
